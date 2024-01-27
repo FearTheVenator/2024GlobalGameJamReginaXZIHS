@@ -17,6 +17,7 @@ script = ExtResource("1_riuxm")
 [node name="Node3D2" type="Node3D" parent="Main3D"]
 
 [node name="decoyClownHorn" parent="Main3D" instance=ExtResource("4_nm7td")]
+visible = false
 
 [node name="MainGUI" type="Control" parent="."]
 layout_mode = 3
