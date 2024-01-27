@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2gtf7knvdxan"]
+
+[ext_resource type="Script" path="res://scripts/decoyClownHorn.gd" id="1_u4rte"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_chucd"]
+radius = 15.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycbxl"]
+
+[node name="decoyClownHorn" type="RigidBody3D"]
+script = ExtResource("1_u4rte")
+
+[node name="decoyAlertArea" type="Area3D" parent="."]
+
+[node name="decoyAlertAreaCollider" type="CollisionShape3D" parent="decoyAlertArea"]
+shape = SubResource("SphereShape3D_chucd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ycbxl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
