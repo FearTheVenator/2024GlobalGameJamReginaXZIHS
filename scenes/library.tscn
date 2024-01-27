@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8xhbhsy8bwda"]
+
+[ext_resource type="PackedScene" uid="uid://btdjt63aqtm2u" path="res://models/roadTile1.glb" id="1_5ovsf"]
+[ext_resource type="PackedScene" uid="uid://c8v0hmqt72ok3" path="res://models/roadTile2.glb" id="2_tehov"]
+
+[node name="library" type="Node3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="roadTile1" parent="." instance=ExtResource("1_5ovsf")]
+
+[node name="roadTile2" parent="." instance=ExtResource("2_tehov")]
