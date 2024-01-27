@@ -78,4 +78,7 @@ func throwProjectile(newDecoyProjectile):
 	# add some angular velocity to make it spin so it looks better
 	randomize()
 	newDecoyProjectile.angular_velocity += Vector3(randf()*2,randf(),3)
+	# enable visual effects on decoy
+	newDecoyProjectile.get_node("decoyLight").visible = true
+	newDecoyProjectile.get_node("decoyParticles").emitting = true
 	pass
