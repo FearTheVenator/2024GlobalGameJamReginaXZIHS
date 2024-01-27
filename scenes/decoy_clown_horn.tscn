@@ -28,3 +28,10 @@ shape = SubResource("BoxShape3D_ycbxl")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_sw0x0")
 mesh = SubResource("BoxMesh_r1x5u")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.219608, 0.67451, 1)
+light_energy = 1.813
+light_indirect_energy = 1.271
+light_volumetric_fog_energy = 3.035
+omni_range = 6.0
