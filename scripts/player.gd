@@ -5,7 +5,7 @@ const SPEED = 7.0
 const SPEED_RUNNING_MULTIPLIER = 1.4
 var SPEED_RUNNING_MULTIPLIER_CURRENT
 const JUMP_VELOCITY = 4.5
-var MOUSE_SENSITIVITY:float = 0.5
+var MOUSE_SENSITIVITY = 0.5
 var isAiming:bool = false
 
 @onready var playerCam = $playerCam
@@ -47,9 +47,10 @@ func _physics_process(delta):
 
 func moveCamera(event): # handle the camera movement
 	if(event is InputEventMouseMotion):
-		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
-		var camRotX = (event.relative.y * MOUSE_SENSITIVITY);
-		var camRotY = (event.relative.x * MOUSE_SENSITIVITY);
+		#self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		rotation.y += deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1)
+		#var camRotX = (event.relative.y * MOUSE_SENSITIVITY);
+		#var camRotY = (event.relative.x * MOUSE_SENSITIVITY);
 		#playerCam.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		#playerCam.rotation.x = clamp(playerCam.rotation.x, deg_to_rad(-70), deg_to_rad(70))
 		
@@ -61,11 +62,13 @@ func aimProjectile():
 	isAiming = true
 	decoyInstance = decoyClownHorn.instantiate() # spawn preloaded projectile
 	decoyInstance.position = $ProjectileOrigin.position
-	$ProjectileOrigin.add_child(decoyInstance)
+	self.add_child(decoyInstance)
 	pass
 
 func throwProjectile(newDecoyProjectile):
 	print("Throwing projectile...")
 	isAiming = false
 	newDecoyProjectile.reparent(self.get_parent())
+	newDecoyProjectile.freeze = false
+	#newDecoyProjectile.velocity += self.rotation.forward
 	pass

@@ -23,6 +23,8 @@ background_mode = 1
 [node name="LevelObject" type="Node3D"]
 
 [node name="floor" type="StaticBody3D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
 material_override = SubResource("StandardMaterial3D_3wwip")
