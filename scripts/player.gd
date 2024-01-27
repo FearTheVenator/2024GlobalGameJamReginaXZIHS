@@ -71,7 +71,11 @@ func throwProjectile(newDecoyProjectile):
 	print("Throwing projectile...")
 	isAiming = false
 	newDecoyProjectile.reparent(self.get_parent())
-	newDecoyProjectile.freeze = false
+	newDecoyProjectile.freeze = false # unfreeze projectile physics to throw it (see decoy ready func)
+	# add velocity to projectile to throw it
 	var forwardVector = transform.basis.z.normalized()
 	newDecoyProjectile.linear_velocity -= forwardVector.rotated(transform.basis.x, deg_to_rad(45)) * 15
+	# add some angular velocity to make it spin so it looks better
+	randomize()
+	newDecoyProjectile.angular_velocity += Vector3(randf()*2,randf(),3)
 	pass
