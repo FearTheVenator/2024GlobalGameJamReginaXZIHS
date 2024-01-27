@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bub35eglyv81t"]
+
+[ext_resource type="PackedScene" uid="uid://blnbg3e7qhi0j" path="res://copstuff/police_light.tscn" id="1_4ed0w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_44a5o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um58c"]
+albedo_color = Color(1, 0.0823529, 0.466667, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_otnh5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jmxqb"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xw54h"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2agmb"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_cnnba"]
+
+[sub_resource type="Environment" id="Environment_kjxr3"]
+background_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1201
+volumetric_fog_albedo = Color(0.282353, 0.282353, 0.282353, 1)
+
+[node name="Coptester" type="Node3D"]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="police-man-officer" type="CharacterBody3D" parent="NavigationAgent3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationAgent3D/police-man-officer"]
+shape = SubResource("CapsuleShape3D_44a5o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationAgent3D/police-man-officer"]
+material_override = SubResource("StandardMaterial3D_um58c")
+mesh = SubResource("CapsuleMesh_otnh5")
+
+[node name="copLight" type="Node3D" parent="NavigationAgent3D/police-man-officer"]
+
+[node name="police-light" parent="NavigationAgent3D/police-man-officer" instance=ExtResource("1_4ed0w")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.16841, 0)
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_jmxqb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+material_override = SubResource("StandardMaterial3D_xw54h")
+mesh = SubResource("BoxMesh_2agmb")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="floor"]
+navigation_mesh = SubResource("NavigationMesh_cnnba")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kjxr3")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
+light_energy = 22.12
+light_volumetric_fog_energy = 16.0
+spot_range = 9.8493
+spot_angle = 27.4285
