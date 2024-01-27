@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://baee20g2vp0aw"]
+
+[ext_resource type="AudioStream" uid="uid://cunj0m14wyuv" path="res://Sound/street-light-noise.wav" id="1_wpk1m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2hsk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6fbp"]
+albedo_color = Color(0.890196, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y00ax"]
+material = SubResource("StandardMaterial3D_s6fbp")
+
+[node name="Light pole" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_i2hsk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_y00ax")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_wpk1m")
+volume_db = -5.0
+autoplay = true
+max_distance = 20.0
