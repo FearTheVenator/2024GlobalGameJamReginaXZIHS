@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2ftcxkbsq5qc"]
+[gd_scene load_steps=5 format=3 uid="uid://c2ftcxkbsq5qc"]
 
 [ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="1_fgbs7"]
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_riuxm"]
 [ext_resource type="PackedScene" uid="uid://1dk318i1uin" path="res://Levels/level_object.tscn" id="2_8bwp5"]
+[ext_resource type="AudioStream" uid="uid://bpfldu555qosb" path="res://Sound/CityNoise.wav" id="4_x6gbp"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_riuxm")
@@ -22,3 +23,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
+
+[node name="Citynoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x6gbp")
+volume_db = -25.0

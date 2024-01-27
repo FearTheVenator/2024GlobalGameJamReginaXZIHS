@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dpo8ejjelcajr"
-path="res://.godot/imported/POL-a-sinister-puzzle-short.wav-2a5c64651cc2f40acaeaf681a642ed05.sample"
+path="res://.godot/imported/BgMusic.wav-a118da4ab6980a81e10d738c5d9be9a5.sample"
 
 [deps]
 
-source_file="res://Sound/POL-a-sinister-puzzle-short.wav"
-dest_files=["res://.godot/imported/POL-a-sinister-puzzle-short.wav-2a5c64651cc2f40acaeaf681a642ed05.sample"]
+source_file="res://Sound/BgMusic.wav"
+dest_files=["res://.godot/imported/BgMusic.wav-a118da4ab6980a81e10d738c5d9be9a5.sample"]
 
 [params]
 
