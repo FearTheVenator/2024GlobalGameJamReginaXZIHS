@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2ftcxkbsq5qc"]
+[gd_scene load_steps=4 format=3 uid="uid://c2ftcxkbsq5qc"]
 
-[ext_resource type="PackedScene" uid="uid://hehacg40j5j3" path="res://Player/player.tscn" id="1_fgbs7"]
-[ext_resource type="PackedScene" uid="uid://dls4j1tpnyat7" path="res://Levels/level_object.tscn" id="2_8bwp5"]
+[ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="1_fgbs7"]
+[ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_riuxm"]
+[ext_resource type="PackedScene" uid="uid://cw1ngy41bdj6j" path="res://Levels/level_object.tscn" id="2_8bwp5"]
 
 [node name="GameManager" type="Node"]
+script = ExtResource("1_riuxm")
 
 [node name="Main3D" type="Node3D" parent="."]
 
