@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2gtf7knvdxan"]
+[gd_scene load_steps=9 format=3 uid="uid://d2gtf7knvdxan"]
 
 [ext_resource type="Script" path="res://scripts/decoyClownHorn.gd" id="1_u4rte"]
 
@@ -11,6 +11,20 @@ radius = 15.0
 albedo_color = Color(0.266667, 0.541176, 0.294118, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r1x5u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldkpk"]
+billboard_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_car8v"]
+emission_shape_offset = Vector3(0, 0.52, 0)
+angle_min = -677.6
+angle_max = -352.9
+initial_velocity_min = 9.8
+initial_velocity_max = 9.8
+gravity = Vector3(0, -2.56, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a85su"]
+orientation = 2
 
 [node name="decoyClownHorn" type="RigidBody3D"]
 collision_layer = 2
@@ -28,3 +42,21 @@ shape = SubResource("BoxShape3D_ycbxl")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_sw0x0")
 mesh = SubResource("BoxMesh_r1x5u")
+
+[node name="decoyLight" type="OmniLight3D" parent="."]
+visible = false
+light_color = Color(1, 0.219608, 0.67451, 1)
+light_energy = 1.813
+light_indirect_energy = 1.271
+light_volumetric_fog_energy = 3.035
+omni_range = 6.0
+
+[node name="decoyParticles" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ldkpk")
+emitting = false
+amount = 5
+lifetime = 1.45
+preprocess = 1.72
+explosiveness = 0.61
+process_material = SubResource("ParticleProcessMaterial_car8v")
+draw_pass_1 = SubResource("PlaneMesh_a85su")
