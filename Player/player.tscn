@@ -128,4 +128,7 @@ one_shot = true
 stream = ExtResource("3_xe8j4")
 volume_db = -13.664
 
+[node name="ProjectileOrigin" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10862, 0.313967, 0)
+
 [node name="aimCamTarget" type="Node3D" parent="."]
