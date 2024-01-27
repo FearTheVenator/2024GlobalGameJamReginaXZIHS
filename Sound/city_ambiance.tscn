@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://diwftxd2ustth"]
+
+[ext_resource type="AudioStream" uid="uid://bpfldu555qosb" path="res://Sound/CityNoise.wav" id="1_v03xr"]
+
+[node name="CityAmbiance" type="AudioStreamPlayer"]
+stream = ExtResource("1_v03xr")
+volume_db = -10.0
+autoplay = true
