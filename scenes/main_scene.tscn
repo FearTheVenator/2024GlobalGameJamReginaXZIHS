@@ -10,6 +10,7 @@ script = ExtResource("1_riuxm")
 [node name="Main3D" type="Node3D" parent="."]
 
 [node name="Player" parent="Main3D" instance=ExtResource("1_fgbs7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.046, 0, 0)
 
 [node name="LevelObject" parent="Main3D" instance=ExtResource("2_8bwp5")]
 
