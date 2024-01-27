@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgloy6v374jd1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y1gqr"]
+
+[node name="moneyGig" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Area3D"]
+light_color = Color(0.0901961, 1, 0.219608, 1)
+light_energy = 1.271
+light_volumetric_fog_energy = 1.814
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_y1gqr")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw1ngy41bdj6j"]
+[gd_scene load_steps=9 format=3 uid="uid://cw1ngy41bdj6j"]
 
 [ext_resource type="Texture2D" uid="uid://ixc6qj5i3s" path="res://textures/voronoi.png" id="1_i8o48"]
+[ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="2_jf515"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wwip"]
 albedo_texture = ExtResource("1_i8o48")
@@ -19,6 +20,8 @@ size = Vector3(10, 20, 10)
 
 [sub_resource type="Environment" id="Environment_uykmw"]
 background_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0763
 
 [node name="LevelObject" type="Node3D"]
 
@@ -188,7 +191,22 @@ mesh = SubResource("BoxMesh_4uncc")
 skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.753506, 0.657441, 0, -0.657441, 0.753506, 0, 2.4205, 0)
+transform = Transform3D(0.865858, 0.259036, -0.428007, 0.272825, 0.472627, 0.837968, 0.419351, -0.842332, 0.338557, 0, 2.4205, 0)
+light_energy = 0.097
+shadow_enabled = true
+shadow_opacity = 0.68
+shadow_blur = 8.119
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uykmw")
+
+[node name="streetlamps" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="streetlamps"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.69921, 0)
+light_color = Color(0.992157, 1, 0.811765, 1)
+light_energy = 16.0
+spot_range = 12.8616
+spot_angle = 31.4411
+
+[node name="streetlamp" parent="streetlamps" instance=ExtResource("2_jf515")]
