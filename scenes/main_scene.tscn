@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="1_fgbs7"]
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_riuxm"]
-[ext_resource type="PackedScene" uid="uid://cw1ngy41bdj6j" path="res://Levels/level_object.tscn" id="2_8bwp5"]
+[ext_resource type="PackedScene" uid="uid://1dk318i1uin" path="res://Levels/level_object.tscn" id="2_8bwp5"]
 [ext_resource type="PackedScene" uid="uid://d2gtf7knvdxan" path="res://scenes/decoy_clown_horn.tscn" id="4_nm7td"]
 
 [node name="GameManager" type="Node"]
