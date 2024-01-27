@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8u46kwnvsr6a"
-path="res://.godot/imported/tree2.glb-3fb7a6ce60849cb25c6f2d6b83b34947.scn"
+uid="uid://dogsgunif0bgd"
+path="res://.godot/imported/streetlamp.glb-a1f2d4c5ccbf147632ab8373d4b526b5.scn"
 
 [deps]
 
-source_file="res://models/tree2.glb"
-dest_files=["res://.godot/imported/tree2.glb-3fb7a6ce60849cb25c6f2d6b83b34947.scn"]
+source_file="res://models/streetlamp.glb"
+dest_files=["res://.godot/imported/streetlamp.glb-a1f2d4c5ccbf147632ab8373d4b526b5.scn"]
 
 [params]
 
