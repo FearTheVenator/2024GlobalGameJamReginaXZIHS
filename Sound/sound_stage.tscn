@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckugopuofdkvv"]
+[gd_scene load_steps=9 format=3 uid="uid://ckugopuofdkvv"]
 
 [ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="1_2jgm1"]
+[ext_resource type="Script" path="res://Sound/sound_stage.gd" id="1_c07be"]
 [ext_resource type="PackedScene" uid="uid://baee20g2vp0aw" path="res://Sound/light_pole.tscn" id="2_rgsj7"]
+[ext_resource type="AudioStream" uid="uid://bpfldu555qosb" path="res://Sound/CityNoise.wav" id="4_6h8tl"]
+[ext_resource type="AudioStream" uid="uid://dpo8ejjelcajr" path="res://Sound/POL-a-sinister-puzzle-short.wav" id="5_004re"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5cbh7"]
 size = Vector3(100, 2, 100)
@@ -14,6 +17,7 @@ material = SubResource("StandardMaterial3D_pr2yc")
 size = Vector3(100, 2, 100)
 
 [node name="SoundStage" type="Node"]
+script = ExtResource("1_c07be")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.43751, 0)
@@ -29,3 +33,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42598, -0.21282, 0.16905)
 
 [node name="Light pole" parent="." instance=ExtResource("2_rgsj7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.4147)
+
+[node name="Light pole2" parent="." instance=ExtResource("2_rgsj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.59964, 0, -48.4147)
+
+[node name="Light pole3" parent="." instance=ExtResource("2_rgsj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.467, 0, -48.4147)
+
+[node name="Light pole4" parent="." instance=ExtResource("2_rgsj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3402, 0, -48.4147)
+
+[node name="Light pole5" parent="." instance=ExtResource("2_rgsj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9488, 0, -48.4147)
+
+[node name="CityAmbiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6h8tl")
+volume_db = -20.628
+autoplay = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_004re")
+volume_db = -20.641
