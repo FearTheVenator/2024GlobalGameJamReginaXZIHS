@@ -33,3 +33,5 @@ shape = SubResource("CapsuleShape3D_dbej4")
 [node name="playerCam" type="Camera3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.928784, 0.370622, 0, -0.370622, 0.928784, 0, 3.46433, 5.6257)
 current = true
+
+[node name="aimCamTarget" type="Node3D" parent="."]
