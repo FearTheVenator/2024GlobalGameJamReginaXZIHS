@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2gtf7knvdxan"]
+[gd_scene load_steps=11 format=3 uid="uid://d2gtf7knvdxan"]
 
 [ext_resource type="Script" path="res://scripts/decoyClownHorn.gd" id="1_u4rte"]
+[ext_resource type="AudioStream" uid="uid://5msjoehcy7cf" path="res://Sound/clownHorn1.wav" id="2_gjr4g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_chucd"]
 radius = 15.0
@@ -26,12 +27,15 @@ gravity = Vector3(0, -2.56, 0)
 [sub_resource type="PlaneMesh" id="PlaneMesh_a85su"]
 orientation = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8pgm6"]
+
 [node name="decoyClownHorn" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_u4rte")
 
 [node name="decoyAlertArea" type="Area3D" parent="."]
+collision_mask = 2
 
 [node name="decoyAlertAreaCollider" type="CollisionShape3D" parent="decoyAlertArea"]
 shape = SubResource("SphereShape3D_chucd")
@@ -60,3 +64,16 @@ preprocess = 1.72
 explosiveness = 0.61
 process_material = SubResource("ParticleProcessMaterial_car8v")
 draw_pass_1 = SubResource("PlaneMesh_a85su")
+
+[node name="Honk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_gjr4g")
+volume_db = -5.0
+
+[node name="HonkArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HonkArea"]
+shape = SubResource("BoxShape3D_8pgm6")
+
+[connection signal="body_entered" from="HonkArea" to="." method="_on_honk_area_body_entered"]
