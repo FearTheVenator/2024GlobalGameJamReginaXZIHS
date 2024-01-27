@@ -43,8 +43,22 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
 		velocity.z = move_toward(velocity.z, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
+	#Audio and animation playing for the player
+	if velocity.length() == 0:
+	#if not moving play idle animation and no audio
+		pass
+	elif (velocity.y==0):
+	#player is moving play and not jumping
+		if $Timer.time_left <=0:
+			$Footsteps.pitch_scale = randf_range(0.5, 1.2)
+			$Footsteps.volume_db = randf_range(-15,-12)
+			$Footsteps.play(randf_range(0,0.23))
+			if isRunning():
+				$Timer.start(0.3)
+			else:
+				$Timer.start(0.5)
 	move_and_slide()
-
+	
 func moveCamera(event): # handle the camera movement
 	if(event is InputEventMouseMotion):
 		#self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))

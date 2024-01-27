@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2gtf7knvdxan"]
+[gd_scene load_steps=7 format=3 uid="uid://dlgfcgxffts5q"]
 
 [ext_resource type="Script" path="res://scripts/decoyClownHorn.gd" id="1_u4rte"]
+[ext_resource type="AudioStream" uid="uid://5msjoehcy7cf" path="res://Sound/clownHorn1.wav" id="2_l8vwm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_chucd"]
 radius = 15.0
@@ -28,3 +29,6 @@ shape = SubResource("BoxShape3D_ycbxl")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_sw0x0")
 mesh = SubResource("BoxMesh_r1x5u")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_l8vwm")
