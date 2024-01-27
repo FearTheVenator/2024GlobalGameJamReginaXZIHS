@@ -1,11 +1,21 @@
-[gd_scene format=3 uid="uid://d1wwjq6g0slxn"]
+[gd_scene load_steps=3 format=3 uid="uid://c2ftcxkbsq5qc"]
+
+[ext_resource type="PackedScene" uid="uid://hehacg40j5j3" path="res://Player/player.tscn" id="1_fgbs7"]
+[ext_resource type="PackedScene" uid="uid://dls4j1tpnyat7" path="res://Levels/level_object.tscn" id="2_8bwp5"]
 
 [node name="GameManager" type="Node"]
 
 [node name="Main3D" type="Node3D" parent="."]
+
+[node name="Player" parent="Main3D" instance=ExtResource("1_fgbs7")]
+
+[node name="LevelObject" parent="Main3D" instance=ExtResource("2_8bwp5")]
+
+[node name="Node3D2" type="Node3D" parent="Main3D"]
 
 [node name="MainGUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
