@@ -9,3 +9,7 @@ func _ready():
 
 func _process(delta):
 	pass
+
+func _on_honk_area_body_entered(body):
+	$Honk.set_pitch_scale(randf_range(0.8,1.2))
+	$Honk.play()

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://blnbg3e7qhi0j"]
+
+[ext_resource type="PackedScene" uid="uid://ukdlql2tvile" path="res://models/police-light.glb" id="1_mfrl8"]
+[ext_resource type="Script" path="res://copstuff/police-light.gd" id="2_01juf"]
+
+[node name="police-light" instance=ExtResource("1_mfrl8")]
+script = ExtResource("2_01juf")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.05218, 0, 0)
+light_color = Color(0.2, 0.568627, 0.901961, 1)
+light_energy = 31.37
+light_indirect_energy = 6.424
+light_volumetric_fog_energy = 19.878
+spot_range = 22.0
+spot_angle = 23.1051
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.17025, 0, 0)
+light_color = Color(1, 0.207843, 0.278431, 1)
+light_energy = 14.288
+light_volumetric_fog_energy = 13.986
+spot_range = 4096.0
+spot_angle = 53.39
