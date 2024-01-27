@@ -51,6 +51,17 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
 		velocity.z = move_toward(velocity.z, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
+	if velocity.length() == 0:
+		pass
+	elif is_on_floor():
+		if $Timer.time_left <=0:
+			$Footsteps.set_pitch_scale(randf_range(0.8,1.2))
+			$Footsteps.set_volume_db(randf_range(-15,-13))
+			$Footsteps.play(randf_range(0,.23))
+			if isRunning():
+				$Timer.start(0.3)
+			else:
+				$Timer.start(0.5)
 	move_and_slide()
 
 func moveCamera(event): # handle the camera movement
@@ -62,6 +73,7 @@ func moveCamera(event): # handle the camera movement
 		#playerCam.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		#playerCam.rotation.x = clamp(playerCam.rotation.x, deg_to_rad(-70), deg_to_rad(70))
 		
+	
 func isRunning() -> bool:
 	return Input.is_action_pressed(\"shift\")
 
