@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2s2wkpmf5c5r"]
+
+[ext_resource type="PackedScene" uid="uid://dogsgunif0bgd" path="res://models/streetlamp.glb" id="1_ae54y"]
+
+[node name="streetlamp" instance=ExtResource("1_ae54y")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Cylinder" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 6, 0, 0, 0, 0.5, 0, 6, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.98485, 10.8895, 0)
+light_color = Color(0.992157, 1, 0.811765, 1)
+light_energy = 16.0
+spot_range = 12.8616
+spot_angle = 31.4411
