@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbkf8hpwiuqv3"]
+
+[ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_2wjvx"]
+
+[node name="titlescreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="startbutton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 243.0
+offset_right = 723.0
+offset_bottom = 365.0
+text = "Start"
+script = ExtResource("1_2wjvx")
+
+[connection signal="pressed" from="startbutton" to="startbutton" method="_on_pressed"]
