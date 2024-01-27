@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://hehacg40j5j3"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3ynwp"]
+[ext_resource type="Material" uid="uid://72djj44lmyxl" path="res://materials/facepointer.tres" id="2_d0qer"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v7oh"]
+albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xwj32"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_cojey"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbej4"]
+
+[node name="Player" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_3ynwp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+material_override = SubResource("StandardMaterial3D_7v7oh")
+mesh = SubResource("CapsuleMesh_xwj32")
+
+[node name="facepointer" type="MeshInstance3D" parent="CharacterBody3D/MeshInstance3D"]
+transform = Transform3D(3.523, -2.62484e-08, -3.35445e-17, 0, -1.53995e-07, 0.103, -2.62484e-08, -3.523, -4.50227e-09, -0.0106885, -0.870509, -0.789935)
+material_override = ExtResource("2_d0qer")
+mesh = SubResource("PrismMesh_cojey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_dbej4")
+
+[node name="playerCam" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.928784, 0.370622, 0, -0.370622, 0.928784, 0, 3.46433, 5.6257)
+current = true
