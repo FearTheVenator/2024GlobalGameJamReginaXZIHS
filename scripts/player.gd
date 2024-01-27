@@ -3,7 +3,7 @@ extends CharacterBody3D
 var current_speed = 0
 const SPEED = 7.0
 const SPEED_RUNNING_MULTIPLIER = 1.4
-var SPEED_RUNNING_MULTIPLIER_CURRENT
+var SPEED_RUNNING_MULTIPLIER_CURRENT = 1.0
 const JUMP_VELOCITY = 4.5
 var MOUSE_SENSITIVITY = 0.5
 var isAiming:bool = false
@@ -11,8 +11,10 @@ var isAiming:bool = false
 @onready var playerCam = $playerCam
 @onready var decoyClownHorn = preload("res://scenes/decoy_clown_horn.tscn")
 var decoyInstance
-
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _ready():
+	velocity = Vector3.ZERO # minor null bugfix
 
 func _input(event):
 	moveCamera(event)
@@ -70,5 +72,6 @@ func throwProjectile(newDecoyProjectile):
 	isAiming = false
 	newDecoyProjectile.reparent(self.get_parent())
 	newDecoyProjectile.freeze = false
-	#newDecoyProjectile.velocity += self.rotation.forward
+	var forwardVector = transform.basis.z.normalized()
+	newDecoyProjectile.linear_velocity -= forwardVector.rotated(transform.basis.x, deg_to_rad(45)) * 15
 	pass
