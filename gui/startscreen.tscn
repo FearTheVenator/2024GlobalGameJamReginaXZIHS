@@ -12,10 +12,10 @@ grow_vertical = 2
 
 [node name="startbutton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 243.0
-offset_right = 723.0
-offset_bottom = 365.0
+offset_left = 445.0
+offset_top = 316.0
+offset_right = 728.0
+offset_bottom = 438.0
 text = "Start"
 script = ExtResource("1_2wjvx")
 
