@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw1ngy41bdj6j"]
+[gd_scene load_steps=9 format=3 uid="uid://cw1ngy41bdj6j"]
 
 [ext_resource type="Texture2D" uid="uid://ixc6qj5i3s" path="res://textures/voronoi.png" id="1_i8o48"]
+[ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="2_jf515"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wwip"]
 albedo_texture = ExtResource("1_i8o48")
@@ -207,3 +208,5 @@ light_color = Color(0.992157, 1, 0.811765, 1)
 light_energy = 16.0
 spot_range = 12.8616
 spot_angle = 31.4411
+
+[node name="streetlamp" parent="streetlamps" instance=ExtResource("2_jf515")]
