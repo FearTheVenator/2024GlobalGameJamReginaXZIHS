@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckugopuofdkvv"]
+[gd_scene load_steps=6 format=3 uid="uid://ckugopuofdkvv"]
+
+[ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="1_2jgm1"]
+[ext_resource type="PackedScene" uid="uid://baee20g2vp0aw" path="res://Sound/light_pole.tscn" id="2_rgsj7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5cbh7"]
 size = Vector3(100, 2, 100)
@@ -20,3 +23,9 @@ shape = SubResource("BoxShape3D_5cbh7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_xys55")
+
+[node name="Player" parent="." instance=ExtResource("1_2jgm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42598, -0.21282, 0.16905)
+
+[node name="Light pole" parent="." instance=ExtResource("2_rgsj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48.4147)
