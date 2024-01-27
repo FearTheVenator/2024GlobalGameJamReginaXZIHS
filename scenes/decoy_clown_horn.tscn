@@ -1,12 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://d2gtf7knvdxan"]
 
 [ext_resource type="Script" path="res://scripts/decoyClownHorn.gd" id="1_u4rte"]
-[ext_resource type="AudioStream" uid="uid://5msjoehcy7cf" path="res://Sound/clownHorn1.wav" id="2_gjr4g"]
+[ext_resource type="Texture2D" uid="uid://bj3qqhncg1ovh" path="res://textures/sprites1.png" id="2_qmc6y"]
+[ext_resource type="PackedScene" uid="uid://bq0gdlryqcik5" path="res://models/clownhorn.glb" id="3_u5et2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_chucd"]
 radius = 15.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ycbxl"]
+size = Vector3(0.505, 1.14502, 0.57)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw0x0"]
 albedo_color = Color(0.266667, 0.541176, 0.294118, 1)
@@ -14,36 +16,40 @@ albedo_color = Color(0.266667, 0.541176, 0.294118, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_r1x5u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldkpk"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_qmc6y")
+texture_filter = 2
 billboard_mode = 1
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_car8v"]
-emission_shape_offset = Vector3(0, 0.52, 0)
 angle_min = -677.6
-angle_max = -352.9
-initial_velocity_min = 9.8
+angle_max = 593.0
+spread = 92.647
 initial_velocity_max = 9.8
-gravity = Vector3(0, -2.56, 0)
+radial_velocity_max = 5.0
+gravity = Vector3(0, -10.1, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a85su"]
 orientation = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8pgm6"]
-
 [node name="decoyClownHorn" type="RigidBody3D"]
+transform = Transform3D(0.890959, -0.0974536, -0.443503, 0, 0.976699, -0.214616, 0.454084, 0.191214, 0.870198, 0, 0, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_u4rte")
 
 [node name="decoyAlertArea" type="Area3D" parent="."]
-collision_mask = 2
 
 [node name="decoyAlertAreaCollider" type="CollisionShape3D" parent="decoyAlertArea"]
 shape = SubResource("SphereShape3D_chucd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0725098, 0)
 shape = SubResource("BoxShape3D_ycbxl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_sw0x0")
 mesh = SubResource("BoxMesh_r1x5u")
 
@@ -56,24 +62,16 @@ light_volumetric_fog_energy = 3.035
 omni_range = 6.0
 
 [node name="decoyParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.575219, -0.817999, 0, 0.817999, 0.575219, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_ldkpk")
 emitting = false
-amount = 5
-lifetime = 1.45
+amount = 6
+lifetime = 1.92
 preprocess = 1.72
 explosiveness = 0.61
 process_material = SubResource("ParticleProcessMaterial_car8v")
 draw_pass_1 = SubResource("PlaneMesh_a85su")
 
-[node name="Honk" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_gjr4g")
-volume_db = -5.0
-
-[node name="HonkArea" type="Area3D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HonkArea"]
-shape = SubResource("BoxShape3D_8pgm6")
-
-[connection signal="body_entered" from="HonkArea" to="." method="_on_honk_area_body_entered"]
+[node name="clownhorn" parent="." instance=ExtResource("3_u5et2")]
+transform = Transform3D(-0.205, 1.79217e-08, 0, -1.79217e-08, -0.205, 0, 0, 0, 0.205, 0, 0.125, 0)
