@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-var MOUSE_SENSITIVITY:float = 0.02
+var MOUSE_SENSITIVITY:float = 0.5
 @onready var playerCam = $playerCam
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -40,5 +40,8 @@ func moveCamera(event): # handle the camera movement
 		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 		var camRotX = (event.relative.y * MOUSE_SENSITIVITY);
 		var camRotY = (event.relative.x * MOUSE_SENSITIVITY);
-		playerCam.rotation.x = clamp(playerCam.rotation.x - camRotX, -70, 70);
-		self.rotation.y = clamp(playerCam.rotation.y - camRotY, -70, 70);
+		playerCam.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
+		playerCam.rotation.x = clamp(playerCam.rotation.x, deg_to_rad(-70), deg_to_rad(70))
+		#playerCam.rotation.x = clamp(playerCam.rotation.x - camRotX, -70, 70);
+		#playerCam.rotation.x = clamp(playerCam.rotation.x - camRotX, -70, 70)
+		#self.rotation.y = clamp(playerCam.rotation.y - camRotY, -70, 70);
