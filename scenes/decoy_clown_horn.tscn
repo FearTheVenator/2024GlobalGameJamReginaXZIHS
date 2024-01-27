@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2gtf7knvdxan"]
+[gd_scene load_steps=13 format=3 uid="uid://d2gtf7knvdxan"]
 
 [ext_resource type="Script" path="res://scripts/decoyClownHorn.gd" id="1_u4rte"]
 [ext_resource type="Texture2D" uid="uid://bj3qqhncg1ovh" path="res://textures/sprites1.png" id="2_qmc6y"]
 [ext_resource type="PackedScene" uid="uid://bq0gdlryqcik5" path="res://models/clownhorn.glb" id="3_u5et2"]
+[ext_resource type="AudioStream" uid="uid://5msjoehcy7cf" path="res://Sound/clownHorn1.wav" id="4_4yggg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_chucd"]
 radius = 15.0
@@ -32,6 +33,8 @@ gravity = Vector3(0, -10.1, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a85su"]
 orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwgai"]
 
 [node name="decoyClownHorn" type="RigidBody3D"]
 transform = Transform3D(0.890959, -0.0974536, -0.443503, 0, 0.976699, -0.214616, 0.454084, 0.191214, 0.870198, 0, 0, 0)
@@ -75,3 +78,16 @@ draw_pass_1 = SubResource("PlaneMesh_a85su")
 
 [node name="clownhorn" parent="." instance=ExtResource("3_u5et2")]
 transform = Transform3D(-0.205, 1.79217e-08, 0, -1.79217e-08, -0.205, 0, 0, 0, 0.205, 0, 0.125, 0)
+
+[node name="noise" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="noise" type="CollisionShape3D" parent="noise"]
+shape = SubResource("BoxShape3D_xwgai")
+
+[node name="Honk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_4yggg")
+volume_db = -25.0
+
+[connection signal="body_entered" from="noise" to="." method="_on_noise_body_entered"]
