@@ -4,7 +4,7 @@ extends RigidBody3D
 @export var decoyAlertRadius:float = 10 # metres
 
 func _ready():
-	#$decoyAlertArea/CollisionShape3D.get_shape() = decoyAlertRadius
+	freeze = true
 	pass
 
 func _process(delta):
