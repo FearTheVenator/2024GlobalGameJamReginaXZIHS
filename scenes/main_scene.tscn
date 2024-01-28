@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2ftcxkbsq5qc"]
+[gd_scene load_steps=7 format=3 uid="uid://c2ftcxkbsq5qc"]
 
 [ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="1_fgbs7"]
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_riuxm"]
 [ext_resource type="PackedScene" uid="uid://1dk318i1uin" path="res://Levels/level_object.tscn" id="2_8bwp5"]
 [ext_resource type="PackedScene" uid="uid://cfgq1a34vdq5h" path="res://copstuff/CopReal.tscn" id="4_d1hu1"]
+[ext_resource type="PackedScene" uid="uid://blnbg3e7qhi0j" path="res://copstuff/police_light.tscn" id="4_n3o14"]
 [ext_resource type="AudioStream" uid="uid://bpfldu555qosb" path="res://Sound/CityNoise.wav" id="4_x6gbp"]
 
 [node name="GameManager" type="Node"]
@@ -16,24 +17,84 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.046, 0, 0)
 
 [node name="Node3D2" type="Node3D" parent="Main3D"]
 
-[node name="Root Scene" parent="Main3D" instance=ExtResource("4_d1hu1")]
+[node name="cop" parent="Main3D" instance=ExtResource("4_d1hu1")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -1.14985, 0.324679, -137.422)
 movement_speed = 7.0
 
-[node name="Camera3D" type="Camera3D" parent="Main3D/Root Scene"]
-transform = Transform3D(-8.74228e-10, 0.02, 0, 8.74228e-10, 3.82137e-17, 0.02, 0.02, 8.74228e-10, -8.74228e-10, 0.022997, 0.285435, 0.0486062)
+[node name="police-light" parent="Main3D/cop" instance=ExtResource("4_n3o14")]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.00220539, 0.0379873, 0.00754213)
 
 [node name="LevelObject" parent="Main3D" instance=ExtResource("2_8bwp5")]
 
+[node name="cop2" parent="Main3D" instance=ExtResource("4_d1hu1")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 62.3429, 0.324679, 57.802)
+movement_speed = 7.0
+
+[node name="police-light" parent="Main3D/cop2" instance=ExtResource("4_n3o14")]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.00220539, 0.0379873, 0.00754213)
+
+[node name="cop3" parent="Main3D" instance=ExtResource("4_d1hu1")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 55.3214, 0.324679, -1.37622)
+movement_speed = 7.0
+
+[node name="police-light" parent="Main3D/cop3" instance=ExtResource("4_n3o14")]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0.00220539, 0.0379873, 0.00754213)
+
 [node name="MainGUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainGUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_right = 67.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Find the exit! GO!"
+
+[node name="Timer" type="Label" parent="MainGUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -565.0
+offset_top = 4.0
+offset_right = -431.0
+offset_bottom = 27.0
+grow_horizontal = 2
+text = "Find the exit! GO!"
+
+[node name="Controls" type="Label" parent="MainGUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -569.0
+offset_top = 456.0
+offset_right = -229.0
+offset_bottom = 635.0
+grow_horizontal = 2
+text = "WASD: move 
+SPACE: jump
+SHIFT: Run
+CTRL: squish
+ESC: Quit
+Tilde~: Restart
+Throw horn: Right click"
+autowrap_mode = 1
 
 [node name="Citynoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x6gbp")
 volume_db = -25.0
 
-[connection signal="kill" from="Main3D/Root Scene" to="." method="_on_root_scene_kill"]
+[connection signal="kill" from="Main3D/cop" to="." method="_on_root_scene_kill"]
+[connection signal="kill" from="Main3D/cop2" to="." method="_on_root_scene_kill"]
+[connection signal="kill" from="Main3D/cop3" to="." method="_on_root_scene_kill"]

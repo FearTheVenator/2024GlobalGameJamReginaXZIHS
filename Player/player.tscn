@@ -143,6 +143,7 @@ albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_cojey"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbej4"]
+height = 2.79779
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc3yt"]
 resource_name = "blinn9"
@@ -931,6 +932,7 @@ material_override = ExtResource("2_d0qer")
 mesh = SubResource("PrismMesh_cojey")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309481, 0)
 shape = SubResource("CapsuleShape3D_dbej4")
 
 [node name="playerCam" type="Camera3D" parent="player"]

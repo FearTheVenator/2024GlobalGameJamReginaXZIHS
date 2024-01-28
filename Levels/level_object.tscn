@@ -27,6 +27,8 @@ size = Vector2(300, 300)
 
 [sub_resource type="Environment" id="Environment_uykmw"]
 background_mode = 1
+fog_enabled = true
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.0763
 
 [node name="LevelObject" type="Node3D"]
@@ -2280,7 +2282,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="betterGridMap" type="GridMap" parent="floor/roads and park"]
-transform = Transform3D(4.5, 0, 0, 0, 1, 0, 0, 0, 4.5, 3, -1.31487, 3)
+transform = Transform3D(4.5, 0, 0, 0, 1, 0, 0, 0, 4.5, 3, -1.215, 3)
 mesh_library = ExtResource("4_sjetx")
 collision_layer = 3
 collision_mask = 3
