@@ -1444,6 +1444,7 @@ transform = Transform3D(0.196402, -0.974255, 0.110697, 0.969631, 0.209759, 0.125
 libraries = {
 "": SubResource("AnimationLibrary_mxuxj")
 }
+speed_scale = 2.5
 
 [node name="aimCamTarget" type="Node3D" parent="."]
 
