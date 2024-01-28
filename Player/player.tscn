@@ -19,6 +19,7 @@ var isAiming:bool = false
 @onready var decoyClownHorn = preload(\"res://scenes/decoy_clown_horn.tscn\")
 var decoyInstance
 var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
+@export var push_force = 10
 
 func _ready():
 	velocity = Vector3.ZERO # minor null bugfix
@@ -70,6 +71,10 @@ func _physics_process(delta):
 				$Timer.start(0.3)
 			else:
 				$Timer.start(0.5)
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody3D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 	move_and_slide()
 
 func moveCamera(event): # handle the camera movement
@@ -135,6 +140,8 @@ albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
 
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 5
+collision_mask = 5
 collision_priority = 2.0
 script = SubResource("GDScript_5tycd")
 

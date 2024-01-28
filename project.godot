@@ -24,6 +24,10 @@ BGmusic="res://Sound/b_gmusic.tscn"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 left={
