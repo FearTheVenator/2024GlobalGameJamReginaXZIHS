@@ -117,6 +117,9 @@ func goTinyMode():
 func goNormalMode(): 
 	$MeshInstance3D.scale.y = 1
 	$MeshInstance3D.position.y = 0
+
+func player(): # duck typing for collision detection
+	pass
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v7oh"]

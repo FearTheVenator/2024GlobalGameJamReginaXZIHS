@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://dv6o01rhtf5bm"]
+[gd_scene load_steps=3 format=3 uid="uid://dv6o01rhtf5bm"]
+
+[ext_resource type="Script" path="res://scripts/escape_trigger.gd" id="1_8qgxn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qcnog"]
+radius = 1.00976
 
 [node name="escapeTrigger" type="Node3D"]
+script = ExtResource("1_8qgxn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="escapeArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="escapeArea"]
+transform = Transform3D(2.04, 0, 0, 0, 2.04, 0, 0, 0, 2.04, 0, 0, 0)
+shape = SubResource("SphereShape3D_qcnog")
+
+[node name="Label3D" type="Label3D" parent="."]
+pixel_size = 0.0017
+billboard = 1
+fixed_size = true
+text = "ESCAPE HERE"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.745098, 0.156863, 1, 1)
+light_energy = 3.847
+light_volumetric_fog_energy = 7.844
+omni_range = 2.90427
+
+[connection signal="body_entered" from="escapeArea" to="." method="_on_escape_area_body_entered"]
