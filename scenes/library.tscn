@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8xhbhsy8bwda"]
+
+[ext_resource type="PackedScene" uid="uid://caphcl61ovny5" path="res://models/tiles/alley_full.glb" id="1_rxjde"]
+[ext_resource type="PackedScene" uid="uid://dva1becdd0ccr" path="res://models/tiles/road_fork.glb" id="2_pn2fg"]
+[ext_resource type="PackedScene" uid="uid://th8xwrodligm" path="res://models/tiles/road_path.glb" id="3_k3oey"]
+[ext_resource type="PackedScene" uid="uid://bola1whcijkun" path="res://models/tiles/grass_fork.glb" id="4_tljry"]
+[ext_resource type="PackedScene" uid="uid://d2pb6ey6lq4ta" path="res://models/tiles/grass_full.glb" id="5_b0tpq"]
+[ext_resource type="PackedScene" uid="uid://bwr8tjny6lp7k" path="res://models/tiles/grass_path.glb" id="6_pvv0o"]
+
+[node name="library" type="Node3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="alley_full" parent="." instance=ExtResource("1_rxjde")]
+
+[node name="road_fork" parent="." instance=ExtResource("2_pn2fg")]
+
+[node name="road_path" parent="." instance=ExtResource("3_k3oey")]
+
+[node name="grass_fork" parent="." instance=ExtResource("4_tljry")]
+
+[node name="grass_full" parent="." instance=ExtResource("5_b0tpq")]
+
+[node name="grass_path" parent="." instance=ExtResource("6_pvv0o")]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bn5ggj5sl0y1s"
-path="res://.godot/imported/alley1.glb-1d1c3f804d412e48975d89bb8b34f94c.scn"
+uid="uid://boh4ldsbvccnd"
+path="res://.godot/imported/grass-full.glb-a8267816eba4f14b7fbb893fbe54fd8d.scn"
 
 [deps]
 
-source_file="res://models/alley1.glb"
-dest_files=["res://.godot/imported/alley1.glb-1d1c3f804d412e48975d89bb8b34f94c.scn"]
+source_file="res://models/tiles/better/grass-full.glb"
+dest_files=["res://.godot/imported/grass-full.glb-a8267816eba4f14b7fbb893fbe54fd8d.scn"]
 
 [params]
 

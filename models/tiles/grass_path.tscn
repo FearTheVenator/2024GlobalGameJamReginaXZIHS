@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcb5c42gtfwm"]
+
+[ext_resource type="PackedScene" uid="uid://bwr8tjny6lp7k" path="res://models/tiles/grass_path.glb" id="1_1b4aj"]
+
+[node name="grass_path" instance=ExtResource("1_1b4aj")]
+
+[node name="road1_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 6.64, 0, 0, 0, 1, 3, 0, -3)

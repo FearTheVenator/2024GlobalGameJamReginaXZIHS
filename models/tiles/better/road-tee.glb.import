@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cguasfc7mx77p"
-path="res://.godot/imported/grasstile1.glb-e8b3aa4732670425fc90edb0c9658073.scn"
+uid="uid://dqhxxpbccqjlt"
+path="res://.godot/imported/road-tee.glb-c15d6bf666dfbbc2ffa8e3128a06f000.scn"
 
 [deps]
 
-source_file="res://models/grasstile1.glb"
-dest_files=["res://.godot/imported/grasstile1.glb-e8b3aa4732670425fc90edb0c9658073.scn"]
+source_file="res://models/tiles/better/road-tee.glb"
+dest_files=["res://.godot/imported/road-tee.glb-c15d6bf666dfbbc2ffa8e3128a06f000.scn"]
 
 [params]
 
