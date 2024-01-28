@@ -53,7 +53,7 @@ func _physics_process(delta):
 	#player is moving play and not jumping
 		if $Timer.time_left <=0:
 			$Footsteps.pitch_scale = randf_range(0.5, 1.2)
-			$Footsteps.volume_db = randf_range(-15,-12)
+			$Footsteps.volume_db = randf_range(-25,-20)
 			$Footsteps.play(randf_range(0,0.23))
 			if isRunning():
 				$Timer.start(0.3)
