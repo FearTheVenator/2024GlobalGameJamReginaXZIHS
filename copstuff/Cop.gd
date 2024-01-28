@@ -36,16 +36,21 @@ func _physics_process(delta):
 
 	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-
+	
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	#var cop_dir = next_path_position - current_agent_position
 	tar_rot = atan2(velocity.x, velocity.z)
 	rotation.y = lerp_angle(rotation.y, tar_rot,0.1)
-	
 	move_and_slide()
-
-
+	if velocity.length() > 0 and $AnimationPlayer.get_current_animation_position() < 1.80:
+		$AnimationPlayer.play("Run")
+	else:
+		$AnimationPlayer.stop()
 func _on_character_detector_body_entered(body):
+	pass
+
+
+func _on_area_3d_body_entered(body):
 	print(body)
 	if body.name == "player":
 		chasing_player = true

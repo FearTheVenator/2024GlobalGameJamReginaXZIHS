@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1xck2nw5odup"]
 
-[ext_resource type="Script" path="res://Cop.gd" id="1_rqn8p"]
+[ext_resource type="Script" path="res://copstuff/Cop.gd" id="1_nlwcv"]
 [ext_resource type="AudioStream" uid="uid://btxe0e2qnms68" path="res://Sound/HornBlare.wav" id="2_em75c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sc8lm"]
@@ -18,7 +18,7 @@ height = 20.0
 radius = 8.69381
 
 [node name="Cop" type="CharacterBody3D"]
-script = ExtResource("1_rqn8p")
+script = ExtResource("1_nlwcv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sc8lm")
