@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://1dk318i1uin"]
+[gd_scene load_steps=15 format=3 uid="uid://1dk318i1uin"]
 
 [ext_resource type="PackedScene" uid="uid://bjibpsbenyueq" path="res://models/building-type-a.glb" id="1_f76wt"]
 [ext_resource type="MeshLibrary" uid="uid://dskc431qfocwo" path="res://models/tiles/gridmap1.tres" id="1_jmmks"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://hnr27k48o3qd" path="res://models/tree1.glb" id="4_tjhju"]
 [ext_resource type="PackedScene" uid="uid://dv6o01rhtf5bm" path="res://scenes/escape_trigger.tscn" id="5_jt5s0"]
 [ext_resource type="PackedScene" uid="uid://8u46kwnvsr6a" path="res://tree2.glb" id="5_riws4"]
+[ext_resource type="PackedScene" uid="uid://de5r1hmrnwi32" path="res://models/tree_2.tscn" id="6_akusy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvmwb"]
 size = Vector3(300, 0.1, 300)
@@ -1974,9 +1975,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.636, -1.06082, 24.3866)
 [node name="tree6" parent="floor/park/Park/Trees" instance=ExtResource("4_tjhju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127.693, 0.849185, -42.4954)
 
-[node name="tree3" parent="floor/park/Park/Trees" instance=ExtResource("5_riws4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.9845, 0.943632, -14.0532)
-
 [node name="tree12" parent="floor/park/Park/Trees" instance=ExtResource("5_riws4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.573, 0.943632, -12.0502)
 
@@ -2036,6 +2034,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.881, 0.943632, -44.5127)
 
 [node name="tree5" parent="floor/park/Park/Trees" instance=ExtResource("5_riws4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.544, 0.943632, -28.8875)
+
+[node name="tree3" parent="floor/park/Park/Trees" instance=ExtResource("6_akusy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.0324, -0.938702, -18.3462)
 
 [node name="roads and park" type="Node3D" parent="floor"]
 
