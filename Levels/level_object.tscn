@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bjibpsbenyueq" path="res://models/building-type-a.glb" id="1_f76wt"]
 [ext_resource type="MeshLibrary" uid="uid://dskc431qfocwo" path="res://models/tiles/gridmap1.tres" id="1_jmmks"]
 [ext_resource type="Script" path="res://scripts/level_object.gd" id="1_ndm0c"]
+[ext_resource type="PackedScene" uid="uid://b4e6f6w00vcbg" path="res://models/trashCan.glb" id="2_00cam"]
 [ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="2_4q3jl"]
-[ext_resource type="PackedScene" uid="uid://c8xhbhsy8bwda" path="res://scenes/library.tscn" id="3_wm0n1"]
+[ext_resource type="PackedScene" path="res://scenes/library.tscn" id="3_wm0n1"]
 [ext_resource type="MeshLibrary" uid="uid://dijlwc0thcnlg" path="res://models/tiles/better/betterlib3.tres" id="4_sjetx"]
 [ext_resource type="PackedScene" uid="uid://dv6o01rhtf5bm" path="res://scenes/escape_trigger.tscn" id="5_jt5s0"]
 
@@ -13,8 +14,6 @@ size = Vector3(300, 0.1, 300)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e2cpa"]
 size = Vector3(300, 0.1, 300)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vv3qh"]
 
 [sub_resource type="Environment" id="Environment_uykmw"]
 background_mode = 1
@@ -35,6 +34,31 @@ mesh = SubResource("BoxMesh_lvmwb")
 shape = SubResource("BoxShape3D_e2cpa")
 
 [node name="stuffTest" type="Node3D" parent="floor"]
+
+[node name="garbageCans" type="Node" parent="floor"]
+
+[node name="GarbageCan" type="Node3D" parent="floor/garbageCans"]
+
+[node name="trashCan" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.9943, 0, -4.744)
+
+[node name="trashCan2" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88591, 0, -6.13316)
+
+[node name="trashCan3" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0547, 0, 47.3714)
+
+[node name="trashCan4" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.902, 0, 66.1278)
+
+[node name="trashCan5" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.24, 0, 55.9056)
+
+[node name="trashCan6" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.983, 0, -132.784)
+
+[node name="trashCan7" parent="floor/garbageCans/GarbageCan" instance=ExtResource("2_00cam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.999, 0, -102.31)
 
 [node name="buildings" type="Node" parent="floor"]
 
@@ -1873,20 +1897,10 @@ transform = Transform3D(-0.0848058, -0.00785565, 3.99909, -0.0477356, 4.99964, 0
 [node name="building-type-a614" parent="floor/buildings/fakeBuildings" instance=ExtResource("1_f76wt")]
 transform = Transform3D(-0.0848058, -0.00785565, 3.99909, -0.0477356, 4.99964, 0.00527317, -3.99881, -0.0595162, -0.0848747, -126.126, 0, 40.057)
 
-[node name="actualBuildings" type="Node3D" parent="floor/buildings"]
-
 [node name="park" type="Node" parent="floor"]
 
 [node name="Park" type="Node3D" parent="floor/park"]
 visible = false
-
-[node name="Tree" type="Node3D" parent="floor/park/Park"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77946, 0, -100.565)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="floor/park/Park/Tree"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/park/Park/Tree/StaticBody3D"]
-shape = SubResource("CapsuleShape3D_vv3qh")
 
 [node name="roads and park" type="Node3D" parent="floor"]
 
@@ -1912,7 +1926,40 @@ data = {
 [node name="escapePoints" type="Node3D" parent="floor"]
 
 [node name="escapeTrigger" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90079, 8.31897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.386, 1.90079, 71.4648)
+
+[node name="escapeTrigger2" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.6946, 1.90079, 144.755)
+
+[node name="escapeTrigger3" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6198, 1.90079, 150.809)
+
+[node name="escapeTrigger4" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.052, 1.90079, 150.809)
+
+[node name="escapeTrigger5" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.649, 1.90079, 147.881)
+
+[node name="escapeTrigger6" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154.341, 1.90079, 70.1939)
+
+[node name="escapeTrigger7" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -154.341, 1.90079, 52.2525)
+
+[node name="escapeTrigger8" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -144.278, 1.90079, -146.702)
+
+[node name="escapeTrigger9" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.1247, 1.90079, -146.702)
+
+[node name="escapeTrigger10" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.11, 1.90079, -146.702)
+
+[node name="escapeTrigger11" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.914, 1.90079, -146.702)
+
+[node name="escapeTrigger12" parent="floor/escapePoints" instance=ExtResource("5_jt5s0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.662, 1.90079, -15.6878)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.865859, 0.259036, -0.428006, 0.272825, 0.472627, 0.837968, 0.419351, -0.842332, 0.338557, 0, 2.4205, 0)
