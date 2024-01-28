@@ -6,6 +6,7 @@ extends CharacterBody3D
 var tar_rot : float
 var chasing_player:bool = false
 var player: CharacterBody3D
+signal kill
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
@@ -51,7 +52,7 @@ func _on_character_detector_body_entered(body):
 
 
 func _on_area_3d_body_entered(body):
-	print(body)
+	#print(body)
 	if body.name == "player":
 		chasing_player = true
 		player = body.get_parent().get_child(0)
@@ -60,3 +61,15 @@ func _on_area_3d_body_entered(body):
 	else:
 		pass
 		
+
+
+func _on_cop_kill_zone_body_entered(body):
+	if body.name == "player":
+		kill.emit()
+	else: 
+		pass
+
+
+func _on_area_3d_body_exited(body):
+	if body.name == "player":
+		chasing_player = false

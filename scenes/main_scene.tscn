@@ -22,7 +22,6 @@ movement_speed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Main3D/Root Scene"]
 transform = Transform3D(-8.74228e-10, 0.02, 0, 8.74228e-10, 3.82137e-17, 0.02, 0.02, 8.74228e-10, -8.74228e-10, 0.022997, 0.285435, 0.0486062)
-current = true
 
 [node name="LevelObject" parent="Main3D" instance=ExtResource("2_8bwp5")]
 
@@ -36,3 +35,5 @@ metadata/_edit_use_anchors_ = true
 [node name="Citynoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x6gbp")
 volume_db = -25.0
+
+[connection signal="kill" from="Main3D/Root Scene" to="." method="_on_root_scene_kill"]
