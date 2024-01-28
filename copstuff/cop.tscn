@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1xck2nw5odup"]
+[gd_scene load_steps=8 format=3 uid="uid://b1xck2nw5odup"]
 
 [ext_resource type="Script" path="res://Cop.gd" id="1_rqn8p"]
+[ext_resource type="AudioStream" uid="uid://btxe0e2qnms68" path="res://Sound/HornBlare.wav" id="2_em75c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sc8lm"]
 
@@ -42,5 +43,10 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterDetector"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 9.90237)
 shape = SubResource("CylinderShape3D_agnwd")
+
+[node name="CopNoise" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_em75c")
+volume_db = -10.511
+autoplay = true
 
 [connection signal="body_entered" from="CharacterDetector" to="." method="_on_character_detector_body_entered"]
