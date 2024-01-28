@@ -16,3 +16,8 @@ func _process(delta):
 func _on_noise_body_entered(body):
 	$Honk.set_pitch_scale(randf_range(0.8,1.2))
 	$Honk.play()
+
+
+func _on_horn_honk_2_body_entered(body):
+	$HornHonk.set_pitch_scale(randf_range(0.8,1.2))
+	$HornHonk.play()
