@@ -40,7 +40,6 @@ shape = SubResource("BoxShape3D_e2cpa")
 [node name="buildings" type="Node" parent="floor"]
 
 [node name="Building guide" type="Node3D" parent="floor/buildings"]
-visible = false
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="floor/buildings/Building guide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.1663, 3.7836, 35.5941)
