@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/level_object.gd" id="1_ndm0c"]
 [ext_resource type="PackedScene" uid="uid://b4e6f6w00vcbg" path="res://models/trashCan.glb" id="2_00cam"]
 [ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="2_4q3jl"]
-[ext_resource type="PackedScene" uid="uid://c8xhbhsy8bwda" path="res://scenes/library.tscn" id="3_wm0n1"]
+[ext_resource type="PackedScene" path="res://scenes/library.tscn" id="3_wm0n1"]
 [ext_resource type="MeshLibrary" uid="uid://dijlwc0thcnlg" path="res://models/tiles/better/betterlib3.tres" id="4_sjetx"]
 [ext_resource type="PackedScene" uid="uid://hnr27k48o3qd" path="res://models/tree1.glb" id="4_tjhju"]
 [ext_resource type="PackedScene" uid="uid://dv6o01rhtf5bm" path="res://scenes/escape_trigger.tscn" id="5_jt5s0"]
