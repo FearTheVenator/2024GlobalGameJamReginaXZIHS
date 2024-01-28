@@ -1305,7 +1305,7 @@ bones/45/rotation = Quaternion(0.00161533, -2.8666e-19, -1.56229e-18, 0.999999)
 bones/45/scale = Vector3(1, 1, 1)
 
 [node name="polySurface1" type="BoneAttachment3D" parent="player/clownStuff/RootNode/Skeleton3D"]
-transform = Transform3D(1, 3.46944e-18, -1.73472e-18, -3.46944e-18, 1, -1.50462e-36, 1.73472e-18, 7.52314e-36, 1, 0, -0.000404354, 0.00161219)
+transform = Transform3D(1, 3.46944e-18, -1.73472e-18, -3.46944e-18, 1, -1.50462e-36, 1.73472e-18, 7.52315e-36, 1, 0, -0.000404377, 0.00161219)
 bone_name = "polySurface1"
 bone_idx = 35
 
