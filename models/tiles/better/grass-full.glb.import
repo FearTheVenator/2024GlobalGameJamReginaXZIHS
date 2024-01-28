@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://btdjt63aqtm2u"
-path="res://.godot/imported/roadTile1.glb-e62cd746b8b87195d3f17d794c0b4e5e.scn"
+uid="uid://boh4ldsbvccnd"
+path="res://.godot/imported/grass-full.glb-a8267816eba4f14b7fbb893fbe54fd8d.scn"
 
 [deps]
 
-source_file="res://models/roadTile1.glb"
-dest_files=["res://.godot/imported/roadTile1.glb-e62cd746b8b87195d3f17d794c0b4e5e.scn"]
+source_file="res://models/tiles/better/grass-full.glb"
+dest_files=["res://.godot/imported/grass-full.glb-a8267816eba4f14b7fbb893fbe54fd8d.scn"]
 
 [params]
 

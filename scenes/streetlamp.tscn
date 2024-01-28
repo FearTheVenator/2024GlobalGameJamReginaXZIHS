@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2s2wkpmf5c5r"]
+[gd_scene load_steps=4 format=3 uid="uid://b2s2wkpmf5c5r"]
 
 [ext_resource type="PackedScene" uid="uid://dogsgunif0bgd" path="res://models/streetlamp.glb" id="1_ae54y"]
+[ext_resource type="AudioStream" uid="uid://cunj0m14wyuv" path="res://Sound/street-light-noise.wav" id="2_m4e2q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ej7oc"]
+size = Vector3(1, 21.621, 1)
 
 [node name="streetlamp" instance=ExtResource("1_ae54y")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -14,3 +18,15 @@ light_color = Color(0.992157, 1, 0.811765, 1)
 light_energy = 16.0
 spot_range = 12.8616
 spot_angle = 31.4411
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.810486, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, 0)
+shape = SubResource("BoxShape3D_ej7oc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("2_m4e2q")
+volume_db = -75.0
+autoplay = true

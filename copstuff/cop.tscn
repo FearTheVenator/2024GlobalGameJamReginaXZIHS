@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1xck2nw5odup"]
+
+[ext_resource type="Script" path="res://Cop.gd" id="1_rqn8p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sc8lm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lf3gw"]
+albedo_color = Color(1, 0.0823529, 0.466667, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xp4w"]
+
+[node name="Cop" type="CharacterBody3D"]
+script = ExtResource("1_rqn8p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_sc8lm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lf3gw")
+mesh = SubResource("CapsuleMesh_4xp4w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = -2.0
+path_max_distance = 30.01
+avoidance_enabled = true
