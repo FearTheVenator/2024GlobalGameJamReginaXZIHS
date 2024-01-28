@@ -28,7 +28,7 @@ func _physics_process(delta):
 		print(player.get_global_position())
 		navigation_agent.set_target_position(player.get_global_position())
 	elif navigation_agent.is_navigation_finished():
-		movement_target_position = Vector3(randf_range(-100,100),0.0,randf_range(-100,100))
+		movement_target_position = Vector3(randf_range(-100,100) + global_position.x,0.0,randf_range(-100,100)+global_position.z)
 		navigation_agent.set_target_position(movement_target_position)
 		while !navigation_agent.is_target_reachable():
 			movement_target_position = Vector3(randf_range(-100,100),0.0,randf_range(-100,100))
