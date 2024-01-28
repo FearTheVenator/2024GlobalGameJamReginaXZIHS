@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsrab2j8kb7he"]
+[gd_scene load_steps=9 format=3 uid="uid://dsrab2j8kb7he"]
 
 [ext_resource type="Material" uid="uid://72djj44lmyxl" path="res://materials/facepointer.tres" id="2_d0qer"]
 [ext_resource type="Texture2D" uid="uid://bs2sxiwqoyyx3" path="res://textures/sprites2.png" id="3_qomb8"]
@@ -131,48 +131,38 @@ albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbej4"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5c2gn"]
+[node name="Player" type="Node3D" groups=["player"]]
 
-[node name="Player" type="Node3D"]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_priority = 2.0
 script = SubResource("GDScript_5tycd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 material_override = SubResource("StandardMaterial3D_7v7oh")
 mesh = SubResource("CapsuleMesh_xwj32")
 
-[node name="facepointer" type="MeshInstance3D" parent="CharacterBody3D/MeshInstance3D"]
+[node name="facepointer" type="MeshInstance3D" parent="player/MeshInstance3D"]
 transform = Transform3D(3.523, -2.62484e-08, -3.35445e-17, 0, -1.53995e-07, 0.103, -2.62484e-08, -3.523, -4.50227e-09, -0.0106885, -0.870509, -0.789935)
 material_override = ExtResource("2_d0qer")
 mesh = SubResource("PrismMesh_cojey")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 shape = SubResource("CapsuleShape3D_dbej4")
 
-[node name="playerCam" type="Camera3D" parent="CharacterBody3D"]
+[node name="playerCam" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 0.928784, 0.370622, 0, -0.370622, 0.928784, 0, 3.46433, 5.6257)
 current = true
 
-[node name="Timer" type="Timer" parent="CharacterBody3D"]
+[node name="Timer" type="Timer" parent="player"]
 one_shot = true
 
-[node name="Footsteps" type="AudioStreamPlayer" parent="CharacterBody3D"]
+[node name="Footsteps" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource("3_xe8j4")
 volume_db = -13.664
 
-[node name="ProjectileOrigin" type="Node3D" parent="CharacterBody3D"]
+[node name="ProjectileOrigin" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10862, 0.313967, 0)
-
-[node name="rigidCollider" type="RigidBody3D" parent="CharacterBody3D"]
-collision_layer = 6
-collision_mask = 6
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/rigidCollider"]
-transform = Transform3D(1.145, 0, 0, 0, 1.49, 0, 0, 0, 1.145, 0, 0, 0)
-shape = SubResource("SphereShape3D_5c2gn")
 
 [node name="aimCamTarget" type="Node3D" parent="."]
 
