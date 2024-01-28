@@ -18,7 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.046, 0, 0)
 
 [node name="Root Scene" parent="Main3D" instance=ExtResource("4_d1hu1")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -1.14985, 0.324679, -137.422)
-movement_speed = 10.0
+movement_speed = 7.0
 
 [node name="Camera3D" type="Camera3D" parent="Main3D/Root Scene"]
 transform = Transform3D(-8.74228e-10, 0.02, 0, 8.74228e-10, 3.82137e-17, 0.02, 0.02, 8.74228e-10, -8.74228e-10, 0.022997, 0.285435, 0.0486062)

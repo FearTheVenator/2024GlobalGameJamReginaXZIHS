@@ -1188,7 +1188,7 @@ bones/48/rotation = Quaternion(5.55112e-17, -8.32667e-17, 1.66533e-16, 1)
 bones/48/scale = Vector3(1, 1, 1)
 
 [node name="polySurface7" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.00140838, -0.0139854, 0.0022583)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.00140838, -0.0139854, 0.0022583)
 bone_name = "polySurface7"
 bone_idx = 12
 
@@ -1197,7 +1197,7 @@ mesh = SubResource("ArrayMesh_wa3mg")
 skeleton = NodePath("")
 
 [node name="polySurface8" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.00140838, -0.0139854, 0.0022583)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.00140838, -0.0139854, 0.0022583)
 bone_name = "polySurface8"
 bone_idx = 13
 
@@ -1206,7 +1206,7 @@ mesh = SubResource("ArrayMesh_gcwkp")
 skeleton = NodePath("")
 
 [node name="polySurface3" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.00154914, -0.0150132, 0.00234635)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.00154914, -0.0150132, 0.00234635)
 bone_name = "polySurface3"
 bone_idx = 14
 
@@ -1215,7 +1215,7 @@ mesh = SubResource("ArrayMesh_mps6r")
 skeleton = NodePath("")
 
 [node name="polySurface4" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.00154914, -0.0150132, 0.00234635)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.00154914, -0.0150132, 0.00234635)
 bone_name = "polySurface4"
 bone_idx = 15
 
@@ -1224,7 +1224,7 @@ mesh = SubResource("ArrayMesh_xhkuu")
 skeleton = NodePath("")
 
 [node name="polySurface6" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.00141749, -0.0150078, 0.00216765)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.00141749, -0.0150078, 0.00216765)
 bone_name = "polySurface6"
 bone_idx = 16
 
@@ -1233,7 +1233,7 @@ mesh = SubResource("ArrayMesh_r7flc")
 skeleton = NodePath("")
 
 [node name="polySurface2" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.000928447, -0.014667, 0.00318991)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.000928446, -0.014667, 0.00318991)
 bone_name = "polySurface2"
 bone_idx = 17
 
@@ -1242,7 +1242,7 @@ mesh = SubResource("ArrayMesh_ui2eh")
 skeleton = NodePath("")
 
 [node name="polySurface5" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
-transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970295, 0.941195, -0.00128959, -0.0149088, 0.00250091)
+transform = Transform3D(0.940045, -0.0539648, 0.336755, 0.0475239, 0.998496, 0.0273464, -0.337724, -0.00970296, 0.941195, -0.00128959, -0.0149088, 0.00250091)
 bone_name = "polySurface5"
 bone_idx = 18
 
@@ -1387,7 +1387,6 @@ autoplay = true
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="Area3D" type="Area3D" parent="."]
 
