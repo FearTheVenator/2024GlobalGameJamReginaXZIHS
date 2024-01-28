@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cadamb4vrjf5n"]
+[gd_scene load_steps=2 format=3 uid="uid://cadamb4vrjf5n"]
+
+[ext_resource type="Script" path="res://scenes/Control.gd" id="1_kfb5p"]
 
 [node name="ending" type="Node3D"]
 
@@ -9,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kfb5p")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
