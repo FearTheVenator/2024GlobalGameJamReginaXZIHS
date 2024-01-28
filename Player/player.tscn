@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsrab2j8kb7he"]
+[gd_scene load_steps=9 format=3 uid="uid://dsrab2j8kb7he"]
 
 [ext_resource type="Material" uid="uid://72djj44lmyxl" path="res://materials/facepointer.tres" id="2_d0qer"]
+[ext_resource type="Texture2D" uid="uid://bs2sxiwqoyyx3" path="res://textures/sprites2.png" id="3_qomb8"]
 [ext_resource type="AudioStream" uid="uid://bs6wt0h0xyg8g" path="res://Sound/SqueakyShoeReal.wav" id="3_xe8j4"]
 
 [sub_resource type="GDScript" id="GDScript_5tycd"]
@@ -116,6 +117,9 @@ func goTinyMode():
 func goNormalMode(): 
 	$MeshInstance3D.scale.y = 1
 	$MeshInstance3D.position.y = 0
+
+func player(): # duck typing for collision detection
+	pass
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v7oh"]
@@ -131,6 +135,7 @@ albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
 
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_priority = 2.0
 script = SubResource("GDScript_5tycd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
@@ -160,3 +165,8 @@ volume_db = -13.664
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10862, 0.313967, 0)
 
 [node name="aimCamTarget" type="Node3D" parent="."]
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(-0.0476953, 0.597837, 0.0177624, -0.000227094, 0.0178006, -0.599736, -0.598101, -0.047681, -0.00118867, -0.270022, 1.10872, 0.0115491)
+size = Vector3(1.59546, 1.09399, 1.59521)
+texture_albedo = ExtResource("3_qomb8")

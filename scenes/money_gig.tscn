@@ -22,12 +22,12 @@ omni_range = 8.0
 shape = SubResource("SphereShape3D_y1gqr")
 
 [node name="TRENCHCOAT-GUY" parent="." instance=ExtResource("1_rk3da")]
+transform = Transform3D(0.635, 0, 0, 0, 0.635, 0, 0, 0, 0.635, 0, 0.131788, 0)
 
 [node name="Label3D" type="Label3D" parent="TRENCHCOAT-GUY"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.84311, 0)
-pixel_size = 0.0022
+pixel_size = 0.0171
 billboard = 1
 no_depth_test = true
-fixed_size = true
 text = "Hey buddy...
-I need my fix..."
+Cash for laughs."
