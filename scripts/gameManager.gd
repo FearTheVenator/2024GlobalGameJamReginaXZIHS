@@ -18,3 +18,7 @@ func _input(event):
 	if(event.is_action_pressed("tilde")): # reload scene
 		get_tree().reload_current_scene()
 	
+
+
+func _on_root_scene_kill():
+	get_tree().reload_current_scene()
