@@ -2,7 +2,6 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5kjqe"]
 friction = 0.3
-bounce = 0.37
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0cjb"]
 resource_name = "Can-rigid.001"
@@ -52,9 +51,9 @@ radius = 1.00601
 [node name="trashCan" type="RigidBody3D"]
 collision_layer = 7
 collision_mask = 7
-mass = 0.02
+mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_5kjqe")
-gravity_scale = -0.846
+gravity_scale = 0.573
 
 [node name="a" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_750fd")
