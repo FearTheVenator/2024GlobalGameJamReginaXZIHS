@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bifxcvvlgnxtj"
-path="res://.godot/imported/dirttile2.glb-6300dff8cbdee49aa6caeb850966fdf3.scn"
+uid="uid://boh4ldsbvccnd"
+path="res://.godot/imported/grass-full.glb-a8267816eba4f14b7fbb893fbe54fd8d.scn"
 
 [deps]
 
-source_file="res://models/dirttile2.glb"
-dest_files=["res://.godot/imported/dirttile2.glb-6300dff8cbdee49aa6caeb850966fdf3.scn"]
+source_file="res://models/tiles/better/grass-full.glb"
+dest_files=["res://.godot/imported/grass-full.glb-a8267816eba4f14b7fbb893fbe54fd8d.scn"]
 
 [params]
 

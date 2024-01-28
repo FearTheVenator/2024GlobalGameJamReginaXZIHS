@@ -1,22 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8xhbhsy8bwda"]
+[gd_scene load_steps=7 format=3 uid="uid://c8xhbhsy8bwda"]
 
-[ext_resource type="PackedScene" uid="uid://btdjt63aqtm2u" path="res://models/roadTile1.glb" id="1_5ovsf"]
-[ext_resource type="PackedScene" uid="uid://c8v0hmqt72ok3" path="res://models/roadTile2.glb" id="2_tehov"]
-[ext_resource type="PackedScene" uid="uid://cckm0f7elgvts" path="res://models/dirttile1.glb" id="3_i8hy1"]
-[ext_resource type="PackedScene" uid="uid://bifxcvvlgnxtj" path="res://models/dirttile2.glb" id="4_w2x2d"]
-[ext_resource type="PackedScene" uid="uid://cguasfc7mx77p" path="res://models/grasstile1.glb" id="5_2wy71"]
+[ext_resource type="PackedScene" uid="uid://caphcl61ovny5" path="res://models/tiles/alley_full.glb" id="1_rxjde"]
+[ext_resource type="PackedScene" uid="uid://dva1becdd0ccr" path="res://models/tiles/road_fork.glb" id="2_pn2fg"]
+[ext_resource type="PackedScene" uid="uid://th8xwrodligm" path="res://models/tiles/road_path.glb" id="3_k3oey"]
+[ext_resource type="PackedScene" uid="uid://bola1whcijkun" path="res://models/tiles/grass_fork.glb" id="4_tljry"]
+[ext_resource type="PackedScene" uid="uid://d2pb6ey6lq4ta" path="res://models/tiles/grass_full.glb" id="5_b0tpq"]
+[ext_resource type="PackedScene" uid="uid://bwr8tjny6lp7k" path="res://models/tiles/grass_path.glb" id="6_pvv0o"]
 
 [node name="library" type="Node3D"]
 transform = Transform3D(2.5, 0, 0, 0, 2, 0, 0, 0, 2.5, 0, 0, 0)
 
-[node name="roadTile1" parent="." instance=ExtResource("1_5ovsf")]
+[node name="alley_full" parent="." instance=ExtResource("1_rxjde")]
 
-[node name="roadTile2" parent="." instance=ExtResource("2_tehov")]
+[node name="road_fork" parent="." instance=ExtResource("2_pn2fg")]
 
-[node name="dirttile1" parent="." instance=ExtResource("3_i8hy1")]
+[node name="road_path" parent="." instance=ExtResource("3_k3oey")]
 
-[node name="dirttile2" parent="." instance=ExtResource("4_w2x2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="grass_fork" parent="." instance=ExtResource("4_tljry")]
 
-[node name="grasstile1" parent="." instance=ExtResource("5_2wy71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="grass_full" parent="." instance=ExtResource("5_b0tpq")]
+
+[node name="grass_path" parent="." instance=ExtResource("6_pvv0o")]
