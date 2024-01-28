@@ -1387,7 +1387,6 @@ autoplay = true
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="Area3D" type="Area3D" parent="."]
 

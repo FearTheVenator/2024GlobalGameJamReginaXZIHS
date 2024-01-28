@@ -56,7 +56,7 @@ func _on_area_3d_body_entered(body):
 	if body.name == "player":
 		chasing_player = true
 		player = body.get_parent().get_child(0)
-		print(player)
+	#	print(player)
 		navigation_agent.set_target_position(player.get_global_position())
 	else:
 		pass
