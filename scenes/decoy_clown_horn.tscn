@@ -45,7 +45,7 @@ script = ExtResource("1_u4rte")
 shape = SubResource("SphereShape3D_chucd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0725098, 0)
+transform = Transform3D(1, 0, 0, 0, 2.44, 0, 0, 0, 1, 0, -0.0725098, 0)
 shape = SubResource("BoxShape3D_ycbxl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -74,4 +74,4 @@ process_material = SubResource("ParticleProcessMaterial_car8v")
 draw_pass_1 = SubResource("PlaneMesh_a85su")
 
 [node name="clownhorn" parent="." instance=ExtResource("3_u5et2")]
-transform = Transform3D(-0.205, 1.79217e-08, 0, -1.79217e-08, -0.205, 0, 0, 0, 0.205, 0, 0.125, 0)
+transform = Transform3D(-0.645, 9.73923e-08, 0, -9.73923e-08, -0.645, 0, 0, 0, 0.645, 0, 0.125, 0)
