@@ -27,10 +27,22 @@ transform = Transform3D(-8.74228e-10, 0.02, 0, 8.74228e-10, 3.82137e-17, 0.02, 0
 
 [node name="MainGUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainGUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_right = 67.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Find the exit! GO!"
 
 [node name="Citynoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x6gbp")
