@@ -1,146 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dsrab2j8kb7he"]
-
-[ext_resource type="Material" uid="uid://72djj44lmyxl" path="res://materials/facepointer.tres" id="2_d0qer"]
-[ext_resource type="Texture2D" uid="uid://bs2sxiwqoyyx3" path="res://textures/sprites2.png" id="3_qomb8"]
-[ext_resource type="AudioStream" uid="uid://bs6wt0h0xyg8g" path="res://Sound/SqueakyShoeReal.wav" id="3_xe8j4"]
-
-[sub_resource type="GDScript" id="GDScript_5tycd"]
-script/source = "extends CharacterBody3D
-
-var current_speed = 0
-@export var SPEED = 7.0
-const SPEED_RUNNING_MULTIPLIER = 1.4
-var SPEED_RUNNING_MULTIPLIER_CURRENT = 1.0
-const JUMP_VELOCITY = 4.5
-var MOUSE_SENSITIVITY = 0.5
-var isAiming:bool = false
-@export var horn_count = 1
-@onready var playerCam = $playerCam
-@onready var decoyClownHorn = preload(\"res://scenes/decoy_clown_horn.tscn\")
-var decoyInstance
-var gravity = ProjectSettings.get_setting(\"physics/3d/default_gravity\")
-@export var push_force = 10
-
-func _ready():
-	velocity = Vector3.ZERO # minor null bugfix
-
-func _input(event):
-	moveCamera(event)
-	if isRunning():
-		SPEED_RUNNING_MULTIPLIER_CURRENT = SPEED_RUNNING_MULTIPLIER
-	else:
-		SPEED_RUNNING_MULTIPLIER_CURRENT = 1.0
-	
-	if(event.is_action_pressed(\"right_click\")and horn_count > 0):
-		aimProjectile()
-	if(event.is_action_released(\"right_click\") and isAiming):
-		throwProjectile(decoyInstance)
-	if(event.is_action_pressed(\"crouch\")):
-		goTinyMode()
-	if(event.is_action_released(\"crouch\")):
-		goNormalMode()
-
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	var input_dir = Input.get_vector(\"left\", \"right\", \"forward\", \"back\")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT
-		velocity.z = direction.z * SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
-		velocity.z = move_toward(velocity.z, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
-	if velocity.length() == 0:
-		pass
-		#code animation stuff here
-	elif is_on_floor():
-		#code more animation stuff here
-		if $Timer.time_left <=0:
-			$Footsteps.set_pitch_scale(randf_range(0.8,1.2))
-			$Footsteps.set_volume_db(randf_range(-15,-13))
-			$Footsteps.play(randf_range(0,.23))
-			if isRunning():
-				$Timer.start(0.3)
-			else:
-				$Timer.start(0.5)
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody3D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-	move_and_slide()
-	
-	if velocity.length() > 0 and $clownStuff/AnimationPlayer.get_current_animation_position() < 1.60 and !isAiming:
-		$clownStuff/AnimationPlayer.play(\"Take 001\")
-	else:
-		$clownStuff/AnimationPlayer.stop()
-
-func moveCamera(event): # handle the camera movement
-	if(event is InputEventMouseMotion):
-		#self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
-		rotation.y += deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1)
-		#var camRotX = (event.relative.y * MOUSE_SENSITIVITY);
-		#var camRotY = (event.relative.x * MOUSE_SENSITIVITY);
-		#playerCam.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
-		#playerCam.rotation.x = clamp(playerCam.rotation.x, deg_to_rad(-70), deg_to_rad(70))
-		
-	
-func isRunning() -> bool:
-	return Input.is_action_pressed(\"shift\")
-
-func aimProjectile():
-	print(\"aiming projectile...\")
-	isAiming = true
-	decoyInstance = decoyClownHorn.instantiate() # spawn preloaded projectile
-	decoyInstance.position = $ProjectileOrigin.position
-	self.add_child(decoyInstance)
-	pass
-
-func throwProjectile(newDecoyProjectile):
-	$clownStuff/AnimationPlayer.seek(2.3, true)
-	$clownStuff/AnimationPlayer.play(\"Take 001\")
-	print(\"Throwing projectile...\")
-	newDecoyProjectile.reparent(self.get_parent())
-	newDecoyProjectile.freeze = false # unfreeze projectile physics to throw it (see decoy ready func)
-	# add velocity to projectile to throw it
-	var forwardVector = transform.basis.z.normalized()
-	newDecoyProjectile.linear_velocity -= forwardVector.rotated(transform.basis.x, deg_to_rad(45)) * 15
-	# add some angular velocity to make it spin so it looks better
-	randomize()
-	newDecoyProjectile.angular_velocity += Vector3(randf()*2,randf(),3)
-	# enable visual effects on decoy
-	newDecoyProjectile.get_node(\"decoyLight\").visible = true
-	newDecoyProjectile.get_node(\"decoyParticles\").emitting = true
-	horn_count -= 1
-	isAiming = false
-
-
-func goTinyMode():
-	$clownStuff.scale.y = 4
-	$clownStuff.position.y = -1
-func goNormalMode(): 
-	$clownStuff.scale.y = 40
-	$clownStuff.position.y = -0.803
-
-func player(): # duck typing for collision detection
-	pass
-"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7v7oh"]
-albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_xwj32"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_cojey"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbej4"]
+[gd_scene load_steps=15 format=3 uid="uid://cm6qtgp2bybpc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc3yt"]
 resource_name = "blinn9"
@@ -148,7 +6,7 @@ albedo_color = Color(0.6277, 0.121879, 0.121879, 1)
 metallic = 0.4
 roughness = 0.490532
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hv56t"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_3ktjf"]
 resource_name = "Root Scene_polySurface1"
 _surfaces = [{
 "aabb": AABB(-0.00291316, 0.0453785, 0.00714609, 0.00586917, 0.0059557, 0.00591228),
@@ -215,7 +73,7 @@ albedo_color = Color(0.193396, 0.34375, 0.0774519, 1)
 metallic = 0.4
 roughness = 0.694003
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wvl1e"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_g0obw"]
 resource_name = "Root Scene_polySurface2"
 _surfaces = [{
 "aabb": AABB(-0.0526407, 0.0446734, -0.00316098, 0.105088, 0.00474632, 0.0126644),
@@ -354,7 +212,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_jia5t"]
+[sub_resource type="Skin" id="Skin_sdqwc"]
 resource_name = "Skin"
 bind_count = 45
 bind/0/name = &"Root"
@@ -908,82 +766,45 @@ _data = {
 "Take 001": SubResource("Animation_gnabn")
 }
 
-[node name="Player" type="Node3D" groups=["player"]]
+[node name="Root Scene" type="CharacterBody3D"]
 
-[node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 5
-collision_mask = 5
-collision_priority = 2.0
-script = SubResource("GDScript_5tycd")
+[node name="RootNode" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
-visible = false
-material_override = SubResource("StandardMaterial3D_7v7oh")
-mesh = SubResource("CapsuleMesh_xwj32")
-
-[node name="facepointer" type="MeshInstance3D" parent="player/MeshInstance3D"]
-transform = Transform3D(3.523, -2.62484e-08, -3.35445e-17, 0, -1.53995e-07, 0.103, -2.62484e-08, -3.523, -4.50227e-09, -0.0106885, -0.870509, -0.789935)
-material_override = ExtResource("2_d0qer")
-mesh = SubResource("PrismMesh_cojey")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
-shape = SubResource("CapsuleShape3D_dbej4")
-
-[node name="playerCam" type="Camera3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 0.928784, 0.370622, 0, -0.370622, 0.928784, 0, 3.46433, 5.6257)
-current = true
-
-[node name="Timer" type="Timer" parent="player"]
-one_shot = true
-
-[node name="Footsteps" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource("3_xe8j4")
-volume_db = -13.664
-
-[node name="ProjectileOrigin" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10862, 0.313967, 0)
-
-[node name="clownStuff" type="Node3D" parent="player"]
-transform = Transform3D(-40, 0, -3.49691e-06, 0, 40, 0, 3.49691e-06, 0, -40, 0, -0.80261, 0)
-
-[node name="RootNode" type="Node3D" parent="player/clownStuff"]
-
-[node name="pSphere1" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="pSphere1" type="Node3D" parent="RootNode"]
 transform = Transform3D(1, 0, 0, 0, 2.35079, 0, 0, 0, 1, 0, 0.0415749, 0)
 
-[node name="transform1" type="Node3D" parent="player/clownStuff/RootNode/pSphere1"]
+[node name="transform1" type="Node3D" parent="RootNode/pSphere1"]
 
-[node name="pSphere2" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="pSphere2" type="Node3D" parent="RootNode"]
 transform = Transform3D(0.297785, 0, 0, 0, 0.297785, 0, 0, 0, 0.297785, -2.18378e-05, 0.0483564, 0.0101022)
 
-[node name="transform5" type="Node3D" parent="player/clownStuff/RootNode/pSphere2"]
+[node name="transform5" type="Node3D" parent="RootNode/pSphere2"]
 
-[node name="pCube1" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="pCube1" type="Node3D" parent="RootNode"]
 transform = Transform3D(0.640917, 0, 0, 0, 0.276053, 0, 0, 0, 0.640917, -0.0406259, 0.0469447, 0.000797287)
 
-[node name="transform3" type="Node3D" parent="player/clownStuff/RootNode/pCube1"]
+[node name="transform3" type="Node3D" parent="RootNode/pCube1"]
 
-[node name="pCube2" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="pCube2" type="Node3D" parent="RootNode"]
 transform = Transform3D(-0.641, 0, 0, 0, 0.276053, -7.84897e-17, 0, 3.38067e-17, 0.640917, 0.0405976, 0.0469447, 0.000797287)
 
-[node name="transform2" type="Node3D" parent="player/clownStuff/RootNode/pCube2"]
+[node name="transform2" type="Node3D" parent="RootNode/pCube2"]
 
-[node name="pCube3" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="pCube3" type="Node3D" parent="RootNode"]
 
-[node name="transform4" type="Node3D" parent="player/clownStuff/RootNode/pCube3"]
+[node name="transform4" type="Node3D" parent="RootNode/pCube3"]
 
-[node name="pSphere3" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="pSphere3" type="Node3D" parent="RootNode"]
 
-[node name="transform6" type="Node3D" parent="player/clownStuff/RootNode/pSphere3"]
+[node name="transform6" type="Node3D" parent="RootNode/pSphere3"]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="player/clownStuff/RootNode"]
+[node name="Skeleton3D" type="Skeleton3D" parent="RootNode"]
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.999698, -0.0198553, 0.0145033, 0.0239809, 0.917612, -0.396754, -0.00543075, 0.396982, 0.91781, -3.09064e-05, 0.0317377, -3.89429e-11)
 bones/0/enabled = true
-bones/0/position = Vector3(-3.09064e-05, 0.0310781, -1.11265e-11)
-bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/position = Vector3(-3.09064e-05, 0.0317377, -3.89429e-11)
+bones/0/rotation = Quaternion(0.202655, 0.00508952, 0.0111922, 0.979173)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Stomach"
 bones/1/parent = 0
@@ -1010,22 +831,22 @@ bones/4/name = "Head"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 4.33681e-19, 2.60209e-18, -4.33681e-19, 1, -1.12847e-36, -2.60209e-18, 0, 1, -7.16001e-05, 0.0123152, 4.44089e-18)
 bones/4/enabled = true
-bones/4/position = Vector3(-7.16001e-05, 0.0124389, 2.48899e-20)
+bones/4/position = Vector3(-7.16001e-05, 0.0123152, 4.44089e-18)
 bones/4/rotation = Quaternion(2.82119e-37, 1.30104e-18, -2.1684e-19, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "L_Shoulder"
 bones/5/parent = 2
 bones/5/rest = Transform3D(0.0674663, 0.914409, 0.399129, -0.750336, 0.310171, -0.583773, -0.657605, -0.260096, 0.70704, 0.0107142, 0.00267705, 0.00227928)
 bones/5/enabled = true
-bones/5/position = Vector3(0.0105542, 0.0027895, 0.00187969)
-bones/5/rotation = Quaternion(-0.0316529, 0.0907005, -0.573015, 0.813895)
+bones/5/position = Vector3(0.0107142, 0.00267705, 0.00227928)
+bones/5/rotation = Quaternion(0.112089, 0.365946, -0.576499, 0.721921)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "L_Elbow"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.997056, -3.437e-16, 0.0766777, 3.46945e-16, 1, -2.89936e-17, -0.0766777, 5.55112e-17, 0.997056, 0.0131744, 0.000429195, -2.63554e-11)
 bones/6/enabled = true
 bones/6/position = Vector3(0.0131744, 0.000429195, -2.63554e-11)
-bones/6/rotation = Quaternion(6.03063e-17, -0.0964659, 4.68002e-17, 0.995336)
+bones/6/rotation = Quaternion(2.11417e-17, 0.0383671, 1.72788e-16, 0.999264)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "L_Palm"
 bones/7/parent = 6
@@ -1039,7 +860,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.749449, -0.658988, 0.0637239, 0.436259, 0.563949, 0.70117, -0.497999, -0.497691, 0.710141, 0.00604375, 0.000614583, -0.00291876)
 bones/8/enabled = true
 bones/8/position = Vector3(0.00604375, 0.000614583, -0.00291876)
-bones/8/rotation = Quaternion(0.0304651, -0.0133174, 0.318947, 0.947189)
+bones/8/rotation = Quaternion(-0.344732, 0.161523, 0.314937, 0.869416)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "L_Pinky2"
 bones/9/parent = 8
@@ -1060,7 +881,7 @@ bones/11/parent = 7
 bones/11/rest = Transform3D(0.993294, -0.0546379, 0.101887, -0.0415083, 0.653986, 0.755367, -0.107905, -0.754531, 0.647333, 0.00641994, 0.000949542, -0.000504893)
 bones/11/enabled = true
 bones/11/position = Vector3(0.00641994, 0.000949542, -0.000504893)
-bones/11/rotation = Quaternion(0.0590149, -0.00819979, -0.000513172, 0.998223)
+bones/11/rotation = Quaternion(-0.415925, 0.0577905, 0.00361674, 0.907553)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "L_Ring2"
 bones/12/parent = 11
@@ -1081,7 +902,7 @@ bones/14/parent = 7
 bones/14/rest = Transform3D(0.962079, 0.020253, 0.272017, -0.267677, 0.261907, 0.927229, -0.0524639, -0.964881, 0.257396, 0.00616914, 0.000905391, 0.00181493)
 bones/14/enabled = true
 bones/14/position = Vector3(0.00616914, 0.000905391, 0.00181493)
-bones/14/rotation = Quaternion(0.400499, -0.0686822, 0.0609455, 0.911685)
+bones/14/rotation = Quaternion(-0.600578, 0.102994, -0.0913923, 0.78762)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "L_Pointer2"
 bones/15/parent = 14
@@ -1102,7 +923,7 @@ bones/17/parent = 7
 bones/17/rest = Transform3D(0.240888, -0.511027, 0.825121, 0.0995263, -0.832667, -0.544756, 0.965436, 0.213347, -0.149719, 0.00218782, 0.000311908, 0.00391531)
 bones/17/enabled = true
 bones/17/position = Vector3(0.00218782, 0.000311908, 0.00391531)
-bones/17/rotation = Quaternion(0.389078, -0.0720134, 0.313351, 0.863275)
+bones/17/rotation = Quaternion(0.745533, -0.137989, 0.600429, 0.254215)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "L_Thumb2"
 bones/18/parent = 17
@@ -1122,29 +943,29 @@ bones/20/name = "R_Shoulder"
 bones/20/parent = 2
 bones/20/rest = Transform3D(0.500489, 0.823457, -0.267264, -0.222099, -0.176254, -0.958961, -0.836769, 0.539309, 0.0946754, -0.0100427, 0.00145976, 0.000464595)
 bones/20/enabled = true
-bones/20/position = Vector3(-0.0101475, 0.00277702, 0.00152361)
-bones/20/rotation = Quaternion(0.838806, 0.542634, 0.0167972, -0.0408817)
+bones/20/position = Vector3(-0.0100427, 0.00145976, 0.000464595)
+bones/20/rotation = Quaternion(0.628901, 0.239051, -0.438874, 0.59559)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "R_Elbow"
 bones/21/parent = 20
 bones/21/rest = Transform3D(0.972888, -4.46568e-16, -0.231279, 4.44089e-16, 1, -6.27771e-17, 0.231279, -4.16334e-17, 0.972888, -0.0131744, -0.0004292, -1.52588e-10)
 bones/21/enabled = true
 bones/21/position = Vector3(-0.0131744, -0.0004292, -1.52588e-10)
-bones/21/rotation = Quaternion(3.34496e-17, -0.116431, 2.2574e-16, 0.993199)
+bones/21/rotation = Quaternion(5.32213e-18, -0.116431, 2.24189e-16, 0.993199)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "R_Palm"
 bones/22/parent = 21
 bones/22/rest = Transform3D(0.977921, 0.208973, 1.02567e-16, -0.208973, 0.977921, -1.17708e-16, -1.249e-16, 9.36751e-17, 1, -0.0155373, 0.0004739, -8.88178e-18)
 bones/22/enabled = true
 bones/22/position = Vector3(-0.0155373, 0.0004739, -8.88178e-18)
-bones/22/rotation = Quaternion(-3.57419e-17, 6.89089e-17, -0.105135, 0.994458)
+bones/22/rotation = Quaternion(5.31398e-17, 5.71833e-17, -0.105068, 0.994465)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "R_Pinky1"
 bones/23/parent = 22
 bones/23/rest = Transform3D(0.681464, -0.536629, -0.497631, -0.209093, 0.508858, -0.835071, 0.701347, 0.673122, 0.234563, -0.0060437, -0.0006146, 0.00291877)
 bones/23/enabled = true
 bones/23/position = Vector3(-0.0060437, -0.0006146, 0.00291877)
-bones/23/rotation = Quaternion(0.834086, -0.547808, 0.0205114, 0.0615346)
+bones/23/rotation = Quaternion(0.484263, -0.384978, 0.105168, 0.778602)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "R_Pinky2"
 bones/24/parent = 23
@@ -1165,7 +986,7 @@ bones/26/parent = 22
 bones/26/rest = Transform3D(0.731137, -0.655195, -0.190151, 0.115384, 0.39346, -0.912072, 0.672402, 0.64491, 0.363272, -0.0064199, -0.0009495, 0.000504897)
 bones/26/enabled = true
 bones/26/position = Vector3(-0.0064199, -0.0009495, 0.000504897)
-bones/26/rotation = Quaternion(0.431553, -0.24793, 0.244449, 0.832188)
+bones/26/rotation = Quaternion(0.49356, -0.273427, 0.244272, 0.788649)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "R_Ring2"
 bones/27/parent = 26
@@ -1186,14 +1007,14 @@ bones/29/parent = 22
 bones/29/rest = Transform3D(-0.735885, -0.677056, 0.00828952, -0.287832, 0.323875, 0.901253, -0.612884, 0.660833, -0.433213, -0.0061691, -0.0009054, -0.00181493)
 bones/29/enabled = true
 bones/29/position = Vector3(-0.0061691, -0.0009054, -0.00181493)
-bones/29/rotation = Quaternion(-0.38516, 0.346167, -0.230704, -0.82377)
+bones/29/rotation = Quaternion(-0.305554, 0.789458, 0.494671, 0.196709)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/name = "R_Pointer2"
 bones/30/parent = 29
 bones/30/rest = Transform3D(0.995567, -0.0892181, -0.0297619, 0.0897174, 0.995841, 0.0158833, 0.028221, -0.018483, 0.999431, -0.0037619, 0.0004756, -0.00062698)
 bones/30/enabled = true
 bones/30/position = Vector3(-0.0037619, 0.0004756, -0.00062698)
-bones/30/rotation = Quaternion(0.184364, 0.0906273, -0.523225, 0.827062)
+bones/30/rotation = Quaternion(-0.00860142, -0.0145124, 0.0447852, 0.998854)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "R_Pointer3"
 bones/31/parent = 30
@@ -1207,7 +1028,7 @@ bones/32/parent = 22
 bones/32/rest = Transform3D(0.883297, -0.467312, 0.0375033, 0.404045, 0.718254, -0.566444, 0.237769, 0.515491, 0.823247, -0.0021878, -0.0003119, -0.00391531)
 bones/32/enabled = true
 bones/32/position = Vector3(-0.0021878, -0.0003119, -0.00391531)
-bones/32/rotation = Quaternion(0.38809, -0.0718352, 0.312556, 0.864023)
+bones/32/rotation = Quaternion(0.292317, -0.0541077, 0.235423, 0.92531)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "R_Thumb2"
 bones/33/parent = 32
@@ -1235,14 +1056,14 @@ bones/36/parent = 0
 bones/36/rest = Transform3D(0.999462, -0.0308631, -0.0111227, 0.0321408, 0.853253, 0.520505, -0.00657397, -0.520583, 0.853786, 0.00830561, -0.0012888, 0.00113026)
 bones/36/enabled = true
 bones/36/position = Vector3(0.00830561, -0.0012888, 0.00113026)
-bones/36/rotation = Quaternion(-0.0449701, -0.00209618, 0.0209018, 0.998767)
+bones/36/rotation = Quaternion(-0.270381, -0.00118134, 0.0163627, 0.962614)
 bones/36/scale = Vector3(1, 1, 1)
 bones/37/name = "L_Knee"
 bones/37/parent = 36
 bones/37/rest = Transform3D(0.991031, 0.132863, -0.0142979, -0.133142, 0.972596, -0.190603, -0.0114181, 0.190797, 0.981563, 0.0011456, -0.0138188, 0.000465402)
 bones/37/enabled = true
 bones/37/position = Vector3(0.0011456, -0.0138188, 0.000465402)
-bones/37/rotation = Quaternion(0.0707104, 0.000718606, -0.0492974, 0.996278)
+bones/37/rotation = Quaternion(0.0960103, -0.000724952, -0.0669617, 0.993125)
 bones/37/scale = Vector3(1, 1, 1)
 bones/38/name = "L_Ankle"
 bones/38/parent = 37
@@ -1255,7 +1076,7 @@ bones/39/name = "L_MiddleShoe"
 bones/39/parent = 38
 bones/39/rest = Transform3D(0.997781, -0.0157693, -0.0646842, 0.0216644, 0.995572, 0.0914718, 0.0629554, -0.0926702, 0.993705, -0.00116543, -0.00523153, 0.00986413)
 bones/39/enabled = true
-bones/39/position = Vector3(-0.00122336, -0.00505569, 0.00979158)
+bones/39/position = Vector3(-0.00116543, -0.00523153, 0.00986413)
 bones/39/rotation = Quaternion(-0.0461102, -0.0319616, 0.0093736, 0.998381)
 bones/39/scale = Vector3(1, 1, 1)
 bones/40/name = "L_TipShoe"
@@ -1270,7 +1091,7 @@ bones/41/parent = 0
 bones/41/rest = Transform3D(0.995282, -0.0774198, 0.058486, -0.0705555, -0.991258, -0.111487, 0.066606, 0.106835, -0.992043, -0.0082438, -0.00128885, 0.00113026)
 bones/41/enabled = true
 bones/41/position = Vector3(-0.0082438, -0.00128885, 0.00113026)
-bones/41/rotation = Quaternion(0.99791, -0.0349339, -0.00303766, 0.0542681)
+bones/41/rotation = Quaternion(0.997319, -0.0370933, 0.0313571, 0.0547271)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/name = "R_Knee"
 bones/42/parent = 41
@@ -1290,165 +1111,157 @@ bones/44/name = "R_MiddleShoe"
 bones/44/parent = 43
 bones/44/rest = Transform3D(0.994332, -0.0854651, -0.06324, 0.0924511, 0.988778, 0.117347, 0.0525013, -0.122528, 0.991075, 0.000770824, 0.00584944, -0.0127287)
 bones/44/enabled = true
-bones/44/position = Vector3(-6.73211e-05, 0.00557344, -0.0128717)
-bones/44/rotation = Quaternion(-0.0633746, 0.00525713, 0.0431126, 0.997044)
+bones/44/position = Vector3(0.000770824, 0.00584944, -0.0127287)
+bones/44/rotation = Quaternion(-0.0601633, -0.0290292, 0.0446233, 0.996768)
 bones/44/scale = Vector3(1, 1, 1)
 bones/45/name = "R_TipShoe"
 bones/45/parent = 44
 bones/45/rest = Transform3D(1, -8.58951e-19, 2.60487e-18, 8.67362e-19, 0.999995, -0.00323066, -2.60209e-18, 0.00323066, 0.999995, 0.00056283, 3.75878e-05, -0.0116346)
 bones/45/enabled = true
 bones/45/position = Vector3(0.00056283, 3.75878e-05, -0.0116346)
-bones/45/rotation = Quaternion(0.00161533, -2.8666e-19, -1.56229e-18, 0.999999)
+bones/45/rotation = Quaternion(0.00161533, 1.30174e-18, 4.31579e-19, 0.999999)
 bones/45/scale = Vector3(1, 1, 1)
 
-[node name="polySurface1" type="BoneAttachment3D" parent="player/clownStuff/RootNode/Skeleton3D"]
-transform = Transform3D(1, 3.46945e-18, -1.73472e-18, -3.46945e-18, 1, -1.50463e-36, 1.73472e-18, 7.52316e-36, 1, 0, -0.000404332, 0.00161219)
+[node name="polySurface1" type="BoneAttachment3D" parent="RootNode/Skeleton3D"]
+transform = Transform3D(0.999698, -0.0198553, 0.0145033, 0.0239809, 0.917612, -0.396754, -0.00543075, 0.396982, 0.91781, 0.000648465, 0.00221014, -0.0110184)
 bone_name = "polySurface1"
 bone_idx = 35
 
-[node name="polySurface1" type="MeshInstance3D" parent="player/clownStuff/RootNode/Skeleton3D/polySurface1"]
-mesh = SubResource("ArrayMesh_hv56t")
+[node name="polySurface1" type="MeshInstance3D" parent="RootNode/Skeleton3D/polySurface1"]
+mesh = SubResource("ArrayMesh_3ktjf")
 skeleton = NodePath("")
 
-[node name="polySurface2" type="MeshInstance3D" parent="player/clownStuff/RootNode/Skeleton3D"]
-mesh = SubResource("ArrayMesh_wvl1e")
-skin = SubResource("Skin_jia5t")
+[node name="polySurface2" type="MeshInstance3D" parent="RootNode/Skeleton3D"]
+mesh = SubResource("ArrayMesh_g0obw")
+skin = SubResource("Skin_sdqwc")
 
-[node name="ikHandle3" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00942423, 0.0057246, -0.000240211)
+[node name="ikHandle3" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.999698, -0.0198553, 0.0145033, 0.0239809, 0.917612, -0.396754, -0.00543075, 0.396982, 0.91781, -0.0089604, 0.00732803, -0.00941951)
 
-[node name="ikHandle4" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00967737, 0.00565705, 0.00138889)
+[node name="ikHandle4" type="Node3D" parent="RootNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00942871, 0.00554894, 0.00138889)
 
-[node name="nurbsCircle15" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(1.23005, 0, 0, 0, 1.23005, 0, 0, 0, 1.23005, -3.09064e-05, 0.0310781, 0)
+[node name="nurbsCircle15" type="Node3D" parent="RootNode"]
+transform = Transform3D(1.22968, -0.0244231, 0.0178399, 0.0294978, 1.12871, -0.488029, -0.00668012, 0.488309, 1.12896, -3.09064e-05, 0.0317377, 0)
 
-[node name="nurbsCircle22" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15"]
+[node name="nurbsCircle22" type="Node3D" parent="RootNode/nurbsCircle15"]
 transform = Transform3D(0.50362, 2.1684e-19, -1.30104e-18, -2.1684e-19, 0.50362, 5.60182e-37, 1.30104e-18, 0, 0.50362, 0.00675223, -0.00104776, 0.000918871)
 
-[node name="nurbsCircle23" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15"]
+[node name="nurbsCircle23" type="Node3D" parent="RootNode/nurbsCircle15"]
 transform = Transform3D(0.50362, 2.1684e-19, -1.30104e-18, -2.1684e-19, 0.50362, 5.60182e-37, 1.30104e-18, 0, 0.50362, -0.00670198, -0.0010478, 0.00091887)
 
-[node name="nurbsCircle21" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle23"]
-transform = Transform3D(1.36596, 6.3042e-19, 1.14049e-17, -4.33681e-19, 1.98562, -1.67375e-16, -5.20417e-18, 1.11022e-16, 2.9935, -0.000198745, -0.0487853, 0.0181648)
+[node name="nurbsCircle21" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle23"]
+transform = Transform3D(1.36596, 6.3042e-19, 1.14049e-17, -4.33681e-19, 1.98562, -1.67375e-16, -5.20417e-18, 1.11022e-16, 2.9935, -0.000198745, -0.0491861, 0.0181648)
 
-[node name="nurbsCircle49" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle23/nurbsCircle21"]
-transform = Transform3D(0.689681, -1.26789e-12, 3.98154e-10, -5.78776e-10, -0.00302096, 0.474426, 2.77857e-12, -0.314693, -0.00455435, -0.00053784, 0.00196033, 0.000279809)
+[node name="nurbsCircle49" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle23/nurbsCircle21"]
+transform = Transform3D(0.689681, -4.89011e-19, -9.02134e-19, 1.30104e-18, -0.00301982, 0.474426, -1.0842e-18, -0.314693, -0.00455263, -0.00053784, 0.00196033, 0.000279809)
 
-[node name="nurbsCircle48" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle23/nurbsCircle21/nurbsCircle49"]
+[node name="nurbsCircle48" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle23/nurbsCircle21/nurbsCircle49"]
 transform = Transform3D(1, 2.60209e-18, 1.30104e-18, -2.60209e-18, 1, -5.55112e-17, -1.30104e-18, 5.55112e-17, 1, 0.000964416, -0.0199367, -5.77177e-16)
 
-[node name="nurbsCircle16" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15"]
+[node name="nurbsCircle16" type="Node3D" parent="RootNode/nurbsCircle15"]
 transform = Transform3D(1, 3.03577e-18, -4.33681e-18, -3.03577e-18, 1, -5.55112e-17, 4.33681e-18, 5.55112e-17, 1, 5.82089e-05, 0.00500597, 0)
 
-[node name="nurbsCircle17" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16"]
+[node name="nurbsCircle17" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16"]
 transform = Transform3D(1, 9.62965e-35, 1.73472e-18, 0, 1, -5.55112e-17, -1.73472e-18, 5.55112e-17, 1, 1.38778e-19, 0.00605373, 0)
 
-[node name="nurbsCircle35" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17"]
-transform = Transform3D(0.466859, -0.164611, 0.0926241, 0.171888, 0.472642, -0.0264003, -0.0782977, 0.0560863, 0.494325, 0.00872223, 0.00139703, 0.00116996)
+[node name="nurbsCircle35" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17"]
+transform = Transform3D(0.460515, -0.0339774, 0.201009, 0.156208, 0.377884, -0.293999, -0.130989, 0.331183, 0.356079, 0.00872223, 0.00139703, 0.00116996)
 
-[node name="nurbsCircle36" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35"]
-transform = Transform3D(0.524123, 7.39895e-19, 1.42857e-17, -3.46943e-18, 0.514368, 0.100648, -1.38777e-17, -0.100648, 0.514368, 0.000692795, -0.0192045, -7.2163e-09)
+[node name="nurbsCircle36" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35"]
+transform = Transform3D(0.524123, 2.07554e-17, -1.59618e-18, -2.08167e-17, 0.52258, -0.0401886, 5.4193e-26, 0.0401886, 0.52258, 0.000692795, -0.0192045, -7.2163e-09)
 
-[node name="nurbsCircle37" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36"]
+[node name="nurbsCircle37" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36"]
 transform = Transform3D(0.974767, -0.00567424, -1.38776e-17, 0.00567424, 0.974767, -8.0783e-20, 1.38778e-17, 0, 0.974784, -0.00145956, -0.0478534, 0)
 
-[node name="nurbsCircle43" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
+[node name="nurbsCircle43" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
 transform = Transform3D(0.510059, 3.46945e-17, 1.04083e-17, -3.46945e-17, 0.510059, 2.77556e-17, -1.04083e-17, -2.77556e-17, 0.510059, 0.00194183, -0.0190958, -0.00922211)
 
-[node name="nurbsCircle42" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle43"]
+[node name="nurbsCircle42" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle43"]
 transform = Transform3D(1, 1.38778e-17, -2.08167e-17, -1.38778e-17, 1, 5.55112e-17, 2.08167e-17, -5.55112e-17, 1, -0.00321019, -0.0291408, -0.00152128)
 
-[node name="nurbsCircle38" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
+[node name="nurbsCircle38" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
 transform = Transform3D(0.553258, 3.46945e-17, 3.46945e-18, -3.46945e-17, 0.553258, 2.77556e-17, -3.46945e-18, -2.77556e-17, 0.553258, 0.00300016, -0.0202844, -0.00159526)
 
-[node name="nurbsCircle41" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle38"]
+[node name="nurbsCircle41" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle38"]
 transform = Transform3D(0.921918, 1.38778e-17, -4.16334e-17, -1.38778e-17, 0.921918, 6.26714e-34, 4.16334e-17, 0, 0.921918, -0.00572131, -0.041177, -0.000358061)
 
-[node name="nurbsCircle44" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
+[node name="nurbsCircle44" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
 transform = Transform3D(0.510059, 3.46945e-17, 1.04083e-17, -3.46945e-17, 0.510059, 2.77556e-17, -1.04083e-17, -2.77556e-17, 0.510059, 0.00286066, -0.019492, 0.00573445)
 
-[node name="nurbsCircle40" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle44"]
+[node name="nurbsCircle40" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle44"]
 transform = Transform3D(1, -7.70372e-33, 6.93889e-17, 0, 1, 1.11022e-16, -6.93889e-17, -1.11022e-16, 1, -0.00765959, -0.0446645, 0.00679678)
 
-[node name="nurbsCircle46" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
+[node name="nurbsCircle46" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37"]
 transform = Transform3D(0.510059, 2.14972e-17, 2.91532e-17, -3.46945e-17, 0.407906, 0.306223, -1.04083e-17, -0.306223, 0.407906, 0.000985505, -0.00691263, 0.0123708)
 
-[node name="nurbsCircle45" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle46"]
+[node name="nurbsCircle45" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle35/nurbsCircle36/nurbsCircle37/nurbsCircle46"]
 transform = Transform3D(1, -6.93889e-18, 4.16334e-17, 6.93889e-18, 1, 1.11022e-16, -4.16334e-17, -1.11022e-16, 1, -0.00535548, -0.0371304, 0.00126459)
 
-[node name="nurbsCircle24" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17"]
-transform = Transform3D(-0.459151, -0.206753, 0.00815276, 0.205354, -0.457768, -0.0437208, 0.0253593, -0.036536, 0.501652, -0.00869656, 0.00139703, 0.00116996)
+[node name="nurbsCircle24" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17"]
+transform = Transform3D(-0.414709, -0.252056, 0.134599, 0.0887651, 0.111853, 0.482952, -0.271607, 0.421414, -0.0476805, -0.00869656, 0.00139703, 0.00116996)
 
-[node name="nurbsCircle25" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24"]
-transform = Transform3D(1, -1.83988e-17, -9.89072e-18, 1.56125e-17, 0.972888, -0.231279, 1.38778e-17, 0.231279, 0.972888, 0.000692841, 0.0193869, 0)
+[node name="nurbsCircle25" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24"]
+transform = Transform3D(1, 1.62018e-16, -3.85157e-17, -1.66533e-16, 0.972888, -0.231279, 1.65436e-24, 0.231279, 0.972888, 0.000692841, 0.0193869, 0)
 
-[node name="nurbsCircle26" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25"]
-transform = Transform3D(0.659764, -0.141079, -3.6516e-17, 0.141079, 0.659764, -1.72748e-17, 3.9321e-17, 9.25717e-18, 0.674679, -0.000764997, 0.0250812, 0)
+[node name="nurbsCircle26" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25"]
+transform = Transform3D(0.659783, -0.14099, -3.68286e-17, 0.14099, 0.659783, 6.32116e-18, 3.46945e-17, -1.38778e-17, 0.674679, -0.000764997, 0.0250812, 0)
 
-[node name="nurbsCircle27" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
+[node name="nurbsCircle27" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
 transform = Transform3D(0.674679, 4.36553e-17, 8.26392e-18, -2.77556e-17, 0.512104, -0.439251, -3.46945e-17, 0.439251, 0.512104, 0.00074626, 0.00523461, 0.00936789)
 
-[node name="nurbsCircle31" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle27"]
+[node name="nurbsCircle31" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle27"]
 transform = Transform3D(1, -2.77556e-17, -1.11022e-16, 2.77556e-17, 1, -5.55112e-17, 1.11022e-16, 5.55112e-17, 1, -0.00306616, 0.0212589, -0.00065845)
 
-[node name="nurbsCircle28" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
+[node name="nurbsCircle28" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
 transform = Transform3D(0.455192, 2.30121e-17, -2.20129e-17, -2.77556e-17, 0.440948, -0.112978, 1.56125e-17, 0.112978, 0.440948, 0.00216629, 0.0147604, 0.00434246)
 
-[node name="nurbsCircle32" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle28"]
+[node name="nurbsCircle32" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle28"]
 transform = Transform3D(1, -2.77556e-17, -1.04083e-16, 2.77556e-17, 1, -2.88889e-33, 1.04083e-16, 0, 1, -0.00809353, 0.0302632, 0.00018779)
 
-[node name="nurbsCircle29" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
+[node name="nurbsCircle29" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
 transform = Transform3D(0.455192, 4.05137e-17, 4.27237e-17, -4.16334e-17, 0.455031, 0.0120809, -4.16334e-17, -0.0120809, 0.455031, 0.0022718, 0.0153605, -0.00120803)
 
-[node name="nurbsCircle33" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle29"]
+[node name="nurbsCircle33" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle29"]
 transform = Transform3D(1, 5.55112e-17, -4.51028e-17, -5.55112e-17, 1, 2.50371e-33, 4.51028e-17, 0, 1, -0.00682853, 0.0310295, 0.00687586)
 
-[node name="nurbsCircle30" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
+[node name="nurbsCircle30" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26"]
 transform = Transform3D(0.455192, 9.0889e-18, 1.73948e-17, -1.38778e-17, 0.434332, 0.136216, -1.38778e-17, -0.136216, 0.434332, 0.00237731, 0.0144177, -0.0067107)
 
-[node name="nurbsCircle34" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle30"]
+[node name="nurbsCircle34" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle24/nurbsCircle25/nurbsCircle26/nurbsCircle30"]
 transform = Transform3D(1, 8.32667e-17, 5.55112e-17, -8.32667e-17, 1, -5.55112e-17, -5.55112e-17, 5.55112e-17, 1, -0.0134787, 0.0221471, 0.00873678)
 
-[node name="nurbsCircle18" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17"]
+[node name="nurbsCircle18" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17"]
 transform = Transform3D(1, 4.33681e-18, -8.67362e-19, -4.33681e-18, 1, -1.11022e-16, 8.67362e-19, 1.11022e-16, 1, 0, 0.00401641, 0)
 
-[node name="nurbsCircle19" type="Node3D" parent="player/clownStuff/RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle18"]
-transform = Transform3D(1, 8.67362e-19, -1.73472e-18, -8.67362e-19, 1, -1.11022e-16, 1.73472e-18, 1.11022e-16, 1, -4.99117e-05, 0.0109055, -0.000140525)
+[node name="nurbsCircle19" type="Node3D" parent="RootNode/nurbsCircle15/nurbsCircle16/nurbsCircle17/nurbsCircle18"]
+transform = Transform3D(1, 8.67362e-19, -1.73472e-18, -8.67362e-19, 1, -1.11022e-16, 1.73472e-18, 1.11022e-16, 1, -5.82089e-05, 0.0100119, 0)
 
-[node name="ikHandle5" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.36148, 0.924918, 0.117727, -0.929087, 0.346719, 0.128775, 0.0782877, -0.155928, 0.984661, 0.023751, 0.0110535, -0.000937852)
+[node name="ikHandle5" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.0455849, 0.903952, 0.425198, -0.360496, 0.411844, -0.836915, -0.931646, -0.115131, 0.344645, 0.0111667, 0.0335746, -0.0289577)
 
-[node name="ikHandle6" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.36148, 0.924918, 0.117727, -0.929087, 0.346719, 0.128775, 0.0782877, -0.155928, 0.984661, 0.0249611, 0.00865853, 0.00186787)
+[node name="ikHandle6" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.0455849, 0.903952, 0.425198, -0.360496, 0.411844, -0.836915, -0.931646, -0.115131, 0.344645, 0.0122678, 0.0303011, -0.0307308)
 
-[node name="ikHandle7" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.36148, 0.924918, 0.117727, -0.929087, 0.346719, 0.128775, 0.0782877, -0.155928, 0.984661, 0.0250222, 0.00924295, 0.00531807)
+[node name="ikHandle7" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.0455849, 0.903952, 0.425198, -0.360496, 0.411844, -0.836915, -0.931646, -0.115131, 0.344645, 0.0134839, 0.0273645, -0.0292658)
 
-[node name="ikHandle8" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.36148, 0.924918, 0.117727, -0.929087, 0.346719, 0.128775, 0.0782877, -0.155928, 0.984661, 0.0230212, 0.0158379, 0.00953409)
+[node name="ikHandle8" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.0455849, 0.903952, 0.425198, -0.360496, 0.411844, -0.836915, -0.931646, -0.115131, 0.344645, 0.0150125, 0.0256359, -0.0215232)
 
-[node name="ikHandle9" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.196402, -0.974255, 0.110697, 0.969631, 0.209759, 0.125763, -0.145745, 0.0826353, 0.985865, -0.0225087, 0.0112092, 0.00201083)
+[node name="ikHandle9" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.238468, -0.904329, 0.35401, -0.00119969, 0.364251, 0.9313, -0.97115, -0.22251, 0.0857772, -0.0253468, 0.0416045, 0.0422047)
 
-[node name="ikHandle10" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.196402, -0.974255, 0.110697, 0.969631, 0.209759, 0.125763, -0.145745, 0.0826353, 0.985865, -0.0237082, 0.0101013, 0.00545737)
+[node name="ikHandle10" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.238468, -0.904329, 0.35401, -0.00119969, 0.364251, 0.9313, -0.97115, -0.22251, 0.0857772, -0.0257767, 0.0449625, 0.043961)
 
-[node name="ikHandle11" type="Node3D" parent="player/clownStuff/RootNode"]
+[node name="ikHandle11" type="Node3D" parent="RootNode"]
 transform = Transform3D(0.196402, -0.974255, 0.110697, 0.96963, 0.20976, 0.125768, -0.14575, 0.0826337, 0.985864, -0.023018, 0.010972, 0.00793905)
 
-[node name="ikHandle12" type="Node3D" parent="player/clownStuff/RootNode"]
-transform = Transform3D(0.196402, -0.974255, 0.110697, 0.969631, 0.209759, 0.125763, -0.145745, 0.0826353, 0.985865, -0.0216524, 0.0162731, 0.0115711)
+[node name="ikHandle12" type="Node3D" parent="RootNode"]
+transform = Transform3D(0.238468, -0.904329, 0.35401, -0.00119969, 0.364251, 0.9313, -0.97115, -0.22251, 0.0857772, -0.0217931, 0.05143, 0.0392709)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="player/clownStuff"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mxuxj")
 }
-
-[node name="aimCamTarget" type="Node3D" parent="."]
-
-[node name="Decal" type="Decal" parent="."]
-transform = Transform3D(-0.0476953, 0.597837, 0.0177624, -0.000227094, 0.0178006, -0.599736, -0.598101, -0.047681, -0.00118867, -0.270022, 1.10872, 0.0115491)
-visible = false
-size = Vector3(1.59546, 1.09399, 1.59521)
-texture_albedo = ExtResource("3_qomb8")
