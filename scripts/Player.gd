@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
 var current_speed = 0
-const SPEED = 7.0
+@export var SPEED = 7.0
 const SPEED_RUNNING_MULTIPLIER = 1.4
 var SPEED_RUNNING_MULTIPLIER_CURRENT = 1.0
 const JUMP_VELOCITY = 4.5
 var MOUSE_SENSITIVITY = 0.5
 var isAiming:bool = false
-
+@export var horn_count = 1
 @onready var playerCam = $playerCam
 @onready var decoyClownHorn = preload("res://scenes/decoy_clown_horn.tscn")
 var decoyInstance
@@ -23,7 +23,7 @@ func _input(event):
 	else:
 		SPEED_RUNNING_MULTIPLIER_CURRENT = 1.0
 	
-	if(event.is_action_pressed("right_click")):
+	if(event.is_action_pressed("right_click")and horn_count > 0):
 		aimProjectile()
 	if(event.is_action_released("right_click") and isAiming):
 		throwProjectile(decoyInstance)
@@ -45,22 +45,21 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
 		velocity.z = move_toward(velocity.z, 0, SPEED * SPEED_RUNNING_MULTIPLIER_CURRENT)
-	#Audio and animation playing for the player
 	if velocity.length() == 0:
-	#if not moving play idle animation and no audio
 		pass
-	elif (velocity.y==0):
-	#player is moving play and not jumping
+		#code animation stuff here
+	elif is_on_floor():
+		#code more animation stuff here
 		if $Timer.time_left <=0:
-			$Footsteps.pitch_scale = randf_range(0.5, 1.2)
-			$Footsteps.volume_db = randf_range(-25,-20)
-			$Footsteps.play(randf_range(0,0.23))
+			$Footsteps.set_pitch_scale(randf_range(0.8,1.2))
+			$Footsteps.set_volume_db(randf_range(-15,-13))
+			$Footsteps.play(randf_range(0,.23))
 			if isRunning():
 				$Timer.start(0.3)
 			else:
 				$Timer.start(0.5)
 	move_and_slide()
-	
+
 func moveCamera(event): # handle the camera movement
 	if(event is InputEventMouseMotion):
 		#self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))
@@ -70,6 +69,7 @@ func moveCamera(event): # handle the camera movement
 		#playerCam.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		#playerCam.rotation.x = clamp(playerCam.rotation.x, deg_to_rad(-70), deg_to_rad(70))
 		
+	
 func isRunning() -> bool:
 	return Input.is_action_pressed("shift")
 
@@ -95,4 +95,5 @@ func throwProjectile(newDecoyProjectile):
 	# enable visual effects on decoy
 	newDecoyProjectile.get_node("decoyLight").visible = true
 	newDecoyProjectile.get_node("decoyParticles").emitting = true
+	horn_count -= 1
 	pass
