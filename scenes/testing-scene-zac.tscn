@@ -1,0 +1,1606 @@
+[gd_scene load_steps=15 format=3 uid="uid://cy3spsa408kuw"]
+
+[ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_2bbgf"]
+[ext_resource type="PackedScene" uid="uid://dsrab2j8kb7he" path="res://Player/player.tscn" id="2_kal3y"]
+[ext_resource type="MeshLibrary" uid="uid://dskc431qfocwo" path="res://models/tiles/gridmap1.tres" id="3_8yfmf"]
+[ext_resource type="AudioStream" uid="uid://bpfldu555qosb" path="res://Sound/CityNoise.wav" id="4_nteno"]
+[ext_resource type="MeshLibrary" uid="uid://b65fmp3hum06y" path="res://models/tiles/better/betterlib.tres" id="4_xa1xn"]
+[ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="5_xs5xf"]
+[ext_resource type="PackedScene" uid="uid://c8xhbhsy8bwda" path="res://scenes/library.tscn" id="6_uj1w4"]
+[ext_resource type="PackedScene" uid="uid://cgloy6v374jd1" path="res://scenes/money_gig.tscn" id="7_ymiv8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvmwb"]
+size = Vector3(300, 0.1, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2cpa"]
+size = Vector3(300, 0.1, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0j4w"]
+albedo_color = Color(0.972549, 0.411765, 0.690196, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4uncc"]
+size = Vector3(10, 20, 10)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vv3qh"]
+
+[sub_resource type="Environment" id="Environment_uykmw"]
+background_mode = 1
+fog_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0763
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_2bbgf")
+
+[node name="Main3D" type="Node3D" parent="."]
+
+[node name="Player" parent="Main3D" instance=ExtResource("2_kal3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.046, 0, 0)
+
+[node name="LevelObject" type="Node3D" parent="Main3D"]
+
+[node name="floor" type="StaticBody3D" parent="Main3D/LevelObject"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Main3D/LevelObject/floor"]
+mesh = SubResource("BoxMesh_lvmwb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main3D/LevelObject/floor"]
+shape = SubResource("BoxShape3D_e2cpa")
+
+[node name="stuffTest" type="Node3D" parent="Main3D/LevelObject/floor"]
+
+[node name="buildings" type="Node" parent="Main3D/LevelObject/floor"]
+
+[node name="Building guide" type="Node3D" parent="Main3D/LevelObject/floor/buildings"]
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.1663, 3.7836, 35.5941)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9563, 2.57151, 34.8481)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4623, 2.57151, 34.5812)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0296, 2.57151, 34.7544)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5178, 2.57151, 10.5343)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8661, 2.57151, 24.7243)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4138, 2.57151, 24.6886)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4074, 2.57151, 9.97516)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.998, 2.57151, 10.0561)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.2384, 2.57151, 9.89316)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.92, 2.57151, 20.8994)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0589, 2.57151, 39.333)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9947, 2.57151, 29.3076)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1486, 2.57151, 11.6592)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.9342, 2.57151, 11.9462)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2263, 2.57151, 11.7355)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.665, 2.57151, 11.9448)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.586, 2.57151, 27.3093)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.1192, 2.57151, 26.9036)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.4653, 2.57151, 27.0004)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.5248, 2.57151, 36.8199)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.411, 2.57151, 36.9629)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6558, 3.26114, 37.2648)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.4844, 2.57151, -11.7973)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3156, 2.57151, -11.7417)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0671, 2.57151, -11.7417)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7799, 2.57151, -11.7417)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.6398, 2.57151, -11.7417)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.507, 2.57151, -36.6154)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6791, 2.57151, -36.6154)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9981, 2.57151, -36.6154)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.4687, 2.57151, -36.6154)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1849, 2.57151, -36.6154)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.6631, 2.57151, -30.1817)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5559, 2.57151, -22.2455)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.11139, 2.57151, -14.1385)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.8023, 2.57151, -14.1385)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.8023, 2.57151, -33.3821)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21496, 2.57151, -33.3821)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D41" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21496, 2.57151, -23.5514)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D42" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.8345, 2.57151, -23.5514)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D43" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5969, 2.57151, -23.5514)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D44" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5969, 2.57151, -12.801)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D45" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5969, 2.57151, -34.179)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D46" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.9552, 2.57151, -32.6285)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D47" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.938, 2.57151, -32.6285)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D48" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.504, 2.57151, -32.6285)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D49" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.504, 2.57151, -43.6346)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D50" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.0044, 2.57151, -43.6346)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D51" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.0044, 2.57151, -61.8093)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D52" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.0044, 2.57151, -71.852)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D53" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.0044, 2.57151, -80.852)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D54" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.0246, 2.57151, -66.6128)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D55" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.0246, 2.57151, -76.7706)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D56" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.7634, 2.57151, -96.7034)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D57" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.356, 2.57151, -96.7034)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D58" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.356, 2.57151, -96.7034)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D59" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.356, 2.57151, -76.7034)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D60" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.778, 2.57151, -66.5207)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D61" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.497, 2.57151, -72.1372)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D62" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.497, 2.57151, -82.6628)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D63" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.497, 2.57151, -92.8033)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D64" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.468, 2.57151, -97.0168)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D65" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.468, 2.57151, -86.6163)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D66" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.468, 2.57151, -76.3291)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D67" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.248, 2.57151, -53.9784)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D68" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.183, 2.57151, -53.9784)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D69" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.183, 2.57151, -43.5975)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D70" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.068, 2.57151, -43.5975)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D71" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.068, 2.57151, -31.7459)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D72" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.404, 2.57151, -31.7459)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D73" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.404, 2.57151, -15.8607)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D74" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.178, 2.57151, -15.8607)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D75" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.178, 2.57151, -5.46384)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D76" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.508, 2.57151, -5.46384)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D77" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.2707, 2.57151, -7.12487)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D81" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.2707, 2.57151, 3.24774)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D82" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.2707, 2.57151, 18.591)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D83" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.2707, 2.57151, 28.6129)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D84" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.2707, 2.57151, 37.6129)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D85" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.7227, 2.57151, 37.6129)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D86" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.7227, 2.57151, 21.9081)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D87" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.7227, 2.57151, 11.9081)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D88" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.7227, 2.57151, 59.1553)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D89" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.3192, 2.57151, 59.1553)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D90" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.3192, 2.57151, 68.8801)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D91" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.3192, 2.57151, 86.5642)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D92" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.7134, 2.57151, 86.5642)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D93" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.7134, 2.57151, 76.0148)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D94" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.089, 2.57151, 81.9797)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D95" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.438, 2.57151, 56.9917)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D96" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.438, 2.57151, 22.5705)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D97" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.747, 2.57151, 22.5705)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D98" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.747, 2.57151, 57.086)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D99" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.747, 2.57151, 40.8661)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D100" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.933, 2.57151, 47.6853)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D101" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.933, 2.57151, 33.0063)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D102" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.612, 2.57151, 40.8317)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D103" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.612, 2.57151, 22.1183)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D104" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.612, 2.57151, 57.4103)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D105" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.82, 2.57151, 57.4704)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D106" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.82, 2.57151, 22.5966)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D107" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.921, 2.57151, 110.855)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D108" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.598, 2.57151, 110.855)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D109" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.4343, 2.57151, 110.855)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D110" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.0352, 2.57151, 110.855)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D111" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.0352, 2.57151, 110.855)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D112" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.0352, 2.57151, 122.231)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D113" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.0352, 2.57151, 132.402)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D114" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.9965, 2.57151, 132.402)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D115" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6381, 2.57151, 132.402)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D116" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.887, 2.57151, 132.402)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D117" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.146, 2.57151, 132.402)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D118" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.146, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D119" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.744, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D120" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.3187, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D121" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.5699, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D122" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.8069, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D123" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5534, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D124" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8762, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D125" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.3062, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D126" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3062, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D127" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.90929, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D128" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.90929, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D129" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.433552, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D130" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8108, 2.57151, 142.409)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D131" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8108, 2.57151, 132.955)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D132" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8108, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D133" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.701138, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D134" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.29886, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D135" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.3407, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D136" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3407, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D137" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.4434, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D138" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.9409, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D139" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.9409, 2.57151, 120.638)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D140" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.9409, 2.57151, 57.9488)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D141" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.1269, 2.57151, 57.9488)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D142" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9215, 2.57151, 57.9488)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D143" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9215, 2.57151, 67.9228)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D144" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9215, 2.57151, 78.0834)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D145" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9215, 2.57151, 88.0834)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D146" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9215, 2.57151, 97.0834)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D147" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.0868, 2.57151, 97.0834)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D148" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.3636, 2.57151, 97.0834)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D149" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.3636, 2.57151, 86.7242)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D150" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63192, 2.57151, 56.298)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D151" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4972, 2.57151, 56.298)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D152" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4972, 2.57151, 66.0303)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D153" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4972, 2.57151, 76.0303)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D154" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95171, 2.57151, 76.0303)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D156" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95171, 2.57151, 86.5316)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D157" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95171, 2.57151, 96.8164)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D158" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4613, 2.57151, 94.6952)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D159" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4613, 2.57151, 104.76)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D160" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4613, 2.57151, 115.11)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D161" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4613, 2.57151, 133.118)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D162" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.8772, 2.57151, 133.118)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D163" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.3491, 2.57151, 133.118)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D164" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.3491, 2.57151, 133.118)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D165" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.3491, 2.57151, 133.118)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D155" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.20323, 2.57151, 76.0303)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D166" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.0382, 2.57151, 95.0946)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D167" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9205, 2.57151, 95.0946)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D168" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.1656, 2.57151, 95.0946)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D169" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7661, 2.57151, 95.0946)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D170" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.7661, 2.57151, 106.695)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D171" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.3109, 2.57151, 106.695)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D172" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.3109, 2.57151, 96.7387)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D173" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.6494, 2.57151, 96.7387)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D174" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.6494, 2.57151, 107.165)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D175" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.6494, 2.57151, 118.233)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D176" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.09, 2.57151, 129.42)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D177" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.09, 2.57151, 140.757)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D178" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.436, 2.57151, 129.093)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D179" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.537, 2.57151, 129.093)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D180" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.537, 2.57151, 140.016)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D181" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.029, 2.57151, 108.132)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D182" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.029, 2.57151, 96.0805)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D183" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.029, 2.57151, 84.7505)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D184" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.029, 2.57151, 74.9941)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D185" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.029, 2.57151, 61.197)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D186" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.556, 2.57151, 61.197)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D187" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -122.556, 2.57151, 61.197)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D188" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.556, 2.57151, 61.197)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D189" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.281, 2.57151, 76.3548)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D190" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.921, 2.57151, 76.3548)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D191" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.921, 2.57151, 84.1312)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D192" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.921, 2.57151, 94.1312)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D193" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.921, 2.57151, 103.592)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D194" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.329, 2.57151, 93.8305)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D195" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.493, 2.57151, 85.3273)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D196" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.493, 2.57151, 96.265)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D197" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.493, 2.57151, 108.061)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D198" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.089, 2.57151, 37.9498)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D199" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.089, 2.57151, 28.5787)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D200" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.089, 2.57151, 11.5019)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D201" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.641, 2.57151, 11.5019)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D202" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.56, 2.57151, 11.5019)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D203" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.56, 2.57151, 21.7242)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D204" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.56, 2.57151, 32.7242)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D205" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.56, 2.57151, 41.7242)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D206" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.058, 2.57151, 41.7242)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D207" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.058, 2.57151, 41.7242)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D208" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.524, 2.57151, -10.7074)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D209" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5242, 2.57151, -10.7074)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D210" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5242, 2.57151, -19.574)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D211" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.5242, 2.57151, -29.8099)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D212" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.857, 2.57151, -29.8099)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D213" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106.4, 2.57151, -20.1022)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D78" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.886, 2.57151, -7.42063)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D79" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.886, 2.57151, 1.8671)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D80" type="MeshInstance3D" parent="Main3D/LevelObject/floor/buildings/Building guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.1463, 2.57151, -7.83668)
+material_override = SubResource("StandardMaterial3D_y0j4w")
+mesh = SubResource("BoxMesh_4uncc")
+skeleton = NodePath("../../..")
+
+[node name="park" type="Node" parent="Main3D/LevelObject/floor"]
+
+[node name="Park" type="Node3D" parent="Main3D/LevelObject/floor/park"]
+visible = false
+
+[node name="Tree" type="Node3D" parent="Main3D/LevelObject/floor/park/Park"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77946, 0, -100.565)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Main3D/LevelObject/floor/park/Park/Tree"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main3D/LevelObject/floor/park/Park/Tree/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_vv3qh")
+
+[node name="roads and park" type="Node3D" parent="Main3D/LevelObject/floor"]
+
+[node name="GridMap" type="GridMap" parent="Main3D/LevelObject/floor/roads and park"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, -1, 0)
+visible = false
+mesh_library = ExtResource("3_8yfmf")
+cell_size = Vector3(3, 2, 3)
+data = {
+"cells": PackedInt32Array(0, 0, 655360, 0, 65535, 1048577, 0, 1, 1048577, 1, 0, 1, 65535, 0, 1, 65534, 0, 1, 65533, 0, 1, 65532, 0, 1, 65531, 0, 1, 65530, 0, 1, 65529, 0, 1, 65528, 0, 1, 65527, 0, 1, 0, 65534, 1441793, 0, 65533, 1441793, 0, 65532, 1441793, 0, 65531, 1441793, 0, 65530, 1441793, 0, 2, 1441793, 0, 3, 1441793, 0, 4, 1441793, 0, 6, 1441797, 0, 7, 1441793, 2, 0, 655361, 3, 0, 655361, 4, 0, 655361, 5, 0, 655361, 6, 0, 655361, 7, 0, 655361, 8, 0, 655361, 9, 0, 655361, 10, 0, 1048576, 10, 1, 1048577, 10, 2, 1048577, 10, 3, 1048577, 10, 4, 1048577, 10, 5, 1048577, 10, 6, 1048577, 10, 7, 1048577, 10, 65535, 1048577, 10, 65534, 1048577, 10, 65533, 655360, 10, 65532, 1048577, 10, 65531, 1048577, 10, 65530, 1048577, 10, 65529, 1441792, 9, 65529, 655361, 8, 65529, 655361, 7, 65529, 655361, 6, 65529, 655361, 5, 65529, 655361, 4, 65529, 655361, 3, 65529, 655361, 2, 65529, 655361, 1, 65529, 655361, 0, 65529, 655360, 65535, 65529, 1, 65534, 65529, 1, 65533, 65529, 1, 65532, 65529, 0, 65531, 65529, 1, 65530, 65529, 1, 65529, 65529, 1, 65528, 65529, 1, 65527, 65529, 1, 65526, 65529, 0, 65526, 65530, 1441793, 65526, 65531, 1441793, 65526, 65532, 1441793, 65526, 65533, 1441793, 65526, 65534, 1441793, 65526, 65535, 1441793, 65526, 0, 1441792, 65532, 65528, 1441793, 65532, 65527, 1441793, 65532, 65526, 1441793, 65532, 65525, 1441793, 65532, 65524, 1441793, 65532, 65523, 1441792, 65532, 65522, 1441793, 65532, 65521, 1441793, 65532, 65520, 1441793, 65532, 65519, 1441792, 65531, 65523, 655361, 65530, 65523, 655361, 65529, 65523, 655361, 65528, 65523, 655361, 65527, 65523, 655361, 65526, 65523, 655361, 65525, 65523, 655361, 65524, 65523, 655361, 65523, 65523, 655361, 65522, 65523, 655360, 65532, 65518, 1048577, 65532, 65517, 1048577, 65532, 65516, 1048577, 65532, 65515, 1048577, 65532, 65514, 1048577, 65532, 65513, 1048577, 65532, 65512, 1048576, 65531, 65512, 1, 65530, 65512, 1, 65529, 65512, 1, 65528, 65512, 1, 65527, 65512, 1, 65526, 65512, 1, 65525, 65512, 1, 65524, 65512, 1, 65523, 65512, 1, 65531, 65519, 1, 65530, 65519, 1, 65529, 65519, 1, 65528, 65519, 1, 65527, 65519, 1, 65526, 65519, 1, 65525, 65519, 1, 65524, 65519, 1, 65523, 65519, 1, 65522, 65512, 0, 65522, 65519, 0, 65522, 65522, 1441793, 65522, 65521, 1441793, 65522, 65520, 1441793, 65522, 65518, 1441793, 65522, 65517, 1441793, 65522, 65516, 1441793, 65522, 65515, 1441793, 65522, 65514, 1441793, 65522, 65513, 1441793, 65533, 65523, 655361, 65534, 65523, 655361, 65535, 65523, 655361, 0, 65523, 655361, 1, 65523, 655361, 2, 65523, 655361, 3, 65523, 655361, 4, 65523, 655361, 5, 65523, 655361, 6, 65523, 655361, 7, 65523, 655361, 8, 65523, 655361, 9, 65523, 655361, 10, 65523, 655361, 11, 65523, 655361, 11, 65529, 655361, 12, 65523, 655360, 12, 65529, 655360, 12, 65528, 1048577, 12, 65527, 1048577, 12, 65526, 1048577, 12, 65525, 1048577, 12, 65524, 1048577, 12, 65522, 1048577, 12, 65521, 1048577, 12, 65520, 1048577, 12, 65519, 1048577, 12, 65518, 1048576, 12, 65517, 1048577, 12, 65516, 1048577, 12, 65515, 1048577, 12, 65514, 1048577, 12, 65513, 1048577, 12, 65512, 1048576, 65533, 65512, 1, 65534, 65512, 1, 65535, 65512, 1, 0, 65512, 1, 1, 65512, 1, 2, 65512, 1, 3, 65512, 1, 4, 65512, 1, 5, 65512, 1, 6, 65512, 1, 7, 65512, 1, 8, 65512, 1, 9, 65512, 1, 10, 65512, 1, 11, 65512, 1, 13, 65518, 1, 14, 65518, 1, 15, 65518, 1, 16, 65518, 1, 17, 65518, 1, 18, 65518, 1, 19, 65518, 1441792, 20, 65518, 655361, 21, 65518, 655361, 22, 65518, 655361, 23, 65518, 655361, 24, 65518, 655360, 24, 65519, 1048577, 24, 65520, 1048577, 24, 65521, 1048577, 24, 65522, 1048577, 24, 65523, 1048577, 24, 65524, 1048577, 24, 65526, 1048576, 24, 65525, 1048577, 23, 65526, 1, 22, 65526, 1, 21, 65526, 1, 20, 65526, 1, 19, 65526, 0, 19, 65525, 1441793, 19, 65524, 1441793, 19, 65523, 1441793, 19, 65522, 1441793, 19, 65521, 1441793, 19, 65520, 1441793, 19, 65519, 1441793, 19, 65527, 1441793, 19, 65528, 1441793, 19, 65529, 1441793, 19, 65530, 1441793, 19, 65531, 1441793, 19, 65532, 1441793, 19, 65533, 1441792, 11, 65533, 655361, 12, 65533, 655361, 13, 65533, 655361, 14, 65533, 655361, 15, 65533, 655361, 16, 65533, 655361, 17, 65533, 655361, 18, 65533, 655361, 19, 65534, 1048577, 19, 65535, 1048577, 19, 0, 1048577, 19, 1, 1048577, 19, 2, 1048576, 18, 2, 1, 17, 2, 1, 16, 2, 0, 16, 3, 1441793, 16, 4, 1441793, 16, 5, 1441793, 16, 6, 1441793, 16, 7, 1441793, 16, 8, 1441792, 10, 8, 1441792, 11, 8, 655361, 12, 8, 655361, 13, 8, 655361, 14, 8, 655361, 15, 8, 655361, 9, 8, 655361, 8, 8, 655361, 7, 8, 655361, 6, 8, 655361, 5, 8, 655361, 4, 8, 655361, 3, 8, 655360, 0, 8, 1441795, 1, 8, 655361, 2, 8, 655361, 65535, 8, 655361, 65534, 8, 1441797, 65533, 8, 2, 65532, 8, 2, 3, 9, 1048577, 3, 10, 1048577, 3, 11, 1048577, 3, 12, 1048577, 3, 13, 1048577, 3, 14, 1048577, 3, 15, 1048577, 3, 16, 1048577, 3, 17, 1048577, 3, 18, 1048576, 4, 18, 1, 5, 18, 1, 6, 18, 1, 7, 18, 1, 8, 18, 1, 9, 18, 1, 10, 18, 0, 10, 17, 1441793, 10, 16, 1441792, 10, 15, 1441793, 10, 14, 1441793, 10, 13, 1441793, 10, 12, 1441793, 10, 11, 1441793, 10, 10, 1441793, 10, 9, 1441793, 10, 19, 1441793, 10, 20, 1441793, 10, 21, 1441793, 10, 22, 1441793, 10, 23, 1441793, 10, 24, 1441793, 10, 25, 1441793, 11, 16, 655361, 12, 16, 655361, 13, 16, 655361, 14, 16, 655361, 15, 16, 655361, 16, 16, 655360, 17, 16, 655361, 18, 16, 655361, 19, 16, 655361, 16, 11, 1048576, 16, 9, 1048577, 16, 10, 1048577, 16, 12, 1048577, 16, 13, 1048577, 16, 14, 1048577, 16, 15, 1048577, 17, 11, 1, 18, 11, 1, 19, 11, 1, 20, 11, 0, 20, 12, 1441793, 20, 13, 1441793, 20, 14, 1441793, 20, 15, 1441793, 20, 16, 1441792, 20, 17, 1048577, 20, 18, 1048577, 20, 19, 1048577, 20, 20, 1048577, 20, 21, 1048577, 20, 22, 1048577, 20, 23, 1048577, 20, 24, 1048577, 20, 25, 1048577, 21, 11, 1, 22, 11, 1, 23, 11, 1, 24, 11, 0, 24, 10, 1441793, 24, 9, 1441793, 24, 8, 1441793, 24, 7, 1441793, 24, 6, 1441793, 24, 5, 1441793, 24, 4, 1441793, 24, 3, 1441793, 24, 2, 655360, 24, 1, 1441793, 24, 0, 1441793, 24, 65535, 1441793, 24, 65534, 1441793, 24, 65533, 655360, 24, 65532, 1441793, 24, 65531, 1441793, 24, 65530, 1441793, 24, 65529, 1441793, 24, 65528, 1441793, 24, 65527, 1441793, 23, 65533, 655361, 22, 65533, 655361, 21, 65533, 655361, 20, 65533, 655361, 20, 2, 655361, 21, 2, 655361, 22, 2, 655361, 23, 2, 655361, 2, 18, 655361, 1, 18, 655361, 0, 18, 655361, 65535, 18, 655361, 65534, 18, 655361, 65533, 18, 655361, 65532, 18, 655360, 65532, 17, 1048577, 65532, 16, 1048577, 65532, 15, 1048577, 65532, 14, 1048576, 65532, 13, 1048577, 65532, 12, 1048577, 65532, 11, 1048577, 65532, 10, 2, 65532, 9, 2, 65532, 19, 1048577, 65532, 20, 1048577, 65532, 21, 1048577, 65532, 22, 1048577, 65532, 23, 1048577, 65532, 24, 1048576, 65532, 25, 1048577, 65520, 24, 1, 65521, 24, 1, 65522, 24, 1, 65523, 24, 1, 65524, 24, 1, 65525, 24, 1, 65526, 24, 1, 65527, 24, 1, 65528, 24, 1, 65529, 24, 1, 65530, 24, 1, 65531, 24, 1, 65518, 24, 0, 65519, 24, 1, 65518, 22, 1441793, 65518, 23, 1441793, 65518, 21, 1441793, 65518, 20, 1441792, 65518, 14, 1441792, 65518, 19, 1441793, 65518, 18, 1441793, 65518, 17, 1441793, 65518, 16, 1441793, 65518, 15, 1441793, 65519, 14, 655360, 65520, 14, 655361, 65521, 14, 655361, 65522, 14, 655361, 65523, 14, 655361, 65524, 14, 655361, 65525, 14, 655361, 65526, 14, 655361, 65527, 14, 655361, 65528, 14, 655361, 65529, 14, 655361, 65530, 14, 655361, 65531, 14, 655361, 65519, 13, 1048577, 65519, 12, 1048577, 65519, 11, 1048577, 65519, 10, 1048577, 65519, 9, 1048577, 65519, 8, 1048576, 65520, 8, 1, 65521, 8, 1, 65522, 8, 1, 65523, 8, 1, 65524, 8, 1, 65525, 8, 1, 65526, 8, 1441792, 65527, 8, 1, 65528, 8, 1, 65529, 8, 1, 65530, 8, 1, 65531, 8, 2, 65526, 7, 1441793, 65526, 6, 1441793, 65526, 5, 1441793, 65526, 4, 1441793, 65526, 3, 1441793, 65526, 2, 2, 65526, 1, 2, 65517, 20, 655361, 65516, 20, 655361, 65515, 20, 655361, 65514, 20, 655361, 65513, 20, 655361, 65512, 20, 655361, 65511, 20, 655361, 65513, 8, 655361, 65514, 8, 655361, 65515, 8, 655361, 65516, 8, 655361, 65517, 8, 655361, 65518, 8, 655361, 65519, 7, 1048577, 65519, 6, 1048577, 65519, 5, 1048577, 65519, 4, 1048577, 65519, 3, 1048577, 65519, 2, 1048577, 65519, 1, 1048577, 65521, 65535, 1048577, 65521, 65534, 1048577, 65521, 65533, 1048577, 65521, 65532, 1048577, 65521, 65531, 1048577, 65521, 65530, 1048577, 65521, 65529, 1048577, 65521, 65528, 655360, 65521, 65527, 1048577, 65521, 65526, 1048577, 65521, 65525, 1048577, 65521, 65524, 1048577, 65521, 65523, 1048576, 65521, 0, 1048576, 65519, 0, 1048576, 65520, 0, 1, 65522, 0, 1, 65523, 0, 1, 65524, 0, 1, 65525, 0, 1, 65518, 0, 1, 65517, 0, 1, 65516, 0, 2, 65515, 0, 2, 65514, 0, 1, 65513, 0, 1, 65512, 0, 0, 65511, 0, 1, 65512, 8, 1441792, 65512, 7, 1441793, 65512, 6, 1441793, 65512, 5, 1441793, 65512, 4, 1441793, 65512, 3, 1441793, 65512, 2, 1441793, 65512, 1, 1441793, 65516, 65535, 2, 65516, 65534, 1441793, 65516, 65533, 1441793, 65516, 65532, 1441793, 65516, 65531, 1441793, 65516, 65530, 1441793, 65516, 65528, 1441792, 65516, 65529, 1441793, 65517, 65528, 655361, 65518, 65528, 655361, 65519, 65528, 655361, 65520, 65528, 655361, 65516, 65527, 1048577, 65516, 65526, 1048577, 65516, 65525, 1048577, 65516, 65524, 1048576, 65515, 65524, 1, 65514, 65524, 1, 65513, 65524, 1, 65512, 65524, 1, 65511, 65524, 1, 65516, 65523, 1441793, 65516, 65522, 1441793, 65516, 65521, 1441793, 65516, 65520, 1441793, 65516, 65519, 1441793, 65516, 65518, 1441793, 65516, 65517, 1441793, 65516, 65516, 1441793, 65516, 65515, 1441793, 65516, 65514, 1441793, 65516, 65513, 1441793, 65516, 65512, 1441792, 65517, 65512, 655361, 65518, 65512, 655361, 65519, 65512, 655361, 65520, 65512, 655361, 65521, 65512, 655361, 2, 4, 1441796, 4, 4, 1441795, 6, 4, 1441792, 4, 3, 1441793, 4, 5, 1441795, 6, 5, 1441795, 6, 6, 1441793, 6, 7, 1441793, 2, 5, 1441793, 4, 6, 1441792, 2, 6, 1441792, 4, 7, 1441792, 3, 7, 1441792, 2, 7, 1441792, 5, 9, 1441792, 7, 9, 1441792, 7, 10, 1441792, 5, 10, 1441792, 8, 7, 1441792, 3, 5, 1441792, 3, 6, 1441792, 5, 7, 1441792, 5, 6, 1441792, 5, 5, 1441797, 5, 4, 1441797, 1, 7, 1441793, 1, 6, 1441797, 1, 5, 1441793, 1, 4, 1441792, 1, 3, 1441792, 2, 3, 1441792, 2, 2, 1441792, 1, 2, 1441792, 1, 1, 1441792, 2, 1, 1441792, 3, 1, 1441792, 3, 2, 1441792, 3, 3, 1441792, 3, 4, 1441792, 0, 5, 1441797, 65535, 7, 1441792, 65535, 6, 1441792, 65534, 6, 1441796, 65534, 7, 1441796, 65534, 5, 1441796, 65535, 4, 1441794, 65533, 5, 2, 65534, 4, 1441796, 65533, 4, 1441794, 0, 9, 1441795, 65535, 9, 1441795, 65532, 7, 2, 65532, 6, 2, 65532, 5, 2, 65532, 4, 1441794, 65533, 6, 2, 65533, 7, 2, 65532, 3, 1441794, 65531, 3, 1441794, 65531, 4, 1441794, 65531, 5, 1441796, 65531, 6, 2, 65530, 7, 1441794, 65530, 6, 1441794, 65530, 5, 1441794, 65530, 4, 1441794, 65527, 2, 2, 65527, 3, 2, 65527, 4, 2, 65527, 5, 2, 65513, 65532, 2, 65513, 65533, 2, 65514, 65533, 2, 65514, 65534, 2, 65515, 65534, 2, 65515, 65535, 2, 65515, 1, 2, 65515, 2, 2, 65517, 65535, 2, 65531, 7, 2)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="betterGridMap" type="GridMap" parent="Main3D/LevelObject/floor/roads and park"]
+transform = Transform3D(4.5, 0, 0, 0, 1, 0, 0, 0, 4.5, 3, -1.39792, 3)
+mesh_library = ExtResource("4_xa1xn")
+data = {
+"cells": PackedInt32Array(1, 65535, 9, 0, 65535, 9, 65535, 65534, 1048585, 65535, 65533, 1048585, 65535, 65532, 1048585, 65535, 65531, 1048585, 65535, 3, 1048585, 65535, 4, 1048577, 1, 4, 1441793, 0, 4, 655369, 65534, 4, 655369, 65533, 4, 655369, 65532, 4, 655369, 65531, 4, 655369, 65530, 4, 655369, 65535, 65535, 8, 65534, 65535, 9, 65533, 65535, 9, 65532, 65535, 9, 65531, 65535, 9, 65530, 65535, 9, 65529, 65535, 1, 65529, 0, 1441801, 65529, 1, 1441801, 65529, 2, 1441801, 65529, 3, 1441801, 65529, 4, 1441800, 65535, 0, 1441801, 65535, 1, 1048585, 65535, 2, 1048585, 2, 65535, 9, 3, 65535, 9, 4, 65535, 9, 5, 65535, 9, 2, 4, 9, 3, 4, 9, 4, 4, 9, 5, 4, 9, 6, 4, 655361, 6, 65535, 655361, 6, 3, 1441801, 6, 2, 1441801, 6, 1, 1441801, 6, 0, 1441801, 6, 5, 1, 6, 6, 1441801, 6, 7, 1441801, 7, 5, 9, 8, 5, 9, 9, 5, 9, 10, 5, 655361, 10, 4, 1048585, 10, 3, 1, 10, 2, 1048585, 10, 1, 1048585, 10, 0, 1441793, 11, 0, 655369, 12, 0, 1048577, 13, 0, 1441793, 6, 65534, 1048585, 6, 65533, 1, 7, 65533, 655369, 8, 65533, 655369, 9, 65533, 9, 10, 65533, 1048577, 11, 65533, 655369, 12, 65535, 1048585, 12, 65534, 1048585, 12, 65533, 655361, 12, 65532, 1048585, 12, 65531, 1048585, 12, 65530, 1048585, 12, 65529, 655361, 12, 65528, 1, 12, 65527, 1048585, 12, 65526, 1048585, 12, 65525, 1048585, 12, 65523, 1441793, 12, 65524, 1048585, 11, 65529, 9, 10, 65529, 9, 9, 65529, 9, 8, 65529, 9, 10, 65532, 1048585, 10, 65531, 1048585, 10, 65530, 1048585, 6, 65532, 1441801, 6, 65531, 1441801, 6, 65529, 1048584, 6, 65530, 1441801, 7, 65529, 655369, 10, 65535, 1441799, 11, 65535, 1441799, 11, 65534, 1441799, 10, 65534, 1441799, 9, 65534, 1441799, 8, 65534, 1441799, 7, 65534, 1441799, 7, 65535, 1441799, 7, 0, 1441799, 7, 1, 1441799, 7, 2, 1441799, 1, 5, 1441801, 1, 6, 1441801, 1, 7, 1441801, 1, 8, 1441801, 1, 9, 1441801, 1, 10, 1441801, 1, 11, 1048577, 2, 11, 9, 3, 11, 9, 4, 11, 9, 5, 11, 9, 6, 11, 655361, 6, 8, 1441801, 6, 9, 1441801, 6, 10, 1, 6, 12, 1048585, 6, 13, 1, 6, 15, 1048579, 6, 14, 655361, 65535, 14, 3, 0, 14, 9, 1, 14, 9, 2, 14, 9, 3, 14, 9, 4, 14, 9, 5, 14, 9, 8, 13, 655369, 9, 13, 9, 10, 13, 9, 11, 13, 9, 12, 13, 9, 13, 13, 655361, 13, 14, 1048585, 13, 15, 1048579, 13, 12, 1048585, 13, 11, 1048585, 13, 10, 1441793, 7, 10, 655369, 8, 10, 655369, 9, 10, 655369, 12, 10, 655369, 11, 10, 655369, 10, 10, 1048577, 10, 9, 1048585, 10, 8, 1048585, 10, 7, 1, 10, 6, 1048585, 11, 7, 9, 12, 7, 1048577, 13, 7, 9, 14, 7, 1441793, 14, 10, 1048577, 15, 10, 655363, 15, 7, 655363, 14, 8, 1048585, 14, 9, 1048585, 14, 0, 655369, 15, 0, 655361, 14, 65528, 9, 15, 65528, 655361, 15, 65527, 1048585, 13, 65528, 9, 13, 65523, 655369, 14, 65523, 655369, 15, 65523, 655361, 15, 65524, 1048585, 15, 65525, 1048585, 15, 65526, 1048585, 15, 65529, 1048585, 15, 65535, 1048585, 15, 65534, 1048585, 15, 65533, 1048585, 15, 65532, 1048585, 15, 65531, 1048585, 15, 65530, 1048585, 15, 1, 1048579, 15, 65522, 1048585, 15, 65521, 1048585, 15, 65520, 655361, 15, 65519, 1441795, 14, 65520, 655369, 13, 65520, 655369, 12, 65520, 655369, 11, 65520, 1048577, 11, 65519, 1441795, 10, 65520, 1441793, 10, 65521, 1441801, 10, 65522, 1441801, 10, 65523, 1048577, 11, 65523, 9, 6, 65528, 1441801, 6, 65527, 1441801, 9, 65523, 655369, 8, 65523, 655369, 9, 65520, 655369, 8, 65520, 655369, 7, 65520, 655369, 7, 65523, 655369, 6, 65523, 1441793, 6, 65524, 1048585, 6, 65526, 1048585, 6, 65525, 1048585, 5, 65529, 9, 4, 65529, 9, 3, 65529, 9, 2, 65529, 9, 1, 65529, 1048577, 1, 65528, 1048585, 1, 65527, 1048585, 1, 65526, 1048585, 1, 65525, 1048584, 5, 65523, 655369, 4, 65523, 1441793, 4, 65524, 1048585, 4, 65525, 655361, 2, 65525, 9, 3, 65525, 9, 4, 65526, 1048579, 3, 65523, 9, 2, 65523, 9, 1, 65523, 1, 1, 65524, 1441801, 1, 65522, 1441801, 1, 65521, 1441801, 1, 65520, 1441793, 2, 65520, 655369, 3, 65520, 655369, 4, 65520, 655369, 5, 65520, 655369, 6, 65520, 655369, 0, 65520, 655369, 0, 65525, 655369, 65535, 65525, 1441800, 65535, 65530, 1048585, 65535, 65529, 1048584, 0, 65529, 9, 65535, 65528, 1441801, 65535, 65527, 1441801, 65535, 65526, 1441801, 65529, 65529, 655368, 65529, 65531, 1048585, 65529, 65532, 655361, 65529, 65533, 1048585, 65529, 65534, 1048585, 65530, 65529, 9, 65531, 65529, 9, 65532, 65529, 9, 65533, 65529, 9, 65534, 65529, 9, 65534, 65525, 9, 65533, 65525, 9, 65532, 65525, 9, 65531, 65525, 9, 65530, 65525, 9, 65529, 65525, 8, 65529, 65526, 1441801, 65529, 65527, 1441801, 65529, 65528, 1441801, 65535, 65524, 1441801, 65535, 65523, 1441801, 65535, 65521, 1441801, 65535, 65522, 1441801, 65535, 65520, 1441793, 65530, 65520, 655369, 65531, 65520, 655369, 65532, 65520, 655369, 65533, 65520, 655369, 65534, 65520, 655369, 65529, 65520, 655368, 65529, 65519, 1441795, 65529, 65521, 1441801, 65529, 65522, 1441801, 65529, 65523, 1441801, 65529, 65524, 1441801, 65528, 65520, 655369, 65527, 65520, 655369, 65526, 65520, 655369, 65525, 65520, 655369, 65524, 65520, 655369, 65523, 65520, 1441793, 65522, 65520, 655369, 65523, 65521, 1441801, 65523, 65522, 1441801, 65523, 65523, 1048577, 65522, 65523, 9, 65521, 65523, 9, 65520, 65523, 9, 65519, 65523, 1, 65519, 65522, 1441801, 65519, 65521, 1441801, 65519, 65520, 1, 65519, 65519, 1441795, 65520, 65520, 655369, 65521, 65520, 655369, 65524, 65523, 655369, 65525, 65523, 1441793, 65526, 65523, 655363, 65525, 65524, 1048585, 65525, 65525, 1048577, 65526, 65525, 9, 65527, 65525, 9, 65528, 65525, 9, 65524, 65525, 9, 65529, 65530, 1441801, 65523, 65525, 655369, 65522, 65525, 655369, 65520, 65525, 655369, 65521, 65525, 655369, 65519, 65525, 1, 65519, 65524, 1441801, 65528, 65529, 655369, 65527, 65529, 655369, 65526, 65529, 655369, 65525, 65529, 655369, 65524, 65529, 1441793, 65523, 65529, 655369, 65519, 65526, 1048585, 65519, 65527, 1048585, 65519, 65528, 1048585, 65519, 65529, 1, 65522, 65529, 655369, 65521, 65529, 655369, 65520, 65529, 655369, 65528, 65535, 655369, 65527, 65535, 655369, 65526, 65535, 655369, 65525, 65535, 655369, 65524, 65535, 1441793, 65523, 65535, 655369, 65522, 65535, 655369, 65521, 65535, 1048577, 65520, 65535, 655369, 65519, 65530, 1048585, 65519, 65532, 1048585, 65519, 65531, 1, 65519, 65533, 1048585, 65519, 65534, 1048585, 65519, 65535, 1, 65519, 0, 1441801, 65519, 1, 1441801, 65519, 3, 1441801, 65519, 2, 1441801, 65519, 4, 1441801, 65519, 5, 1048577, 65518, 5, 3, 65520, 5, 9, 65522, 5, 9, 65521, 5, 9, 65523, 5, 9, 65524, 5, 655361, 65524, 4, 1, 65524, 3, 1048585, 65524, 2, 1048585, 65524, 1, 1048585, 65524, 0, 1048585, 65524, 6, 1441801, 65524, 7, 1441801, 65524, 8, 1441801, 65524, 9, 1, 65524, 10, 1441801, 65524, 11, 1, 65524, 12, 655361, 65523, 12, 655369, 65522, 12, 655369, 65521, 12, 655369, 65520, 12, 655369, 65519, 12, 3, 65524, 13, 1441801, 65524, 14, 1441801, 65524, 15, 1, 65524, 16, 1048579, 65525, 15, 9, 65526, 15, 9, 65527, 15, 9, 65528, 15, 1048577, 65529, 15, 9, 65530, 15, 9, 65531, 15, 9, 65532, 15, 9, 65533, 15, 655361, 65533, 16, 1048579, 65533, 14, 1048585, 65533, 13, 655361, 65533, 12, 1048585, 65533, 11, 1, 65534, 11, 9, 65535, 11, 9, 0, 11, 9, 65533, 10, 1441801, 65533, 9, 1441793, 65534, 9, 655363, 65532, 9, 655369, 65531, 9, 655369, 65530, 9, 655369, 65529, 9, 1441800, 65528, 9, 655369, 65527, 9, 655369, 65526, 9, 655369, 65525, 9, 655369, 65527, 4, 655369, 65528, 4, 655369, 65526, 4, 655369, 65525, 4, 655369, 65529, 5, 1441801, 65529, 6, 1441801, 65529, 7, 1441801, 65529, 8, 1441801, 65521, 65534, 1441798, 65524, 65530, 1441798, 65528, 65532, 655366, 65528, 65534, 655370, 65527, 65534, 655370, 65527, 65533, 655370, 65528, 65533, 655370, 65526, 65534, 655370, 65526, 65533, 655370, 65528, 65531, 655370, 65528, 65530, 655370, 65527, 65531, 5, 65527, 65530, 655370, 65526, 65531, 6, 65526, 65530, 655370, 65525, 65531, 6, 65525, 65530, 655370, 65524, 65532, 10, 65524, 65531, 1048576, 65525, 65532, 10, 65526, 65532, 10, 65527, 65532, 5, 65521, 65531, 1441792, 65523, 65531, 655366, 65522, 65531, 655366, 65521, 65533, 1048582, 65521, 65532, 1048582, 65520, 65531, 6, 65520, 65532, 10, 65520, 65533, 10, 65520, 65534, 10, 65522, 65533, 10, 65522, 65534, 10, 65523, 65534, 10, 65524, 65534, 10, 65525, 65534, 10, 65525, 65533, 10, 65524, 65533, 10, 65523, 65533, 10, 65523, 65532, 10, 65522, 65532, 10, 65520, 65530, 10, 65521, 65530, 10, 65522, 65530, 10, 65523, 65530, 10, 11, 6, 10, 12, 6, 1441798, 15, 6, 10, 15, 5, 10, 15, 4, 10, 15, 3, 10, 15, 2, 10, 14, 1, 10, 13, 1, 1441798, 13, 2, 1441798, 12, 2, 10, 11, 2, 10, 11, 1, 10, 12, 1, 10, 11, 3, 6, 11, 4, 10, 11, 5, 10, 12, 5, 1441797, 13, 5, 1441797, 13, 6, 10, 14, 6, 10, 14, 5, 10, 14, 4, 10, 14, 3, 1441797, 14, 2, 10, 13, 3, 1441797, 13, 4, 1441798, 12, 4, 10, 12, 3, 6, 65532, 13, 655366, 65531, 13, 655366, 65530, 13, 6, 65529, 13, 1048576, 65528, 14, 1441798, 65528, 13, 1441792, 65525, 11, 6, 65525, 12, 1048586, 65527, 13, 1048576, 65526, 11, 6, 65527, 11, 1441797, 65527, 12, 1048582, 65526, 13, 1048581, 65526, 14, 1048586, 65526, 12, 1048581, 65525, 13, 1048586, 65525, 14, 1048586, 65527, 14, 1048586, 65529, 14, 1048586, 65530, 14, 1048586, 65531, 14, 1048586, 65532, 14, 1048586, 65530, 12, 1048586, 65531, 12, 1048586, 65532, 12, 1048586, 65528, 12, 1048586, 65528, 11, 1048586, 65529, 10, 1441798, 65529, 11, 1441798, 65529, 12, 1441798, 65527, 10, 1441797, 65530, 11, 1441802, 65530, 10, 1441802, 65531, 11, 1441802, 65532, 11, 1441802, 65532, 10, 1441802, 65531, 10, 1441802, 65528, 10, 1441802, 65526, 10, 1441802, 65525, 10, 1441802, 9, 0, 1441799, 8, 65535, 1441799, 9, 65535, 1441799, 8, 0, 1441799, 8, 1, 1441799, 8, 2, 1441799, 9, 2, 1441799, 9, 1, 1441799, 8, 3, 1441799, 9, 3, 1441799, 9, 4, 1441799, 8, 4, 1441799, 7, 4, 1441799, 7, 3, 1441799, 9, 65532, 1441799, 8, 65532, 1441799, 7, 65532, 1441799, 7, 65531, 1441799, 7, 65530, 1441799, 8, 65530, 1441799, 9, 65530, 1441799, 9, 65531, 1441799, 8, 65531, 1441799, 11, 65532, 1441799, 11, 65531, 1441799, 11, 65530, 1441799, 13, 65535, 1441799, 14, 65535, 1441799, 14, 65534, 1441799, 14, 65533, 1441799, 13, 65534, 1441799, 13, 65533, 1441799, 13, 65532, 1441799, 13, 65531, 1441799, 13, 65530, 1441799, 13, 65529, 1441799, 14, 65529, 1441799, 14, 65530, 1441799, 14, 65531, 1441799, 14, 65532, 1441799, 11, 9, 1441799, 11, 8, 1441799, 12, 8, 1441799, 13, 8, 1441799, 13, 9, 1441799, 12, 9, 1441799, 15, 8, 1441799, 15, 9, 1441799, 14, 11, 1441799, 14, 12, 1441799, 14, 13, 1441799, 15, 13, 1441799, 15, 14, 1441799, 14, 14, 1441799, 14, 15, 1441799, 15, 15, 1441799, 15, 12, 1441799, 15, 11, 1441799, 12, 12, 1441799, 11, 12, 1441799, 10, 12, 1441799, 9, 12, 1441799, 8, 12, 1441799, 7, 13, 655369, 7, 12, 7, 7, 11, 7, 8, 11, 7, 9, 11, 7, 10, 11, 7, 11, 11, 7, 12, 11, 7, 12, 15, 1441799, 12, 14, 7, 11, 15, 1441799, 10, 15, 7, 9, 15, 7, 11, 14, 7, 10, 14, 7, 9, 14, 7, 8, 14, 7, 8, 15, 7, 7, 15, 7, 7, 14, 7, 65534, 15, 7, 65535, 15, 7, 0, 15, 7, 1, 15, 7, 2, 15, 7, 3, 15, 7, 4, 15, 7, 5, 15, 7, 65534, 14, 7, 65534, 13, 7, 65535, 13, 7, 0, 13, 7, 1, 13, 7, 2, 13, 7, 3, 13, 7, 4, 13, 7, 5, 13, 7, 5, 12, 7, 4, 12, 7, 3, 12, 7, 2, 12, 7, 1, 12, 7, 0, 12, 7, 65535, 12, 7, 65534, 12, 7, 65534, 10, 7, 65535, 10, 7, 0, 10, 7, 65535, 9, 7, 65535, 8, 7, 65534, 8, 7, 65533, 8, 7, 65532, 8, 7, 65531, 8, 7, 65530, 8, 7, 65530, 7, 7, 65530, 6, 7, 65530, 5, 7, 65531, 5, 7, 65532, 5, 7, 65533, 5, 7, 65534, 5, 7, 65535, 5, 7, 0, 5, 7, 0, 6, 7, 0, 7, 7, 0, 8, 7, 0, 9, 7, 65535, 7, 7, 65534, 7, 7, 65533, 7, 7, 65532, 7, 7, 65531, 7, 7, 65531, 6, 7, 65532, 6, 7, 65533, 6, 7, 65534, 6, 7, 65535, 6, 7, 2, 10, 7, 2, 9, 7, 2, 8, 7, 2, 7, 7, 3, 7, 7, 3, 6, 7, 2, 6, 7, 2, 5, 7, 3, 5, 7, 4, 5, 7, 5, 5, 7, 5, 6, 7, 5, 7, 7, 5, 8, 7, 5, 9, 7, 4, 9, 7, 5, 10, 7, 4, 10, 7, 3, 10, 7, 3, 9, 7, 3, 8, 7, 4, 8, 7, 4, 7, 7, 4, 6, 7, 7, 9, 7, 8, 9, 7, 9, 9, 7, 9, 8, 7, 9, 7, 7, 9, 6, 7, 8, 6, 7, 7, 6, 7, 7, 7, 7, 7, 8, 7, 8, 8, 7, 8, 7, 7, 5, 3, 7, 4, 3, 7, 3, 3, 7, 2, 3, 7, 1, 3, 7, 0, 3, 7, 0, 2, 7, 1, 1, 7, 0, 1, 7, 0, 0, 7, 1, 0, 7, 2, 0, 7, 3, 0, 7, 4, 0, 7, 5, 0, 7, 5, 1, 7, 5, 2, 7, 4, 2, 7, 3, 2, 7, 2, 2, 7, 1, 2, 7, 2, 1, 7, 3, 1, 7, 4, 1, 7, 65534, 2, 7, 65534, 3, 7, 65533, 3, 7, 65532, 3, 7, 65531, 3, 7, 65530, 3, 7, 65530, 2, 7, 65530, 1, 7, 65530, 0, 7, 65531, 0, 7, 65532, 0, 7, 65533, 0, 7, 65534, 0, 7, 65534, 1, 7, 65533, 1, 7, 65532, 1, 7, 65531, 1, 7, 65531, 2, 7, 65532, 2, 7, 65533, 2, 7, 65530, 65534, 1441799, 65530, 65533, 1441799, 65530, 65532, 1441799, 65530, 65530, 1441799, 65530, 65531, 1441799, 65531, 65531, 1441799, 65531, 65530, 1441799, 65532, 65530, 1441799, 65532, 65531, 1441799, 65533, 65531, 1441799, 65533, 65530, 1441799, 65534, 65530, 1441799, 65534, 65531, 1441799, 65533, 65532, 1441799, 65534, 65532, 1441799, 65533, 65533, 1441799, 65534, 65533, 1441799, 65534, 65534, 1441799, 65533, 65534, 1441799, 65532, 65534, 1441799, 65531, 65534, 1441799, 65531, 65533, 1441799, 65531, 65532, 1441799, 65532, 65533, 1441799, 65532, 65532, 1441799, 0, 65534, 1441799, 1, 65534, 1441799, 2, 65534, 1441799, 3, 65534, 1441799, 4, 65534, 1441799, 5, 65534, 1441799, 5, 65533, 1441799, 5, 65532, 1441799, 5, 65531, 1441799, 5, 65530, 1441799, 4, 65530, 1441799, 3, 65530, 1441799, 2, 65530, 1441799, 1, 65530, 1441799, 0, 65530, 1441799, 0, 65531, 1441799, 1, 65531, 1441799, 1, 65532, 1441799, 0, 65532, 1441799, 0, 65533, 1441799, 1, 65533, 1441799, 2, 65533, 1441799, 3, 65533, 1441799, 4, 65533, 1441799, 4, 65532, 1441799, 3, 65532, 1441799, 3, 65531, 1441799, 2, 65532, 1441799, 2, 65531, 1441799, 4, 65531, 1441799, 2, 65528, 1441799, 2, 65527, 1441799, 2, 65526, 1441799, 3, 65526, 1441799, 3, 65527, 1441799, 3, 65528, 1441799, 4, 65528, 1441799, 4, 65527, 1441799, 5, 65528, 1441799, 5, 65527, 1441799, 5, 65526, 1441799, 5, 65525, 1441799, 5, 65524, 1441799, 3, 65524, 1441799, 2, 65524, 1441799, 0, 65528, 1441799, 0, 65527, 1441799, 0, 65526, 1441799, 0, 65524, 1441799, 0, 65523, 1441799, 0, 65522, 1441799, 0, 65521, 1441799, 2, 65522, 1441799, 3, 65522, 1441799, 4, 65522, 1441799, 4, 65521, 1441799, 5, 65521, 1441799, 5, 65522, 1441799, 6, 65522, 1441799, 6, 65521, 1441799, 7, 65521, 1441799, 7, 65522, 1441799, 8, 65522, 1441799, 2, 65521, 1441799, 3, 65521, 1441799, 9, 65522, 1441799, 9, 65521, 1441799, 8, 65521, 1441799, 7, 65528, 1441799, 8, 65528, 1441799, 9, 65528, 1441799, 10, 65528, 1441799, 11, 65528, 1441799, 11, 65527, 1441799, 11, 65526, 1441799, 11, 65525, 1441799, 11, 65524, 1441799, 10, 65524, 1441799, 9, 65524, 1441799, 8, 65524, 1441799, 7, 65524, 1441799, 7, 65525, 1441799, 7, 65526, 1441799, 7, 65527, 1441799, 8, 65527, 1441799, 8, 65526, 1441799, 9, 65526, 1441799, 9, 65527, 1441799, 10, 65526, 1441799, 10, 65527, 1441799, 9, 65525, 1441799, 10, 65525, 1441799, 8, 65525, 1441799, 13, 65527, 1441799, 13, 65526, 1441799, 13, 65525, 1441799, 13, 65524, 1441799, 14, 65524, 1441799, 14, 65525, 1441799, 14, 65526, 1441799, 14, 65527, 1441799, 14, 65522, 1441799, 13, 65522, 1441799, 12, 65522, 1441799, 11, 65522, 1441799, 11, 65521, 1441799, 12, 65521, 1441799, 13, 65521, 1441799, 14, 65521, 1441799, 12, 65519, 1441799, 13, 65519, 1441799, 14, 65519, 1441799, 10, 65519, 1441799, 9, 65519, 1441799, 8, 65519, 1441799, 7, 65519, 1441799, 6, 65519, 1441799, 5, 65519, 1441799, 4, 65519, 1441799, 3, 65519, 1441799, 65530, 65519, 1441799, 65531, 65519, 1441799, 65532, 65519, 1441799, 65533, 65519, 1441799, 65534, 65519, 1441799, 0, 65519, 1441799, 1, 65519, 1441799, 2, 65519, 1441799, 65535, 65519, 1441799, 65534, 65521, 1441799, 65534, 65522, 1441799, 65534, 65523, 1441799, 65534, 65524, 1441799, 65533, 65524, 1441799, 65532, 65524, 1441799, 65531, 65524, 1441799, 65530, 65524, 1441799, 65530, 65523, 1441799, 65530, 65522, 1441799, 65530, 65521, 1441799, 65531, 65521, 1441799, 65531, 65522, 1441799, 65532, 65522, 1441799, 65532, 65521, 1441799, 65533, 65521, 1441799, 65533, 65522, 1441799, 65533, 65523, 1441799, 65531, 65523, 1441799, 65532, 65523, 1441799, 65534, 65528, 1441799, 65533, 65528, 1441799, 65532, 65528, 1441799, 65531, 65528, 1441799, 65530, 65528, 1441799, 65530, 65527, 1441799, 65530, 65526, 1441799, 65531, 65526, 1441799, 65532, 65526, 1441799, 65533, 65526, 1441799, 65534, 65526, 1441799, 65534, 65527, 1441799, 65533, 65527, 1441799, 65532, 65527, 1441799, 65531, 65527, 1441799, 65526, 65524, 1441799, 65527, 65524, 1441799, 65528, 65524, 1441799, 65528, 65523, 1441799, 65528, 65522, 1441799, 65527, 65523, 1441799, 65527, 65522, 1441799, 65528, 65521, 1441799, 65527, 65521, 1441799, 65526, 65521, 1441799, 65525, 65521, 1441799, 65524, 65521, 1441799, 65524, 65522, 1441799, 65525, 65522, 1441799, 65526, 65522, 1441799, 65524, 65524, 1441799, 65523, 65524, 1441799, 65522, 65524, 1441799, 65521, 65524, 1441799, 65520, 65524, 1441799, 65520, 65522, 1441799, 65521, 65522, 1441799, 65522, 65522, 1441799, 65522, 65521, 1441799, 65521, 65521, 1441799, 65520, 65521, 1441799, 65520, 65519, 1441799, 65521, 65519, 1441799, 65522, 65519, 1441799, 65523, 65519, 1441799, 65524, 65519, 1441799, 65525, 65519, 1441799, 65526, 65519, 1441799, 65527, 65519, 1441799, 65528, 65519, 1441799, 65528, 65528, 1441799, 65528, 65527, 1441799, 65528, 65526, 1441799, 65527, 65526, 1441799, 65526, 65526, 1441799, 65525, 65526, 1441799, 65524, 65526, 1441799, 65523, 65526, 1441799, 65523, 65527, 1441799, 65522, 65527, 1441799, 65522, 65526, 1441799, 65521, 65526, 1441799, 65520, 65526, 1441799, 65520, 65527, 1441799, 65520, 65528, 1441799, 65521, 65528, 1441799, 65522, 65528, 1441799, 65523, 65528, 1441799, 65524, 65528, 1441799, 65525, 65528, 1441799, 65526, 65528, 1441799, 65527, 65528, 1441799, 65527, 65527, 1441799, 65526, 65527, 1441799, 65525, 65527, 1441799, 65524, 65527, 1441799, 65521, 65527, 1441799, 65528, 3, 1441799, 65527, 3, 1441799, 65526, 3, 1441799, 65525, 3, 1441799, 65525, 2, 1441799, 65525, 1, 1441799, 65525, 0, 1441799, 65526, 0, 1441799, 65527, 0, 1441799, 65528, 0, 1441799, 65528, 1, 1441799, 65528, 2, 1441799, 65527, 2, 1441799, 65526, 2, 1441799, 65526, 1, 1441799, 65527, 1, 1441799, 65528, 8, 1441799, 65528, 7, 1441799, 65528, 6, 1441799, 65528, 5, 1441799, 65527, 5, 1441799, 65526, 5, 1441799, 65525, 5, 1441799, 65525, 6, 1441799, 65525, 7, 1441799, 65525, 8, 1441799, 65526, 8, 1441799, 65527, 8, 1441799, 65527, 7, 1441799, 65526, 7, 1441799, 65526, 6, 1441799, 65527, 6, 1441799, 65523, 4, 1441799, 65522, 4, 1441799, 65521, 4, 1441799, 65520, 4, 1441799, 65520, 3, 1441799, 65520, 2, 1441799, 65520, 1, 1441799, 65520, 0, 1441799, 65521, 0, 1441799, 65522, 0, 1441799, 65523, 0, 1441799, 65523, 1, 1441799, 65523, 2, 1441799, 65523, 3, 1441799, 65522, 3, 1441799, 65521, 3, 1441799, 65521, 2, 1441799, 65522, 1, 1441799, 65522, 2, 1441799, 65521, 1, 1441799, 65519, 11, 1441799, 65519, 10, 1441799, 65519, 9, 1441799, 65519, 8, 1441799, 65519, 7, 1441799, 65519, 6, 1441799, 65520, 6, 1441799, 65521, 6, 1441799, 65522, 6, 1441799, 65523, 6, 1441799, 65523, 7, 1441799, 65523, 8, 1441799, 65523, 9, 1441799, 65523, 10, 1441799, 65523, 11, 1441799, 65522, 11, 1441799, 65521, 11, 1441799, 65520, 11, 1441799, 65520, 10, 1441799, 65520, 9, 1441799, 65521, 10, 1441799, 65522, 10, 1441799, 65522, 9, 1441799, 65521, 9, 1441799, 65520, 8, 1441799, 65521, 8, 1441799, 65522, 8, 1441799, 65522, 7, 1441799, 65521, 7, 1441799, 65520, 7, 1441799, 65523, 13, 1441799, 65523, 14, 1441799, 65523, 15, 1441799, 65522, 15, 1441799, 65521, 15, 1441799, 65523, 16, 1441799, 65522, 16, 1441799, 65521, 16, 1441799, 65520, 16, 1441799, 65520, 15, 1441799, 65519, 15, 1441799, 65519, 16, 1441799, 65519, 14, 1441799, 65519, 13, 1441799, 65520, 13, 1441799, 65521, 13, 1441799, 65521, 14, 1441799, 65522, 14, 1441799, 65520, 14, 1441799, 65522, 13, 1441799, 65525, 16, 1441799, 65526, 16, 1441799, 65527, 16, 1441799, 65528, 16, 1441799, 65529, 16, 1441799, 65530, 16, 1441799, 65531, 16, 1441799, 65532, 16, 1441799, 8, 16, 1441799, 7, 16, 1441799, 6, 16, 1441799, 5, 16, 1441799, 4, 16, 1441799, 3, 16, 1441799, 2, 16, 1441799, 1, 16, 1441799, 0, 16, 1441799, 65535, 16, 1441799, 65534, 16, 1441799, 9, 16, 1441799, 10, 16, 1441799, 11, 16, 1441799, 12, 16, 1441799, 13, 16, 1441799, 14, 16, 1441799, 15, 16, 1441799, 16, 9, 1441799, 16, 10, 1441799, 16, 11, 1441799, 16, 12, 1441799, 16, 13, 1441799, 16, 14, 1441799, 16, 15, 1441799, 16, 16, 1441799, 16, 8, 1441799, 16, 7, 1441799, 16, 6, 1441799, 16, 5, 1441799, 16, 4, 1441799, 16, 3, 1441799, 16, 2, 1441799, 16, 1, 1441799, 16, 0, 1441799, 16, 65535, 1441799, 16, 65528, 1441799, 16, 65529, 1441799, 16, 65530, 1441799, 16, 65531, 1441799, 16, 65532, 1441799, 16, 65533, 1441799, 16, 65534, 1441799, 16, 65519, 1441799, 16, 65520, 1441799, 16, 65521, 1441799, 16, 65522, 1441799, 16, 65523, 1441799, 16, 65524, 1441799, 16, 65525, 1441799, 16, 65526, 1441799, 16, 65527, 1441799, 16, 65518, 1441799, 15, 65518, 1441799, 14, 65518, 1441799, 13, 65518, 1441799, 12, 65518, 1441799, 11, 65518, 1441799, 10, 65518, 1441799, 9, 65518, 1441799, 8, 65518, 1441799, 7, 65518, 1441799, 6, 65518, 1441799, 5, 65518, 1441799, 4, 65518, 1441799, 3, 65518, 1441799, 2, 65518, 1441799, 1, 65518, 1441799, 0, 65518, 1441799, 65535, 65518, 1441799, 65534, 65518, 1441799, 65533, 65518, 1441799, 65532, 65518, 1441799, 65531, 65518, 1441799, 65530, 65518, 1441799, 65529, 65518, 1441799, 65528, 65518, 1441799, 65527, 65518, 1441799, 65526, 65518, 1441799, 65525, 65518, 1441799, 65524, 65518, 1441799, 65523, 65518, 1441799, 65522, 65518, 1441799, 65521, 65518, 1441799, 65520, 65518, 1441799, 65519, 65518, 1441799, 65518, 65518, 1441799, 65518, 65519, 1441799, 65518, 65520, 1441799, 65518, 65521, 1441799, 65518, 65522, 1441799, 65518, 65523, 1441799, 65518, 65524, 1441799, 65518, 65525, 1441799, 65518, 65526, 1441799, 65518, 65527, 1441799, 65518, 65528, 1441799, 65518, 65529, 1441799, 65518, 65530, 1441799, 65518, 65531, 1441799, 65518, 65532, 1441799, 65518, 65533, 1441799, 65518, 65534, 1441799, 65518, 65535, 1441799, 65518, 0, 1441799, 65518, 1, 1441799, 65518, 2, 1441799, 65518, 3, 1441799, 65518, 4, 1441799, 65518, 6, 1441799, 65518, 7, 1441799, 65518, 8, 1441799, 65518, 9, 1441799, 65518, 10, 1441799, 65518, 11, 1441799, 65518, 12, 1441799, 65518, 13, 1441799, 65518, 14, 1441799, 65518, 15, 1441799, 65518, 16, 1441799)
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Main3D/LevelObject"]
+transform = Transform3D(0.865859, 0.259036, -0.428006, 0.272825, 0.472627, 0.837968, 0.419351, -0.842332, 0.338557, 0, 2.4205, 0)
+light_color = Color(0.8, 1, 1, 1)
+light_energy = 0.233
+shadow_enabled = true
+shadow_opacity = 0.68
+shadow_blur = 8.119
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Main3D/LevelObject"]
+environment = SubResource("Environment_uykmw")
+
+[node name="streetlamps" type="Node3D" parent="Main3D/LevelObject"]
+
+[node name="streetlamp2" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -4.01098, 0, -10.0485)
+
+[node name="streetlamp3" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00628308, 0, -0.599967, 0, 0.6, 0, 0.599967, 0, -0.00628308, 12.2594, 0, -4.62599)
+
+[node name="streetlamp4" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -4.01098, 0, -33.2777)
+
+[node name="streetlamp5" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.598809, 0, -0.0377788, 0, 0.6, 0, 0.0377788, 0, -0.598809, -56.3333, 0, -33.2777)
+
+[node name="streetlamp6" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599726, 0, -0.0181347, 0, 0.6, 0, 0.0181347, 0, 0.599726, -27.3753, 0, 64.3058)
+
+[node name="streetlamp59" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599726, 0, -0.0181347, 0, 0.6, 0, 0.0181347, 0, 0.599726, -27.3753, 0, 95.5067)
+
+[node name="streetlamp60" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599726, 0, -0.0181347, 0, 0.6, 0, 0.0181347, 0, 0.599726, -27.3753, 0, 122.626)
+
+[node name="streetlamp7" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.598809, 0, -0.0377788, 0, 0.6, 0, 0.0377788, 0, -0.598809, -56.3333, 0, -8.39486)
+
+[node name="streetlamp8" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.598809, 0, -0.0377788, 0, 0.6, 0, 0.0377788, 0, -0.598809, -56.3333, 0, 10.0844)
+
+[node name="streetlamp9" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.0093615, 0, -0.599927, 0, 0.6, 0, 0.599927, 0, 0.0093615, -52.3573, 0, 43.1119)
+
+[node name="streetlamp10" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.598809, 0, -0.0377788, 0, 0.6, 0, 0.0377788, 0, -0.598809, -56.3333, 0, 39.7772)
+
+[node name="streetlamp11" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -5.33315, 0, 39.7772)
+
+[node name="streetlamp12" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.0126178, 0, -0.599867, 0, 0.6, 0, 0.599867, 0, 0.0126178, -9.17808, 0, 43.5981)
+
+[node name="streetlamp13" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -3.99748, 0, 10.0062)
+
+[node name="streetlamp14" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 55.8181, 0, 9.60075)
+
+[node name="streetlamp15" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 13.5706, 0, 55.9775)
+
+[node name="streetlamp16" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 55.8181, 0, 38.0483)
+
+[node name="streetlamp17" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 55.8181, 0, 56.3135)
+
+[node name="streetlamp18" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 13.744, 0, 102.436)
+
+[node name="streetlamp19" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 55.8181, 0, 101.28)
+
+[node name="streetlamp20" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 55.8181, 0, 118.657)
+
+[node name="streetlamp21" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.0114557, 0, 0.599891, 0, 0.6, 0, -0.599891, 0, -0.0114557, 39.2935, 0, 111.871)
+
+[node name="streetlamp22" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 55.8181, 0, 140.535)
+
+[node name="streetlamp23" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 115.929, 0, 140.535)
+
+[node name="streetlamp24" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.0591125, 0, 0.597081, 0, 0.6, 0, -0.597081, 0, -0.0591125, -5.9781, 0, 111.908)
+
+[node name="streetlamp25" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 115.929, 0, 110.284)
+
+[node name="streetlamp26" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.0277932, 0, -0.599356, 0, 0.6, 0, 0.599356, 0, 0.0277932, -32.965, 0, 140.113)
+
+[node name="streetlamp27" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 115.929, 0, 76.6724)
+
+[node name="streetlamp28" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -106.018, 0, 78.382)
+
+[node name="streetlamp29" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 91.9651, 0, 87.4471)
+
+[node name="streetlamp30" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 91.9651, 0, 57.7961)
+
+[node name="streetlamp31" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.00646108, 0, -0.599965, 0, 0.6, 0, 0.599965, 0, 0.00646108, -94.5579, 0, 43.2735)
+
+[node name="streetlamp32" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 91.9651, 0, 28.2025)
+
+[node name="streetlamp33" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 139.648, 0, 23.929)
+
+[node name="streetlamp34" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.599999, 0, -0.000848204, 0, 0.6, 0, 0.000848204, 0, -0.599999, -98.3139, 0, 8.95295)
+
+[node name="streetlamp35" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 139.648, 0, 52.8228)
+
+[node name="streetlamp36" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -28.2946, 0, -60.3112)
+
+[node name="streetlamp37" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 139.648, 0, -3.63055)
+
+[node name="streetlamp38" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -94.1061, 0, -25.2572)
+
+[node name="streetlamp39" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -94.5479, 0, -63.2605)
+
+[node name="streetlamp40" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 139.648, 0, -37.5232)
+
+[node name="streetlamp41" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 68.9896, 0, -94.7672)
+
+[node name="streetlamp42" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 139.648, 0, -72.5108)
+
+[node name="streetlamp43" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 139.648, 0, -98.7524)
+
+[node name="streetlamp44" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 110.648, 0, -98.7524)
+
+[node name="streetlamp45" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 67.49, 0, -61.3442)
+
+[node name="streetlamp46" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 110.648, 0, -71.3094)
+
+[node name="streetlamp47" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.0409763, 0, 0.598599, 0, 0.6, 0, -0.598599, 0, 0.0409763, 42.049, 0, -74.5798)
+
+[node name="streetlamp48" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.0628212, 0, 0.596702, 0, 0.6, 0, -0.596702, 0, 0.0628212, -7.33741, 0, -74.8458)
+
+[node name="streetlamp49" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 110.648, 0, -41.535)
+
+[node name="streetlamp50" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.0508015, 0, -0.597845, 0, 0.6, 0, 0.597845, 0, -0.0508015, 28.7512, 0, -46.0644)
+
+[node name="streetlamp51" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, -148.891, 0, 11.6759)
+
+[node name="streetlamp52" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 110.648, 0, -2.87611)
+
+[node name="streetlamp53" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599811, 0, 0.0150571, 0, 0.6, 0, -0.0150571, 0, 0.599811, 67.5657, 0, -128.234)
+
+[node name="streetlamp54" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.176604, 0, 0.57342, 0, 0.6, 0, -0.57342, 0, -0.176604, 56.0332, 0, -139.592)
+
+[node name="streetlamp55" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, -9.03362, 0, -147.697)
+
+[node name="streetlamp56" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, -44.1671, 0, -147.702)
+
+[node name="streetlamp57" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, 72.5123, 0, -22.2861)
+
+[node name="streetlamp58" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, -56.3015, 0, -82.3153)
+
+[node name="streetlamp61" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, -56.3015, 0, -106.233)
+
+[node name="streetlamp62" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, -107.094, 0, -148.843)
+
+[node name="streetlamp63" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.00733021, 0, -0.599955, 0, 0.6, 0, 0.599955, 0, -0.00733021, -137.893, 0, -77.2592)
+
+[node name="streetlamp64" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599893, 0, 0.01133, 0, 0.6, 0, -0.01133, 0, 0.599893, -124.918, 0, -11.9721)
+
+[node name="streetlamp65" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599893, 0, 0.01133, 0, 0.6, 0, -0.01133, 0, 0.599893, -124.918, 0, -41.6937)
+
+[node name="streetlamp66" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599893, 0, 0.01133, 0, 0.6, 0, -0.01133, 0, 0.599893, -124.918, 0, -104.743)
+
+[node name="streetlamp67" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599893, 0, 0.01133, 0, 0.6, 0, -0.01133, 0, 0.599893, -88.9636, 0, -112.647)
+
+[node name="streetlamp68" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599893, 0, 0.01133, 0, 0.6, 0, -0.01133, 0, 0.599893, -29.9014, 0, -112.647)
+
+[node name="streetlamp69" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(0.599893, 0, 0.01133, 0, 0.6, 0, -0.01133, 0, 0.599893, -112.123, 0, 132.26)
+
+[node name="streetlamp70" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.0182184, 0, 0.599723, 0, 0.6, 0, -0.599723, 0, -0.0182184, -86.0939, 0, 148.787)
+
+[node name="streetlamp71" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.0182184, 0, 0.599723, 0, 0.6, 0, -0.599723, 0, -0.0182184, -139.034, 0, 123.916)
+
+[node name="streetlamp72" parent="Main3D/LevelObject/streetlamps" instance=ExtResource("5_xs5xf")]
+transform = Transform3D(-0.0182184, 0, 0.599723, 0, 0.6, 0, -0.599723, 0, -0.0182184, -65.6347, 0, 88.4662)
+
+[node name="library" parent="Main3D/LevelObject" instance=ExtResource("6_uj1w4")]
+visible = false
+
+[node name="moneyGig" parent="Main3D/LevelObject" instance=ExtResource("7_ymiv8")]
+transform = Transform3D(0.802526, 0, 0.596617, 0, 1, 0, -0.596617, 0, 0.802526, -5.04521, 0, -9.06165)
+
+[node name="Node3D2" type="Node3D" parent="Main3D"]
+
+[node name="MainGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Citynoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nteno")
+volume_db = -25.0
