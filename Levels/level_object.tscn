@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://1dk318i1uin"]
+[gd_scene load_steps=12 format=3 uid="uid://1dk318i1uin"]
 
+[ext_resource type="PackedScene" uid="uid://bjibpsbenyueq" path="res://models/building-type-a.glb" id="1_f76wt"]
 [ext_resource type="MeshLibrary" uid="uid://dskc431qfocwo" path="res://models/tiles/gridmap1.tres" id="1_jmmks"]
 [ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="2_4q3jl"]
 [ext_resource type="MeshLibrary" uid="uid://b65fmp3hum06y" path="res://models/tiles/better/betterlib.tres" id="2_fcup0"]
@@ -1315,6 +1316,9 @@ mesh = SubResource("BoxMesh_4uncc")
 skeleton = NodePath("../../..")
 
 [node name="actualBuildings" type="Node3D" parent="floor/buildings"]
+
+[node name="building-type-a" parent="floor/buildings/actualBuildings" instance=ExtResource("1_f76wt")]
+transform = Transform3D(3.99885, 0.0595198, 0.0830601, -0.0477356, 4.99964, 0.00527317, -0.0829913, -0.00782864, 3.99913, 0, 0, 0)
 
 [node name="park" type="Node" parent="floor"]
 
