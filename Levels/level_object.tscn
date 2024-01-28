@@ -3,7 +3,7 @@
 [ext_resource type="MeshLibrary" uid="uid://dskc431qfocwo" path="res://models/tiles/gridmap1.tres" id="1_jmmks"]
 [ext_resource type="PackedScene" uid="uid://b2s2wkpmf5c5r" path="res://scenes/streetlamp.tscn" id="2_4q3jl"]
 [ext_resource type="MeshLibrary" uid="uid://b65fmp3hum06y" path="res://models/tiles/better/betterlib.tres" id="2_fcup0"]
-[ext_resource type="PackedScene" path="res://scenes/library.tscn" id="3_wm0n1"]
+[ext_resource type="PackedScene" uid="uid://c8xhbhsy8bwda" path="res://scenes/library.tscn" id="3_wm0n1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvmwb"]
 size = Vector3(300, 0.1, 300)

@@ -114,7 +114,7 @@ albedo_color = Color(0.160784, 0.470588, 0.780392, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbej4"]
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" groups=["player"]]
 
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
