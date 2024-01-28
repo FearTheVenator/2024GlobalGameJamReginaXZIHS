@@ -14,7 +14,6 @@ func _process(delta):
 
 func _input(event):
 	if(event.is_action_pressed("escape")): # quit game
-		
 		get_tree().quit()
 	if(event.is_action_pressed("tilde")): # reload scene
 		get_tree().reload_current_scene()
