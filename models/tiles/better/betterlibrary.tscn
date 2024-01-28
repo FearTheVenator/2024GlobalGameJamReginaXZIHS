@@ -1,0 +1,37 @@
+[gd_scene load_steps=12 format=3 uid="uid://cc85kag00e8jk"]
+
+[ext_resource type="PackedScene" uid="uid://raja1fg1henq" path="res://models/tiles/better/dirt-tee.glb" id="1_vamnt"]
+[ext_resource type="PackedScene" uid="uid://dqhxxpbccqjlt" path="res://models/tiles/better/road-tee.glb" id="2_bksmo"]
+[ext_resource type="PackedScene" uid="uid://kh30urjel0d1" path="res://models/tiles/better/dirt-end.glb" id="3_l4ac8"]
+[ext_resource type="PackedScene" uid="uid://tgxfvtygou4f" path="res://models/tiles/better/road-end.glb" id="4_oc8s7"]
+[ext_resource type="PackedScene" uid="uid://dk131x5plye53" path="res://models/tiles/better/dirt-fork.glb" id="5_5lacw"]
+[ext_resource type="PackedScene" uid="uid://c7opi8wcenv6c" path="res://models/tiles/better/dirt-full.glb" id="6_j5cbd"]
+[ext_resource type="PackedScene" uid="uid://dbs73sfolf02a" path="res://models/tiles/better/dirt-path.glb" id="7_eu0i4"]
+[ext_resource type="PackedScene" uid="uid://b60kp0ujwvudk" path="res://models/tiles/better/pave-full.glb" id="8_7nu4m"]
+[ext_resource type="PackedScene" uid="uid://tw4fpse5o8bk" path="res://models/tiles/better/road-fork.glb" id="9_uewo8"]
+[ext_resource type="PackedScene" uid="uid://7gnjfagu6jrd" path="res://models/tiles/better/road-path.glb" id="10_eyrs0"]
+[ext_resource type="PackedScene" uid="uid://boh4ldsbvccnd" path="res://models/tiles/better/grass-full.glb" id="11_tb5t1"]
+
+[node name="betterlibrary" type="Node3D"]
+
+[node name="dirt-tee2" parent="." instance=ExtResource("1_vamnt")]
+
+[node name="road-tee2" parent="." instance=ExtResource("2_bksmo")]
+
+[node name="dirt-end2" parent="." instance=ExtResource("3_l4ac8")]
+
+[node name="road-end2" parent="." instance=ExtResource("4_oc8s7")]
+
+[node name="dirt-fork2" parent="." instance=ExtResource("5_5lacw")]
+
+[node name="dirt-full2" parent="." instance=ExtResource("6_j5cbd")]
+
+[node name="dirt-path2" parent="." instance=ExtResource("7_eu0i4")]
+
+[node name="pave-full2" parent="." instance=ExtResource("8_7nu4m")]
+
+[node name="road-fork2" parent="." instance=ExtResource("9_uewo8")]
+
+[node name="road-path2" parent="." instance=ExtResource("10_eyrs0")]
+
+[node name="grass-full2" parent="." instance=ExtResource("11_tb5t1")]
