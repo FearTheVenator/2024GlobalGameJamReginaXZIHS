@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://btyxom5kcdmj1"]
+
+[ext_resource type="PackedScene" uid="uid://th8xwrodligm" path="res://models/tiles/road_path.glb" id="1_0fsmu"]
+
+[node name="road_path" instance=ExtResource("1_0fsmu")]
