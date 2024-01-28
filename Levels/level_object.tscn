@@ -9,7 +9,7 @@
 [ext_resource type="MeshLibrary" uid="uid://u2xf15p8n3vv" path="res://models/tiles/better/betterlib3.tres" id="4_sjetx"]
 [ext_resource type="PackedScene" uid="uid://hnr27k48o3qd" path="res://models/tree1.glb" id="4_tjhju"]
 [ext_resource type="PackedScene" uid="uid://dv6o01rhtf5bm" path="res://scenes/escape_trigger.tscn" id="5_jt5s0"]
-[ext_resource type="PackedScene" uid="uid://8u46kwnvsr6a" path="res://models/tree2.glb" id="5_riws4"]
+[ext_resource type="PackedScene" uid="uid://8u46kwnvsr6a" path="res://tree2.glb" id="5_riws4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvmwb"]
 size = Vector3(300, 0.1, 300)
