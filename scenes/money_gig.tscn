@@ -1,17 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgloy6v374jd1"]
+[gd_scene load_steps=4 format=3 uid="uid://cgloy6v374jd1"]
+
+[ext_resource type="Script" path="res://scripts/money_gig.gd" id="1_1b2i6"]
+[ext_resource type="PackedScene" uid="uid://0y6qg4m5ljg7" path="res://models/TRENCHCOAT-GUY.glb" id="1_rk3da"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y1gqr"]
 
 [node name="moneyGig" type="Node3D"]
+script = ExtResource("1_1b2i6")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Area3D"]
-light_color = Color(0.0901961, 1, 0.219608, 1)
-light_energy = 1.271
-light_volumetric_fog_energy = 1.814
+light_color = Color(0.54902, 0.952941, 0.176471, 1)
+light_energy = 1.949
+light_volumetric_fog_energy = 15.102
+omni_range = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_y1gqr")
+
+[node name="TRENCHCOAT-GUY" parent="." instance=ExtResource("1_rk3da")]
+
+[node name="Label3D" type="Label3D" parent="TRENCHCOAT-GUY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.84311, 0)
+pixel_size = 0.0022
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "Hey buddy...
+I need my fix..."
