@@ -1314,6 +1314,8 @@ material_override = SubResource("StandardMaterial3D_y0j4w")
 mesh = SubResource("BoxMesh_4uncc")
 skeleton = NodePath("../../..")
 
+[node name="actualBuildings" type="Node3D" parent="floor/buildings"]
+
 [node name="park" type="Node" parent="floor"]
 
 [node name="Park" type="Node3D" parent="floor/park"]
