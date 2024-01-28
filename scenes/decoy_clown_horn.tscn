@@ -35,8 +35,8 @@ orientation = 2
 
 [node name="decoyClownHorn" type="RigidBody3D"]
 transform = Transform3D(0.890959, -0.0974536, -0.443503, 0, 0.976699, -0.214616, 0.454084, 0.191214, 0.870198, 0, 0, 0)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_u4rte")
 
 [node name="decoyAlertArea" type="Area3D" parent="."]
